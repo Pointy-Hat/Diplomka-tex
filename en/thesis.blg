@@ -1,0 +1,58 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: thesis.aux
+A level-1 auxiliary file: title.aux
+A level-1 auxiliary file: preface.aux
+A level-1 auxiliary file: chap01.aux
+A level-1 auxiliary file: chap02.aux
+A level-1 auxiliary file: chap03.aux
+A level-1 auxiliary file: epilog.aux
+A level-1 auxiliary file: bibliography.aux
+The style file: plainnat.bst
+Database file #1: bibliography.bib
+Warning--empty journal in elu
+Warning--empty year in adam
+Warning--empty year in adam
+Warning--empty publisher in model
+You've used 14 entries,
+            2773 wiz_defined-function locations,
+            675 strings with 7858 characters,
+and the built_in function-call counts, 8295 in all, are:
+= -- 671
+> -- 751
+< -- 6
++ -- 251
+- -- 237
+* -- 710
+:= -- 1324
+add.period$ -- 49
+call.type$ -- 14
+change.case$ -- 118
+chr.to.int$ -- 14
+cite$ -- 32
+duplicate$ -- 320
+empty$ -- 479
+format.name$ -- 257
+if$ -- 1696
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 15
+newline$ -- 84
+num.names$ -- 56
+pop$ -- 254
+preamble$ -- 1
+purify$ -- 107
+quote$ -- 0
+skip$ -- 315
+stack$ -- 0
+substring$ -- 93
+swap$ -- 59
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 139
+warning$ -- 4
+while$ -- 45
+width$ -- 0
+write$ -- 190
+(There were 4 warnings)

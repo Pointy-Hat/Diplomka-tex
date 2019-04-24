@@ -1,0 +1,16 @@
+\contentsline {chapter}{Introduction}{2}{chapter*.2}
+\contentsline {chapter}{\numberline {1}Background}{3}{chapter.1}
+\contentsline {section}{\numberline {1.1}Model theory}{3}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}Basic definitions}{3}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}Skolemization}{5}{subsection.1.1.2}
+\contentsline {section}{\numberline {1.2}Neural networks}{7}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}What is a neural network}{7}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Example: XOR}{8}{subsection.1.2.2}
+\contentsline {subsection}{\numberline {1.2.3}Other activation functions}{10}{subsection.1.2.3}
+\contentsline {subsection}{\numberline {1.2.4}Learning and optimization}{11}{subsection.1.2.4}
+\contentsline {subsection}{\numberline {1.2.5}Back-propagation}{13}{subsection.1.2.5}
+\contentsline {subsection}{\numberline {1.2.6}Adam optimizer}{14}{subsection.1.2.6}
+\contentsline {chapter}{\numberline {2}Implementation}{17}{chapter.2}
+\contentsline {chapter}{\numberline {3}Results}{18}{chapter.3}
+\contentsline {chapter}{Conclusion}{19}{chapter*.9}
+\contentsline {chapter}{Bibliography}{20}{chapter*.10}

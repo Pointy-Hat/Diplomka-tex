@@ -1,0 +1,106 @@
+\begin{thebibliography}{14}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Abadi et~al.(2015)Abadi, Agarwal, Barham, Brevdo, Chen, Citro,
+  Corrado, Davis, Dean, Devin, Ghemawat, Goodfellow, Harp, Irving, Isard, Jia,
+  Jozefowicz, Kaiser, Kudlur, Levenberg, Man\'{e}, Monga, Moore, Murray, Olah,
+  Schuster, Shlens, Steiner, Sutskever, Talwar, Tucker, Vanhoucke, Vasudevan,
+  Vi\'{e}gas, Vinyals, Warden, Wattenberg, Wicke, Yu, and Zheng]{tf}
+Mart\'{\i}n Abadi, Ashish Agarwal, Paul Barham, Eugene Brevdo, Zhifeng Chen,
+  Craig Citro, Greg~S. Corrado, Andy Davis, Jeffrey Dean, Matthieu Devin,
+  Sanjay Ghemawat, Ian Goodfellow, Andrew Harp, Geoffrey Irving, Michael Isard,
+  Yangqing Jia, Rafal Jozefowicz, Lukasz Kaiser, Manjunath Kudlur, Josh
+  Levenberg, Dandelion Man\'{e}, Rajat Monga, Sherry Moore, Derek Murray, Chris
+  Olah, Mike Schuster, Jonathon Shlens, Benoit Steiner, Ilya Sutskever, Kunal
+  Talwar, Paul Tucker, Vincent Vanhoucke, Vijay Vasudevan, Fernanda Vi\'{e}gas,
+  Oriol Vinyals, Pete Warden, Martin Wattenberg, Martin Wicke, Yuan Yu, and
+  Xiaoqiang Zheng.
+\newblock {TensorFlow}: Large-scale machine learning on heterogeneous systems,
+  2015.
+\newblock URL \url{https://www.tensorflow.org/}.
+\newblock Software available from tensorflow.org.
+
+\bibitem[Clevert et~al.(2015)Clevert, Unterthiner, and Hochreiter]{elu}
+Djork-Arn~é Clevert, Thomas Unterthiner, and Sepp Hochreiter.
+\newblock Fast and accurate deep network learning byexponential linear units
+  (elus).
+\newblock 2015.
+\newblock arXiv preprint arXiv:1511.07289.
+
+\bibitem[Goodfellow et~al.(2016)Goodfellow, Bengio, and Courville]{neural}
+Ian Goodfellow, Yoshua Bengio, and Aaron Courville.
+\newblock \emph{Deep Learning}.
+\newblock MIT Press, 2016.
+\newblock \url{http://www.deeplearningbook.org}.
+
+\bibitem[Hahnloser et~al.(2000)Hahnloser, Sarpeshkar, Mahowald, Douglas, and
+  Seung]{relu3}
+Richard~HR Hahnloser, Rahul Sarpeshkar, Misha~A Mahowald, Rodney~J Douglas, and
+  H~Sebastian Seung.
+\newblock Digital selection and analogue amplification coexist in a
+  cortex-inspired silicon circuit.
+\newblock \emph{Nature}, 405\penalty0 (6789), 2000.
+
+\bibitem[He et~al.(2015)He, Zhang, Ren, and Sun]{parametric_relu}
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
+\newblock Delving deep into rectifiers:surpassing human-level performance on
+  imagenet classification.
+\newblock \emph{Proceedings of the IEEE international conference on com-puter
+  vision}, page 1026–1034, 2015.
+
+\bibitem[Jarrett et~al.(2009)Jarrett, Kavukcuoglu, Ranzato, and LeCun]{relu2}
+Kevin Jarrett, Koray Kavukcuoglu, Marc’Aurelio Ranzato, and Yann LeCun.
+\newblock What is the best multi-stage architecture for object recognition?
+\newblock \emph{2009 IEEE 12th International Conference on Computer Vision,},
+  2009.
+
+\bibitem[Kingma and Ba()]{adam}
+Diederik~P. Kingma and Jimmy Ba.
+\newblock Adam: A method for stochastic optimization.
+\newblock \emph{Journal of the American Statistical Association}.
+\newblock URL \url{https://arxiv.org/pdf/1412.6980.pdf}.
+
+\bibitem[Krizhevsky et~al.(2012)Krizhevsky, Sutskever, and
+  Hinton.]{imagenet_relu}
+Alex Krizhevsky, Ilya Sutskever, and Geoffrey~E Hinton.
+\newblock Imagenet classification with deep convolutional neuralnetworks.
+\newblock \emph{Advances in Neural Information Processing Systems}, page
+  1097–1105, 2012.
+
+\bibitem[Maas et~al.(2013)Maas, Hannun, , and Ng]{lrelu}
+Andrew~L Maas, Awni~Y Hannun, , and Andrew~Y Ng.
+\newblock Rectifier nonlinearities improve neural network acoustic models.
+\newblock \emph{International Conference on Machine Learning}, 30, 2013.
+
+\bibitem[Mendelson(1997)]{logic}
+Elliot Mendelson.
+\newblock \emph{Introduction to {M}athematical {L}ogic}.
+\newblock Fourth edition. Chapman \& Hall, 1997.
+\newblock ISBN 0 412 80830 7.
+
+\bibitem[Nair and Hinton(2010)]{relu1}
+Vinod Nair and Geoffrey~E Hinton.
+\newblock Rectified linear units improve restricted boltzmann machines.
+\newblock \emph{International Conference on Machine Learning}, 2010.
+
+\bibitem[Ramachandran et~al.(2018)Ramachandran, Zoph, and Le]{swish}
+Prajit Ramachandran, Barret Zoph, and Quoc~V. Le.
+\newblock Searching for activation functions, 2018.
+\newblock URL \url{https://openreview.net/forum?id=SkBYYyZRZ}.
+
+\bibitem[Rumelhart et~al.(1986)Rumelhart, Hinton, and Williams]{backprop}
+David~E. Rumelhart, Geoffrey~E. Hinton, and Ronald~J. Williams.
+\newblock Learning representations by back-propagating errors.
+\newblock \emph{Nature}, 323:\penalty0 533--536, 1986.
+
+\bibitem[Weiss and D’Mello(2015)]{model}
+William Weiss and Cherie D’Mello.
+\newblock \emph{Fundamentals of Model Theory}.
+\newblock 2015.
+\newblock URL \url{http://www.math.toronto.edu/weiss/model_theory.pdf}.
+
+\end{thebibliography}
