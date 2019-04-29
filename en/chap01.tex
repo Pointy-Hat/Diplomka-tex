@@ -1,5 +1,5 @@
 \chapter{Background}
-In this section we will discuss the fundamentals of both model theory and neural networks. Both are essential to understanding the rest of the thesis, but the reader well acquainted with them may skip this chapter.
+In this section we will discuss the fundamentals of both model theory and neural networks. Since this thesis seeks to unify two vastly different fields of mathematics, understanding of both of them is essential. A reader acquainted with those fields should not find any surprises here.
 
 %--------------------------------------------------------------
 
@@ -137,6 +137,121 @@ The other way around is just as easy. Since $\psi(x_1,\dots x_i,f_y(x_1,\dots x_
 
 This process had first been introduced to prove a general theorem in model theory, but we will use it to enable manipulation with existential quantifiers. More about the usage of this theorem can be found in \cite{logic} and \cite{model}.
 
+\subsection{Substructures and extensions}
+
+In order to do any constructions in model theory, we need to know how models relate to each other. As it is right now, our models exist completely separate from each other, with the only comparisons being possible through the lens of formulas. However, if two structures are models of the same theory, we can not differentiate between them using just that theory. That is why we need the notions of substructures and extensions.
+
+\begin{defn}
+	Let $\mathcal{S},\mathcal{T}$ be structures in the same language $\mathcal{L}$. Then a \textbf{mapping} of $\mathcal{S}$ to $\mathcal{T}$ is any function $f:S\rightarrow T$ that satisfies the following (for any $x_1,..,x_n\in S$):
+	\begin{enumerate}
+		\item If $F$ is an $n$-ary function in $\mathcal{L}$ then $f(F_\mathcal{S}(x_1,\dots,x_n))=F_\mathcal{T}(f(x_1),\dots,f(x_n))$.
+		\item If $c$ is a constant in $\mathcal{L}$ then $f(c_\mathcal{S})=c_\mathcal{T}$.
+		\item If $R$ is an $n$-ary relation in $\mathcal{L}$ then $R_\mathcal{S}(x_1,\dots,x_n)$ holds if and only if $R_\mathcal{T}(f(x_1),\dots,f(x_n))$ holds.
+	\end{enumerate}
+If also holds that $f$ is one-to-one, then $f$ is called an \textbf{embedding}.
+\end{defn}
+
+\begin{defn}
+	We say that a structure $\mathcal{S}$ is a \textbf{substructure} of $\mathcal{S}'$ if they are in the same language, $S\subseteq S'$ and all symbol interpretations agree on $S$. That means that $(S,\left.\mathcal{I}\right|_S)$ is a structure. Here $\left.\mathcal{I}\right|_S$ means the assignments of symbols is the same but restricted to $S$.
+	
+	We also say that $\mathcal{S}'$ is an \textbf{extension} of $\mathcal{S}$
+\end{defn}
+
+There are not many things that hold in extensions for general. For example a carthesian product of two structures with naturally defined functions, constants and relations is an extension of both of them, but their elements do not necessarily "interact" with each other. To ensure this interaction we need new definitions.
+
+\begin{defn}
+	Let $\mathcal{S}$ be an $\mathcal{L}$-structure and $\mathcal{S}'$ its extension.  Let $t_1(x)$ and $t_2(x)$ be $\mathcal{L}'$-terms with only one variable where $\mathcal{L}'$ is the language $\mathcal{L}$ with added names for each element of $S$. We say that the predicate\footnote{Predicate is a formula with only one free variable} $\varphi(x): "t_1(x)=t_2(x)"$ is an \textbf{equation} in $\mathcal{S}$. If $\varphi(x)$ holds for some $x$, we say that that $x$ is the \textbf{solution} of $\varphi$. If the set of solutions of $\varphi$ is not $S$, we say that the equation is \textbf{non-zero}.
+\end{defn}
+\begin{defn}	
+	Let $s\in S'$ be an element. If is there exists a non-zero equation $\varphi(x)$ in $\mathcal{S}$ for which $s$ is a solution then $s$ is \textbf{algebraic}\footnote{Normally we do not require the $\varphi$ to be an equation, but for the purposes of our model we will make this assumption}. If there is no such equation, then $s$ is \textbf{transcendental}.
+\end{defn}
+
+We see that every element $s\in S$ is algebraic. We can take $x=s$ as the equation.
+
+A reader acquainted with field extensions will recognize these terms. Indeed, these are generalizations of those terms, so that the theory can be modified and applied to other structures than fields. A crucial difference is that this definition does not guarantee the existence of an extension. An example of this is $0\cdot x=1\cdot x$ in any field. However, there are classes of structures where every equation yields an algebraic extension. One such example are groups.
+
+\subsection{Groups and their algebraic extensions}
+
+\begin{defn}
+A \textbf{group} is a structure in the language $\{\cdot,^{-1},e\}$ (where $\cdot$ is binary function, $^{-1}$ is unary and $e$ is a constant) that also models the following theory\footnote{For the sake of simplicity we will use multiple $=$ signs in the definitions. To be absolutely correct, we could re-write these as $a=b=c \longrightarrow a=b\wedge b=c \wedge c=a$.}
+\begin{enumerate}
+	\item $\forall a,b,c\ (a\cdot b)\cdot c = a \cdot (b\cdot c)$
+	\item $\forall a\ a\cdot e = e\cdot a = a$
+	\item $\forall a\ a\cdot a^{-1}=a^{-1}a=e$
+\end{enumerate}
+We will call $\cdot$ \textbf{composition}, $^{-1}$ \textbf{inverse} and $e$ shall be \textbf{unit}.
+\end{defn}
+
+Note that this is the skolemized version of the theory that has $\exists e \forall a\ e\cdot a = a\cdot e = a$ or $\exists e(\forall a\ e\cdot a = a\cdot e = a \wedge\forall a \exists b\ a\cdot b = b\cdot a = e)$\footnote{Once again we use simplified notation.}. 
+
+\begin{defn}
+	A substructure of a group is a \textbf{subgroup} (denoted $G\leq G'$). We say that a subgroup is \textbf{normal} if $\forall x\in G'\ \forall g\in G\ x^{-1}\cdot g\cdot x\in G$, or simply $x^{-1}Gx\leq G$. We denote it as $G\trianglelefteq G'$.
+\end{defn}
+
+It can be proven that this subgroup is of the form $\{t(b_1,\dots b_n)|b_1,\dots b_n\in B, t \text{ is a term}\}$. It is also the intersection of all groups that contain $B$ (\cite{group}). Note that if we use this as a definition, we can expand the notion of a generated substructure to any model.
+
+\begin{defn}
+	Let $G$ be a group and $B$ a set of elements of $G$. Then a subgroup \textbf{generated} by $B$ is the smallest subgroup of $G$ that contains $B$. We denote it as $\langle B\rangle_G$.
+\end{defn}
+
+\begin{defn}
+	Let $G\leq H$ be two groups. Then the sets $hG=\{h\cdot g|g\in G\}$ for any $ h\in H$ are called  \textbf{left cosets} of $G$. If $G$ is a normal subgroup, then we can induce a composition on these cosets: $hG\cdot h'G=(h\cdot h')G$ (a proof that this is really a group can be found in \cite{group}). We will call this group the \textbf{quotient group} $H/G$.
+\end{defn}
+
+As with algebraic extensions over fields, we can use this quotient group to craft an algebraic extension to any equation.
+
+First, however, we need a group that we can do quotient of.
+
+\begin{defn}
+\label{freegroupdefn}
+	Let $G$ be a group. Then we will define an extension $G[x]$ as such:
+	\begin{itemize}
+		\item Elements of $G[x]$ are formal strings of the form $g_1 x^{n_1}g_2 x^{n_2}\dots g_k x^{n_k}g_{k+1}$ where $k$ can be any integer (including $0$-in that case we have an element of $g$), $g_i$ are elements of $G$ (all except $g_1$ and $g_{k+1}$ have to be different from $e$) and $n_i$ are non-zero integers.
+		\item $\cdot$ is defined as concatenation of strings with adjustment for inverses. We do this adjustment by repeating the following:
+			\begin{enumerate}
+				\item If we there is a substring $g_i g_{i+1}$ we replace it with $(g_i\cdot g_{i+1})$.
+				\item If there is a substring $x^{n_{i-1}}ex^{n_i}$ we replace it by $x^{n_{i-1}+n_i}$.
+				\item If there is $x^0$, we replace it by $e$.			
+			\end{enumerate}
+			If none of these replacements is possible, we have a valid element.
+	\item $e$ is the same as in $G$.
+	\item If  $g=g_1 x^{n_1}g_2 x^{n_2}\dots g_k x^{n_k}g_{k+1}$ then $g^{-1}=g_{k+1}^{-1}x^{-n_k}\dots x^{-n_1}g_1^{-1}$. We can easily verify that $g\cdot g^{-1}$ is indeed equal to $e$.
+	\end{itemize}
+\end{defn}
+
+Without loss of generality we can assume that any equation $\varphi$ has the form $t(x)=e$, where $t$ is a term. If $\varphi(x): "t_1(x)=t_2(x)"$ would have a different form, then $\varphi'(x): "t_1(x)\cdot (t_2(x))^{-1}=e"$ has exactly the same solutions.
+
+\begin{thm}
+	Let $G$ be a group and $\varphi(x)$ an equation of the form $t(x)=e$ where $t(x)$ has at least one occurence of $x$. Then there exists an extension $G'$ of $G$ such that there exists $g\in G'$ that is a solution to $\varphi$.
+\end{thm}
+\begin{proof}
+If we apply simplifications from definition \autoref{freegroupdefn}, $t$ has the form $g_1 x^{n_1}g_2 x^{n_2}\dots g_k x^{n_k}g_{k+1}$. This modification of $\varphi$ still has the same solutions.
+
+This way $t$ can be seen as an element of $G[x]$. Let us then define $B=\{gtg^{-1}|g\in G[x]\}$. $\langle B\rangle$ is a normal subgroup of $G[x]$. We immediately see that $gbg^{-1}\in \langle B\rangle$, (even $gbg^{-1}\in B$) for all $b\in B, g\in G[x]$. Now if $b=b_1 b_2\dots b_n$ where $b_i\in B$ then $$gbg^{-1}=gb_1 b_2\dots b_ng^{-1}=gb_1g^{-1}g b_2g^{-1}\dots gb_ng^{-1}.$$
+We define ${b_i}'=gb_ig^{-1}$ for $i\in\{1,\dots,n\}$. Now $$gbg^{-1}=(gb_1g^{-1})(g b_2g^{-1})\dots (gb_ng^{-1})={b_1}'{b_2}'\dots{b_n}'.$$
+Since $\forall i\ {b_i}'\in B$, also $gbg^{-1}\in \langle B\rangle$.
+
+Now we know that $G[x]/\langle B \rangle$ is a group. In it, all elements of $G$ form different cosets, since $g\langle B \rangle$ always has the element $g\cdot t(x)$ and no two $g\in G$ can produce the same $g\cdot t(x)$. Also, since $t(x)$ has at least one occurence of $x$, we know that $g\notin \langle B \rangle\ \forall g\in G$. Therefore $G\leq G[x]/\langle B \rangle$.
+
+The last thing we need to show is that $x \langle B \rangle$ is a solution to $\varphi(x)$. Indeed, since $t(x)\in\langle B \rangle$, $$t(x\langle B \rangle)=t(x)\langle B \rangle=\langle B \rangle=e_{G[x]/\langle B \rangle}.$$
+
+Therefore $G[x]/\langle B \rangle$ is the desired extension.
+\end{proof}
+
+A reader acquainted with field extensions will immediately recognize this construction. Indeed, it had been the inspiration for this proof. Worth noticing is that this construction can also naturally lead to the notions of Galois groups and indices of group extensions, but that is beyond the scope of this thesis.
+
+In order to describe some of the extensions of groups that are obtained in this thesis, we need a new type of construction: a \textbf{semidirect product}. There are two different versions of this construction, we will use the so-called outer one.
+
+\begin{defn}
+	Let $H,K$ be groups and $\varphi:K\rightarrow \text{Aut}(H)$\footnote{For the definition of homomorphisms and automorphisms of groups, refer to \cite{group}. In short, a homomorphism is a mapping $f:G\rightarrow H$ such that $f(g_1g_2)=f(g_1)f(g_2)$ and automorphism is an invertible homomorphism $G\rightarrow G$.} a homomorphism (for the sake of clarity we will refer to $\varphi(k)$ as $\varphi_k$). Then the semidirect product $H \rtimes_{\varphi} K$ is defined as such:
+	\begin{itemize}
+		\item Universe is the set $H\times K$.	
+		\item $(h_1,k_1)\cdot(h_2,k_2)$ is defined as $(h_1\varphi_{k_1}(h_2),k_1k_2)$
+		\item $(h,k)^{-1}$ is defined as $(\varphi_k^{-1}(h^{-1}),k^{-1})$
+		\item $e=(e_H,e_K)$
+	\end{itemize}
+\end{defn}
+Proof that this is indeed a group can be found in \cite{group}.
 %-------------------------------------------------------
 %-------------------------------------------------------
 %-------------------------------------------------------
@@ -448,7 +563,7 @@ As we can see, if Jacobians of vector to vector functions and gradients of vecto
 
 However, this algorithm computes the gradient for only one input. If our batch size is higher, we compute all gradients and add them together. This can get computationally difficult, so most software uses procedures to speed it up. For example Tensorflow framework uses what \cite{neural} calls the symbol to symbol approach. The framework adds new nodes to the network that are used to compute the derivations. This way the backpropagation can be done by the same engine. Specifically we add nodes for gradients of each layer by itself and other nodes for computing chain rule. Then if we treat the batch as a matrix, we can compute gradients during only one run through the graph. \autoref{tfbackpropdiagram} illustrates this process.
 
-\begin{figure}
+\begin{figure}[h]
 \caption{An example of the symbol to symbol approach. Note that $f^{(3)}$ here can also be the loss function}
 \label{tfbackpropdiagram}
 \centering
