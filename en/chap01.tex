@@ -138,6 +138,7 @@ The other way around is just as easy. Since $\psi(x_1,\dots x_i,f_y(x_1,\dots x_
 This process had first been introduced to prove a general theorem in model theory, but we will use it to enable manipulation with existential quantifiers. More about the usage of this theorem can be found in \cite{logic} and \cite{model}.
 
 \subsection{Substructures and extensions}
+\label{section:extensions}
 
 In order to do any constructions in model theory, we need to know how models relate to each other. As it is right now, our models exist completely separate from each other, with the only comparisons being possible through the lens of formulas. However, if two structures are models of the same theory, we can not differentiate between them using just that theory. That is why we need the notions of substructures and extensions.
 
@@ -171,6 +172,7 @@ We see that every element $s\in S$ is algebraic. We can take $x=s$ as the equati
 A reader acquainted with field extensions will recognize these terms. Indeed, these are generalizations of those terms, so that the theory can be modified and applied to other structures than fields. A crucial difference is that this definition does not guarantee the existence of an extension. An example of this is $0\cdot x=1\cdot x$ in any field. However, there are classes of structures where every equation yields an algebraic extension. One such example are groups.
 
 \subsection{Groups and their algebraic extensions}
+\label{section:groups}
 
 \begin{defn}
 A \textbf{group} is a structure in the language $\{\cdot,^{-1},e\}$ (where $\cdot$ is binary function, $^{-1}$ is unary and $e$ is a constant) that also models the following theory\footnote{For the sake of simplicity we will use multiple $=$ signs in the definitions. To be absolutely correct, we could re-write these as $a=b=c \longrightarrow a=b\wedge b=c \wedge c=a$.}

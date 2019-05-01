@@ -1,4 +1,4 @@
-\begin{thebibliography}{15}
+\begin{thebibliography}{17}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -93,6 +93,14 @@ Vinod Nair and Geoffrey~E Hinton.
 \newblock Rectified linear units improve restricted boltzmann machines.
 \newblock \emph{International Conference on Machine Learning}, 2010.
 
+\bibitem[Pelletier(2000)]{fuzzy}
+Francis~Jeffry Pelletier.
+\newblock Petr hájek. metamathematics of fuzzy logic. trends in logic, vol. 4.
+  kluwer academic publishers, dordrecht, boston, and london, 1998, viii 297 pp.
+\newblock \emph{Bulletin of Symbolic Logic}, 6\penalty0 (3):\penalty0
+  342–346, 2000.
+\newblock \doi{10.2307/421060}.
+
 \bibitem[Ramachandran et~al.(2018)Ramachandran, Zoph, and Le]{swish}
 Prajit Ramachandran, Barret Zoph, and Quoc~V. Le.
 \newblock Searching for activation functions, 2018.
@@ -102,6 +110,13 @@ Prajit Ramachandran, Barret Zoph, and Quoc~V. Le.
 David~E. Rumelhart, Geoffrey~E. Hinton, and Ronald~J. Williams.
 \newblock Learning representations by back-propagating errors.
 \newblock \emph{Nature}, 323:\penalty0 533--536, 1986.
+
+\bibitem[Serafini and d'Avila Garcez(2016)]{serafini}
+Luciano Serafini and Artur~S. d'Avila Garcez.
+\newblock Logic tensor networks: Deep learning and logical reasoning from data
+  and knowledge.
+\newblock \emph{CoRR}, abs/1606.04422, 2016.
+\newblock URL \url{http://arxiv.org/abs/1606.04422}.
 
 \bibitem[Weiss and D’Mello(2015)]{model}
 William Weiss and Cherie D’Mello.

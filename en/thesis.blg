@@ -14,45 +14,45 @@ Warning--empty journal in elu
 Warning--empty year in adam
 Warning--empty year in adam
 Warning--empty publisher in model
-You've used 15 entries,
+You've used 17 entries,
             2773 wiz_defined-function locations,
-            680 strings with 7929 characters,
-and the built_in function-call counts, 8600 in all, are:
-= -- 696
-> -- 761
-< -- 7
-+ -- 255
-- -- 240
-* -- 726
-:= -- 1375
-add.period$ -- 53
-call.type$ -- 15
-change.case$ -- 121
-chr.to.int$ -- 15
-cite$ -- 34
-duplicate$ -- 340
-empty$ -- 511
-format.name$ -- 261
-if$ -- 1760
+            694 strings with 8365 characters,
+and the built_in function-call counts, 9391 in all, are:
+= -- 771
+> -- 792
+< -- 9
++ -- 266
+- -- 249
+* -- 784
+:= -- 1500
+add.period$ -- 61
+call.type$ -- 17
+change.case$ -- 130
+chr.to.int$ -- 17
+cite$ -- 38
+duplicate$ -- 379
+empty$ -- 583
+format.name$ -- 274
+if$ -- 1927
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 17
-newline$ -- 90
-num.names$ -- 60
-pop$ -- 265
+missing$ -- 19
+newline$ -- 102
+num.names$ -- 68
+pop$ -- 278
 preamble$ -- 1
-purify$ -- 110
+purify$ -- 117
 quote$ -- 0
-skip$ -- 327
+skip$ -- 357
 stack$ -- 0
-substring$ -- 95
-swap$ -- 60
+substring$ -- 126
+swap$ -- 62
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 145
+type$ -- 167
 warning$ -- 4
-while$ -- 48
+while$ -- 55
 width$ -- 0
-write$ -- 204
+write$ -- 234
 (There were 4 warnings)
