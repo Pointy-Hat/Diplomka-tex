@@ -6,53 +6,61 @@ A level-1 auxiliary file: preface.aux
 A level-1 auxiliary file: chap01.aux
 A level-1 auxiliary file: chap02.aux
 A level-1 auxiliary file: chap03.aux
+A level-1 auxiliary file: chap04.aux
 A level-1 auxiliary file: epilog.aux
 A level-1 auxiliary file: bibliography.aux
 The style file: plainnat.bst
 Database file #1: bibliography.bib
+I was expecting a `,' or a `}'---line 239 of file bibliography.bib
+ :  
+ :  @article{crossentropy,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 Warning--empty journal in elu
+Warning--empty publisher in Lingebra
 Warning--empty year in adam
 Warning--empty year in adam
+Warning--empty booktitle in grounding_wang
 Warning--empty publisher in model
-You've used 17 entries,
+You've used 25 entries,
             2773 wiz_defined-function locations,
-            694 strings with 8365 characters,
-and the built_in function-call counts, 9391 in all, are:
-= -- 771
-> -- 792
-< -- 9
-+ -- 266
-- -- 249
-* -- 784
-:= -- 1500
-add.period$ -- 61
-call.type$ -- 17
-change.case$ -- 130
-chr.to.int$ -- 17
-cite$ -- 38
-duplicate$ -- 379
-empty$ -- 583
-format.name$ -- 274
-if$ -- 1927
+            746 strings with 9789 characters,
+and the built_in function-call counts, 13188 in all, are:
+= -- 1112
+> -- 984
+< -- 17
++ -- 332
+- -- 307
+* -- 1055
+:= -- 2071
+add.period$ -- 89
+call.type$ -- 25
+change.case$ -- 170
+chr.to.int$ -- 25
+cite$ -- 56
+duplicate$ -- 576
+empty$ -- 905
+format.name$ -- 344
+if$ -- 2749
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 19
-newline$ -- 102
-num.names$ -- 68
-pop$ -- 278
+missing$ -- 28
+newline$ -- 145
+num.names$ -- 102
+pop$ -- 366
 preamble$ -- 1
-purify$ -- 117
+purify$ -- 150
 quote$ -- 0
-skip$ -- 357
+skip$ -- 513
 stack$ -- 0
-substring$ -- 126
-swap$ -- 62
-text.length$ -- 2
+substring$ -- 275
+swap$ -- 101
+text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 167
-warning$ -- 4
-while$ -- 55
+type$ -- 250
+warning$ -- 6
+while$ -- 87
 width$ -- 0
-write$ -- 234
-(There were 4 warnings)
+write$ -- 341
+(There was 1 error message)

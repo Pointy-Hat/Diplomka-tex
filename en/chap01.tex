@@ -242,18 +242,6 @@ Therefore $G[x]/\langle B \rangle$ is the desired extension.
 
 A reader acquainted with field extensions will immediately recognize this construction. Indeed, it had been the inspiration for this proof. Worth noticing is that this construction can also naturally lead to the notions of Galois groups and indices of group extensions, but that is beyond the scope of this thesis.
 
-In order to describe some of the extensions of groups that are obtained in this thesis, we need a new type of construction: a \textbf{semidirect product}. There are two different versions of this construction, we will use the so-called outer one.
-
-\begin{defn}
-	Let $H,K$ be groups and $\varphi:K\rightarrow \text{Aut}(H)$\footnote{For the definition of homomorphisms and automorphisms of groups, refer to \cite{group}. In short, a homomorphism is a mapping $f:G\rightarrow H$ such that $f(g_1g_2)=f(g_1)f(g_2)$ and automorphism is an invertible homomorphism $G\rightarrow G$.} a homomorphism (for the sake of clarity we will refer to $\varphi(k)$ as $\varphi_k$). Then the semidirect product $H \rtimes_{\varphi} K$ is defined as such:
-	\begin{itemize}
-		\item Universe is the set $H\times K$.	
-		\item $(h_1,k_1)\cdot(h_2,k_2)$ is defined as $(h_1\varphi_{k_1}(h_2),k_1k_2)$
-		\item $(h,k)^{-1}$ is defined as $(\varphi_k^{-1}(h^{-1}),k^{-1})$
-		\item $e=(e_H,e_K)$
-	\end{itemize}
-\end{defn}
-Proof that this is indeed a group can be found in \cite{group}.
 %-------------------------------------------------------
 %-------------------------------------------------------
 %-------------------------------------------------------
@@ -444,7 +432,7 @@ Before the introduction of ReLU the default activation functions were sigmoid $$
 \end{tikzpicture}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \caption{ReLU variations}
 \center
 \label{variousreludiagram}
@@ -515,6 +503,28 @@ If $\beta=0$, Swish becomes the scaled linear function $f(x)=\frac{x}{2}$. As $\
 \end{quote}
 
 This paper also contains performance comparisons for all above mentioned activation functions.
+
+\subsection{Universal approximation}
+
+The most useful property of the neural networks is their ability to approximate any continuous function (\cite{universal}). The universal approximation theorem is stated thusly:
+
+\begin{defn}
+ Let $I_n$ be the unit cube $[0,1]^n$ and $\mu$ a measure on $I_n$. Then $\sigma:\mathbb{R}\rightarrow\mathbb{R}$ is \textbf{discriminatory} if for any $\theta\in\mathbb{R}$ and $y\in I_n$ $$\int_{I_n}\sigma(y^\top x+\theta)d\mu(x)=0$$ if and only if $\mu=0$.
+\end{defn}
+
+\begin{thm}
+	Let $\sigma$ be a discriminatory function. Then the finite sums of the form $$G(x)=\sum_{j=1}^N\alpha_j\sigma(y_j^\top x+\theta_j)$$ are dense in $C(I_n)$ (space of all continuous function on $I_n$).
+	
+	This means that for any $f\in C(I_n)$ and $\epsilon>0$ there is a sum $G(x)$ of the form as above such that $\forall x\in I_n\ |G(x)-f(x)|<\epsilon$.
+\end{thm}
+
+Proof of this theorem, along with the proof that sigmoid-like functions are discriminatory can be found in the original paper.
+
+There is however no bound on the width of the network, which may pose a problem for the computers. Fortunately, however, \cite{narrownet} prove that using a ReLU activation function we only need the width $n+4$ to achieve universal approximation on compact subsets of $\mathbb{R}^n$. On the flipside, this width-bound also erases the depth-boundedness seen before.
+
+The relation between depth and width had not yet been fully established. Partial results show that there are networks whose decrease in depth would require an exponential increase in width in order to keep the same accuracy (\cite{widthexp}). The other way, decreasing width and increasing length had not yet been fully explored, but \cite{narrownet} also prove that this increase in some cases has to be more than polynomial. \\
+
+This universal approximation is the reason that the usage of neural networks is possible in model building. For example if $S\subset\mathbb{R^n}$ is the universe of a model and $f:S^m\rightarrow S$ is a function, we can approximate it by first introducing an arbitrary smooth function $f':\mathbb{R}^{nm}\rightarrow \mathbb{R}^n$ such that $\left.f'\right|_S=f$, and then finding a neural network that approximates $f'$.
 
 \subsection{Learning and optimization}
 Mathematical optimization is a branch of applied mathematics that is about finding local extremes in functions. We use it to find parameters for our neural network.

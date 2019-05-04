@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.27)  1 MAY 2019 17:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.27)  4 MAY 2019 20:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1221,14 +1221,14 @@ File: tikzlibrarycalc.code.tex 2013/07/15 v3.0.1a (rcs-revision 1.9)
 zlibraryfit.code.tex
 File: tikzlibraryfit.code.tex 2013/07/12 v3.0.1a (rcs-revision 1.5)
 )
-Package hyperref Info: Option `unicode' set `true' on input line 112.
+Package hyperref Info: Option `unicode' set `true' on input line 114.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2012/11/06 v6.83m Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-Package hyperref Info: Option `breaklinks' set `true' on input line 113.
+Package hyperref Info: Option `breaklinks' set `true' on input line 115.
 
 \@input{macros.aux}
 \openout2 = `macros.aux'.
@@ -1237,29 +1237,29 @@ Package hyperref Info: Option `breaklinks' set `true' on input line 113.
 \c@thm=\count155
 \c@defn=\count156
 ) (./thesis.aux (./title.aux) (./preface.aux) (./chap01.aux)
-(./chap02.aux) (./chap03.aux) (./epilog.aux) (./bibliography.aux))
+(./chap02.aux) (./chap03.aux) (./chap04.aux) (./epilog.aux) (./bibliography.aux
+))
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 119.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 121.
 
-
-(/usr/share/texmf/tex/latex/lm/ot1lmr.fd
+ (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 Package caption Info: Begin \AtBeginDocument code.
@@ -1296,7 +1296,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box64
-Package hyperref Info: Link coloring OFF on input line 119.
+Package hyperref Info: Link coloring OFF on input line 121.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1306,9 +1306,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count163
 )
-LaTeX Info: Redefining \ref on input line 119.
-LaTeX Info: Redefining \pageref on input line 119.
-LaTeX Info: Redefining \nameref on input line 119.
+LaTeX Info: Redefining \ref on input line 121.
+LaTeX Info: Redefining \pageref on input line 121.
+LaTeX Info: Redefining \nameref on input line 121.
 
 (./thesis.out) (./thesis.out)
 \@outlinefile=\write5
@@ -1319,13 +1319,13 @@ LaTeX Info: Redefining \nameref on input line 119.
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.13} into 
 your preamble.
- on input line 119.
+ on input line 121.
 
 \openout2 = `title.aux'.
 
 (./title.tex
 Package hyperref Info: Option `pageanchor' set `false' on input line 6.
- <../img/logo-en.pdf, id=115, 506.4591pt x 156.49065pt>
+ <../img/logo-en.pdf, id=151, 506.4591pt x 156.49065pt>
 File: ../img/logo-en.pdf Graphic file (type pdf)
 
 <use ../img/logo-en.pdf>
@@ -1446,27 +1446,32 @@ Overfull \hbox (48.75359pt too wide) in paragraph at lines 230--231
 [] [] g[]x[]g[]$\OT1/lmr/m/n/12 .|
  []
 
-[9] [10]
+[9]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[11]
+[10] [11] [12]
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[12] [13] [14]
-Underfull \hbox (badness 10000) in paragraph at lines 526--527
+[13] [14]
+Underfull \hbox (badness 10000) in paragraph at lines 525--526
 
  []
 
 [15]
-Underfull \hbox (badness 10000) in paragraph at lines 530--531
+Underfull \hbox (badness 10000) in paragraph at lines 536--537
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 540--541
 
  []
 
 [16]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 545.
+put line 555.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1475,48 +1480,219 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Package hyperref Warning: No autoref name for `algorithm' on input line 612.
+Package hyperref Warning: No autoref name for `algorithm' on input line 622.
 
+[17]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[17]) [18] [19]
+[18]) [19] [20]
 \openout2 = `chap02.aux'.
 
  (./chap02.tex
 Chapter 2.
-
-LaTeX Warning: Reference `comments' on page 20 undefined on input line 43.
-
-[20
+[21
 
 
 
-]
-
-LaTeX Warning: Reference `comments' on page 21 undefined on input line 45.
-
-
-LaTeX Warning: Reference `comments' on page 21 undefined on input line 83.
-
-[21] [22]
+] [22] [23]
 Underfull \hbox (badness 10000) in paragraph at lines 125--126
 
  []
 
-) [23] [24]
+) [24] [25]
 \openout2 = `chap03.aux'.
 
  (./chap03.tex
 Chapter 3.
-) [25
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <14.4> on input line 8.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 8.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 8.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 8.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 10--11
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--17
+
+ []
+
+<../img/z10_90percent.png, id=550, 832.10875pt x 573.14125pt>
+File: ../img/z10_90percent.png Graphic file (type png)
+
+<use ../img/z10_90percent.png>
+Package pdftex.def Info: ../img/z10_90percent.png used on input line 26.
+(pdftex.def)             Requested size: 412.56496pt x 284.16493pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 62.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 62.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 62.
+
+[26
 
 
 
-]
+] <../img/z20_90percent.png, id=562, 724.7075pt x 555.07375pt>
+File: ../img/z20_90percent.png Graphic file (type png)
+
+<use ../img/z20_90percent.png>
+Package pdftex.def Info: ../img/z20_90percent.png used on input line 73.
+(pdftex.def)             Requested size: 412.56496pt x 315.99724pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<../img/z20_half_plot.png, id=563, 724.7075pt x 555.07375pt>
+File: ../img/z20_half_plot.png Graphic file (type png)
+
+<use ../img/z20_half_plot.png>
+Package pdftex.def Info: ../img/z20_half_plot.png used on input line 93.
+(pdftex.def)             Requested size: 330.05322pt x 252.7961pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 96.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 96.
+
+<../img/z_inf.png, id=564, 832.10875pt x 573.14125pt>
+File: ../img/z_inf.png Graphic file (type png)
+ <use ../img/z_inf.png>
+Package pdftex.def Info: ../img/z_inf.png used on input line 118.
+(pdftex.def)             Requested size: 412.56496pt x 284.16493pt.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 130.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 130.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 130.
+
+[27] <../img/s4_comp+inv.png, id=583, 724.7075pt x 555.07375pt>
+File: ../img/s4_comp+inv.png Graphic file (type png)
+
+<use ../img/s4_comp+inv.png>
+Package pdftex.def Info: ../img/s4_comp+inv.png used on input line 143.
+(pdftex.def)             Requested size: 371.30594pt x 284.39667pt.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 188.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 188.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 188.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--222
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--226
+
+ []
+
+[28]
+Underfull \hbox (badness 10000) in paragraph at lines 229--230
+
+ []
+
+<../img/s4_matrix.png, id=596, 832.10875pt x 573.14125pt>
+File: ../img/s4_matrix.png Graphic file (type png)
+
+<use ../img/s4_matrix.png>
+Package pdftex.def Info: ../img/s4_matrix.png used on input line 237.
+(pdftex.def)             Requested size: 412.56496pt x 284.16493pt.
+) [29] [30 <../img/z10_90percent.png (PNG copy)>]
+[31 <../img/z20_90percent.png (PNG copy)>] [32 <../img/z20_half_plot.png (PNG c
+opy)> <../img/z_inf.png (PNG copy)>] [33 <../img/s4_comp+inv.png (PNG copy)>]
+[34 <../img/s4_matrix.png (PNG copy)>] [35]
+\openout2 = `chap04.aux'.
+
+ (./chap04.tex
+Chapter 4.
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--10
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--12
+
+ []
+
+[36
+
+
+
+]) [37]
 \openout2 = `epilog.aux'.
 
- (./epilog.tex) [26
+ (./epilog.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--6
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--8
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--10
+
+ []
+
+) [38
 
 
 
@@ -1529,34 +1705,36 @@ LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 24.
 
 (/usr/share/texmf/tex/latex/lm/ot1lmtt.fd
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [27
+) [39
 
 
 
-])) [28]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 165.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 165.
- (./thesis.aux
-(./title.aux) (./preface.aux) (./chap01.aux) (./chap02.aux) (./chap03.aux)
-(./epilog.aux) (./bibliography.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 165.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 165.
+]
+Overfull \hbox (18.41013pt too wide) in paragraph at lines 103--111
+\OT1/lmtt/m/n/12 7203-[]the-[]expressive-[]power-[]of-[]neural-[]networks-[]a-[
+]view-[]from-[]the-[]width .|
+ []
+
+)) [40]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 168.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 168.
+ (./thesis.aux (./title.aux) (./preface.aux) (./chap01.aux)
+(./chap02.aux) (./chap03.aux) (./chap04.aux) (./epilog.aux) (./bibliography.aux
+))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 168.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 168.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 5C84836D2E609CDCC1E1CF4BDB1D54C9;3116.
-
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 165.
+(rerunfilecheck)             Checksum: 711A2F354B5641D8870A11D817F6BD57;4414.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 168.
  ) 
 Here is how much of TeX's memory you used:
- 35368 strings out of 494910
- 796702 string characters out of 6179835
- 1374028 words of memory out of 5000000
- 37850 multiletter control sequences out of 15000+600000
- 93580 words of font info for 78 fonts, out of 8000000 for 9000
+ 35502 strings out of 494910
+ 798993 string characters out of 6179835
+ 1380246 words of memory out of 5000000
+ 37928 multiletter control sequences out of 15000+600000
+ 86866 words of font info for 82 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 66i,20n,102p,888b,2214s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 66i,20n,102p,982b,2214s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-rmtt.enc}{/usr/share/texmf/fonts/enc/
 dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/sha
 re/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/
@@ -1575,10 +1753,10 @@ s/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb>
 /public/lm/lmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 /symbols/msbm10.pfb>
-Output written on thesis.pdf (32 pages, 763455 bytes).
+Output written on thesis.pdf (44 pages, 1291531 bytes).
 PDF statistics:
- 620 PDF objects out of 1000 (max. 8388607)
- 537 compressed objects within 6 object streams
- 172 named destinations out of 1000 (max. 500000)
- 282 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 799 PDF objects out of 1000 (max. 8388607)
+ 697 compressed objects within 7 object streams
+ 216 named destinations out of 1000 (max. 500000)
+ 384 words of extra memory for PDF output out of 10000 (max. 10000000)
 

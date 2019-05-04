@@ -9,13 +9,22 @@
 \contentsline {subsection}{\numberline {1.2.1}What is a neural network}{10}{subsection.1.2.1}
 \contentsline {subsection}{\numberline {1.2.2}Example: XOR}{11}{subsection.1.2.2}
 \contentsline {subsection}{\numberline {1.2.3}Other activation functions}{13}{subsection.1.2.3}
-\contentsline {subsection}{\numberline {1.2.4}Learning and optimization}{15}{subsection.1.2.4}
-\contentsline {subsection}{\numberline {1.2.5}Back-propagation}{16}{subsection.1.2.5}
-\contentsline {subsection}{\numberline {1.2.6}Adam optimizer}{17}{subsection.1.2.6}
-\contentsline {chapter}{\numberline {2}Neural modelling}{20}{chapter.2}
-\contentsline {section}{\numberline {2.1}Building a neural model}{21}{section.2.1}
-\contentsline {section}{\numberline {2.2}Neural model extension}{22}{section.2.2}
-\contentsline {section}{\numberline {2.3}Implementation for groups}{22}{section.2.3}
-\contentsline {chapter}{\numberline {3}Results}{25}{chapter.3}
-\contentsline {chapter}{Conclusion}{26}{chapter*.14}
-\contentsline {chapter}{Bibliography}{27}{chapter*.15}
+\contentsline {subsection}{\numberline {1.2.4}Universal approximation}{15}{subsection.1.2.4}
+\contentsline {subsection}{\numberline {1.2.5}Learning and optimization}{16}{subsection.1.2.5}
+\contentsline {subsection}{\numberline {1.2.6}Back-propagation}{17}{subsection.1.2.6}
+\contentsline {subsection}{\numberline {1.2.7}Adam optimizer}{18}{subsection.1.2.7}
+\contentsline {chapter}{\numberline {2}Neural modelling}{21}{chapter.2}
+\contentsline {section}{\numberline {2.1}Building a neural model}{22}{section.2.1}
+\contentsline {section}{\numberline {2.2}Neural model extension}{23}{section.2.2}
+\contentsline {section}{\numberline {2.3}Implementation for groups}{23}{section.2.3}
+\contentsline {chapter}{\numberline {3}Results}{26}{chapter.3}
+\contentsline {section}{\numberline {3.1}Cyclic groups}{26}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}$\mathbb {Z}_{10}$}{26}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}$\mathbb {Z}_{20}$}{26}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Infinite group $\mathbb {Z}$}{27}{subsection.3.1.3}
+\contentsline {section}{\numberline {3.2}Symmetric groups}{27}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}$S_4$ with a basic grounding}{28}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}$S_4$ with matrix grounding}{28}{subsection.3.2.2}
+\contentsline {chapter}{\numberline {4}Comments and discussion}{36}{chapter.4}
+\contentsline {chapter}{Conclusion}{38}{chapter*.28}
+\contentsline {chapter}{Bibliography}{39}{chapter*.29}
