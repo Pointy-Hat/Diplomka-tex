@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.27)  4 MAY 2019 20:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.27)  5 MAY 2019 13:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1696,7 +1696,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--10
 
 
 
-]
+] [39]
 \openout2 = `bibliography.aux'.
 
  (./bibliography.tex (./thesis.bbl
@@ -1705,7 +1705,7 @@ LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 24.
 
 (/usr/share/texmf/tex/latex/lm/ot1lmtt.fd
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [39
+) [40
 
 
 
@@ -1715,7 +1715,7 @@ Overfull \hbox (18.41013pt too wide) in paragraph at lines 103--111
 ]view-[]from-[]the-[]width .|
  []
 
-)) [40]
+)) [41]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 168.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 168.
  (./thesis.aux (./title.aux) (./preface.aux) (./chap01.aux)
@@ -1725,16 +1725,20 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 168.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 168.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: 711A2F354B5641D8870A11D817F6BD57;4414.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 168.
  ) 
 Here is how much of TeX's memory you used:
- 35502 strings out of 494910
- 798993 string characters out of 6179835
- 1380246 words of memory out of 5000000
+ 35503 strings out of 494910
+ 799000 string characters out of 6179835
+ 1380313 words of memory out of 5000000
  37928 multiletter control sequences out of 15000+600000
  86866 words of font info for 82 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 66i,20n,102p,982b,2214s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 66i,20n,102p,987b,2214s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-rmtt.enc}{/usr/share/texmf/fonts/enc/
 dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/sha
 re/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/
@@ -1753,10 +1757,10 @@ s/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb>
 /public/lm/lmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 /symbols/msbm10.pfb>
-Output written on thesis.pdf (44 pages, 1291531 bytes).
+Output written on thesis.pdf (45 pages, 1292347 bytes).
 PDF statistics:
- 799 PDF objects out of 1000 (max. 8388607)
- 697 compressed objects within 7 object streams
- 216 named destinations out of 1000 (max. 500000)
+ 809 PDF objects out of 1000 (max. 8388607)
+ 705 compressed objects within 8 object streams
+ 217 named destinations out of 1000 (max. 500000)
  384 words of extra memory for PDF output out of 10000 (max. 10000000)
 
