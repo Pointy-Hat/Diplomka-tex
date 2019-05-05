@@ -227,7 +227,7 @@ Without loss of generality we can assume that any equation $\varphi$ has the for
 	Let $G$ be a group and $\varphi(x)$ an equation of the form $t(x)=e$ where $t(x)$ has at least one occurence of $x$. Then there exists an extension $G'$ of $G$ such that there exists $g\in G'$ that is a solution to $\varphi$.
 \end{thm}
 \begin{proof}
-If we apply simplifications from definition \autoref{freegroupdefn}, $t$ has the form $g_1 x^{n_1}g_2 x^{n_2}\dots g_k x^{n_k}g_{k+1}$. This modification of $\varphi$ still has the same solutions.
+If we apply simplifications from definition \Autoref{freegroupdefn}, $t$ has the form $g_1 x^{n_1}g_2 x^{n_2}\dots g_k x^{n_k}g_{k+1}$. This modification of $\varphi$ still has the same solutions.
 
 This way $t$ can be seen as an element of $G[x]$. Let us then define $B=\{gtg^{-1}|g\in G[x]\}$. $\langle B\rangle$ is a normal subgroup of $G[x]$. We immediately see that $gbg^{-1}\in \langle B\rangle$, (even $gbg^{-1}\in B$) for all $b\in B, g\in G[x]$. Now if $b=b_1 b_2\dots b_n$ where $b_i\in B$ then $$gbg^{-1}=gb_1 b_2\dots b_ng^{-1}=gb_1g^{-1}g b_2g^{-1}\dots gb_ng^{-1}.$$
 We define ${b_i}'=gb_ig^{-1}$ for $i\in\{1,\dots,n\}$. Now $$gbg^{-1}=(gb_1g^{-1})(g b_2g^{-1})\dots (gb_ng^{-1})={b_1}'{b_2}'\dots{b_n}'.$$
@@ -248,7 +248,7 @@ A reader acquainted with field extensions will immediately recognize this constr
 %-------------------------------------------------------
 
 \section{Neural networks}
-Neural networks have been one of the most important and well developed methods in machine learning in recent years. The main advantage of their usage is their universal property - the fact that given an $\epsilon>0$ there exists for every smooth function a neural network that approximates it with the error of at most $\epsilon$. Assuming that we have a structure whose universe is a subset of $\mathbb{R}^n$, we can approximate any of its functions with arbitrary precision. How exactly do we do that will be discussed in \autoref{chapter:implementation}. More about this subject can be found in \cite{neural}. This publication is also the principal source for this section.
+Neural networks have been one of the most important and well developed methods in machine learning in recent years. The main advantage of their usage is their universal property - the fact that given an $\epsilon>0$ there exists for every smooth function a neural network that approximates it with the error of at most $\epsilon$. Assuming that we have a structure whose universe is a subset of $\mathbb{R}^n$, we can approximate any of its functions with arbitrary precision. How exactly do we do that will be discussed in \Autoref{chapter:implementation}. More about this subject can be found in \cite{neural}. This publication is also the principal source for this section.
 
 \subsection{What is a neural network}
 In this section we will describe a \textbf{feedforward neural network}. We call it feedforward because it lacks feedback connections. It is therefore simpler, although it does not have any "memory". If a network has feedback connections, it is called \textbf{recurrent}. They are also widely used in machine learning, they are not used here, thus are beyond the scope of this thesis.
@@ -257,7 +257,7 @@ A network is usually represented by chaining of functions, called \textbf{layers
 
 In general the output $f_i$ does not need to have the same dimension as the input $x$ or the output $y$. But for the sake of simplicity, all hidden layers usually tend to have the same dimension between them. This is called the \textbf{width} of the network. Both depth and width can have a profound effect on the network's performance. 
 
-These networks are called neural, because they are inspired by biological neurons. In each layer the singular neurons are scalar functions from each element of input to each element of the output. These elements are also commonly referred to as \textit{nodes}. When we add together all neurons that lead to a node of the output, we get a vector to scalar function, that is the building block of a layer. This is better illustrated in \autoref{nndiagram1}.
+These networks are called neural, because they are inspired by biological neurons. In each layer the singular neurons are scalar functions from each element of input to each element of the output. These elements are also commonly referred to as \textit{nodes}. When we add together all neurons that lead to a node of the output, we get a vector to scalar function, that is the building block of a layer. This is better illustrated in \Autoref{nndiagram1}.
 
 \begin{figure}[h]
 \center
@@ -323,7 +323,7 @@ $$\textbf{w}=
 	1\\
 	-2
 \end{matrix}\right),$$
-and $b=0$. This network is illustrated in \autoref{xordiagram}. This is also not the only network that estimates XOR perfectly.
+and $b=0$. This network is illustrated in \Autoref{xordiagram}. This is also not the only network that estimates XOR perfectly.
 \begin{figure}[h]
 \caption{XOR network}
 \center
@@ -396,7 +396,7 @@ In this case we got the hand-crafted solution from a book. Normally the weights 
 \subsection{Other activation functions}
 ReLU, while being the most popular activation function, is not the only one used here, because it also has some drawbacks. The fact that its gradient is $0$ on all negative inputs means that gradient descent optimization methods might get us to the state where a node "dies" - all gradients regardless of data are 0. This tends to happen if our input and output contain few non-zero elements. In that case it is advised to use a different activation function.
 
-Before the introduction of ReLU the default activation functions were sigmoid $$\sigma(x)=\frac{1}{1+e^{-x}}$$ and hyperbolic tangent $$\tanh(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}$$ functions. They are related to each other since $\tanh(x)=2\sigma(2x)-1$. The main advantage of these functions is that they only output values in an open interval, $(0,1)$ for sigmoid and $(-1,1)$ for tanh. They also have nonzero gradient over their whole domain, which ensures that gradient descent optimization always works. However, as can be seen in \autoref{sigmoiddiagram} if the inputs are far enough from $0$, the gradients become very small. This results in gradient descent optimizers taking longer time (\cite{imagenet_relu}). If this happens, we say that the functions \textbf{saturate}. This is also the reason why these functions fell out of use.
+Before the introduction of ReLU the default activation functions were sigmoid $$\sigma(x)=\frac{1}{1+e^{-x}}$$ and hyperbolic tangent $$\tanh(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}$$ functions. They are related to each other since $\tanh(x)=2\sigma(2x)-1$. The main advantage of these functions is that they only output values in an open interval, $(0,1)$ for sigmoid and $(-1,1)$ for tanh. They also have nonzero gradient over their whole domain, which ensures that gradient descent optimization always works. However, as can be seen in \Autoref{sigmoiddiagram} if the inputs are far enough from $0$, the gradients become very small. This results in gradient descent optimizers taking longer time (\cite{imagenet_relu}). If this happens, we say that the functions \textbf{saturate}. This is also the reason why these functions fell out of use.
 \begin{figure}[t]
 \caption{Sigmoid and tanh functions}
 \center
@@ -478,7 +478,7 @@ Before the introduction of ReLU the default activation functions were sigmoid $$
 \end{tikzpicture}
 \end{figure}
 
-There had been also a number of attempts to fix the "dead" node problem with ReLU. Most of them try to preserve the piecewise linearity, since it is the ReLU's strongest advantage. Among examples are Leaky ReLU (\cite{lrelu}), Parametric ReLU (\cite{parametric_relu}) or Exponetial LU (\cite{elu}). They all try to combat this problem by redefining ReLU on negative numbers. They can be seen in \autoref{variousreludiagram}
+There had been also a number of attempts to fix the "dead" node problem with ReLU. Most of them try to preserve the piecewise linearity, since it is the ReLU's strongest advantage. Among examples are Leaky ReLU (\cite{lrelu}), Parametric ReLU (\cite{parametric_relu}) or Exponetial LU (\cite{elu}). They all try to combat this problem by redefining ReLU on negative numbers. They can be seen in \Autoref{variousreludiagram}
 
 
 They are defined as follows:
@@ -539,7 +539,7 @@ After we have a loss function, we choose an optimization method. A very basic on
 
 Gradient descent is an algorithm that can be used on functions that are differentiable with respect to $\theta$. It works in steps. It starts at a random $\theta_0 \in \Theta$. In each step $t$ it computes the gradient $\nabla_t$ of $J(\theta_t)$ and then sets $$\theta_{t+1}=\theta_t-\epsilon\cdot\nabla_t,$$ since $-\nabla_t$ is the direction of the steepest descent. $\epsilon$ is a parameter of the algorithm that describes how "long" the steps are. It is also called the \textbf{learning rate}. A careful consideration needs to go into the choice of this parameter. Too large $\epsilon$ can lead to the algorithm "overshooting" the minimum, while with a small $\epsilon$, the finding of the minimum can be very slow.\\
 
-Usually the universe the function operates on is infinite, or too large to use efficiently. In those cases we do the gradient descent in batches. As mentioned before, we take a sample subset $\textbf{X}$ of the universe (called \textbf{batch}) and we do the descent step using that with the loss function $J$. It is important to note that the gradient would be different with every $\textbf{X}$ we choose. That may lead (although rarely) to the situations where in one step we have the gradient that is opposite of the previous one, thus undoing the previous step. Another disadvantage of gradient descent is that it only finds local minima, so any small valley would stop the algorithm. To combat this, we usually make some alterations. One approach is discussed in \autoref{subsec:adam}.
+Usually the universe the function operates on is infinite, or too large to use efficiently. In those cases we do the gradient descent in batches. As mentioned before, we take a sample subset $\textbf{X}$ of the universe (called \textbf{batch}) and we do the descent step using that with the loss function $J$. It is important to note that the gradient would be different with every $\textbf{X}$ we choose. That may lead (although rarely) to the situations where in one step we have the gradient that is opposite of the previous one, thus undoing the previous step. Another disadvantage of gradient descent is that it only finds local minima, so any small valley would stop the algorithm. To combat this, we usually make some alterations. One approach is discussed in \Autoref{subsec:adam}.
 
 \subsection{Back-propagation}
 
@@ -573,7 +573,7 @@ As we can see, if Jacobians of vector to vector functions and gradients of vecto
 \end{algorithmic}
 \end{algorithm}
 
-However, this algorithm computes the gradient for only one input. If our batch size is higher, we compute all gradients and add them together. This can get computationally difficult, so most software uses procedures to speed it up. For example Tensorflow framework uses what \cite{neural} calls the symbol to symbol approach. The framework adds new nodes to the network that are used to compute the derivations. This way the backpropagation can be done by the same engine. Specifically we add nodes for gradients of each layer by itself and other nodes for computing chain rule. Then if we treat the batch as a matrix, we can compute gradients during only one run through the graph. \autoref{tfbackpropdiagram} illustrates this process.
+However, this algorithm computes the gradient for only one input. If our batch size is higher, we compute all gradients and add them together. This can get computationally difficult, so most software uses procedures to speed it up. For example Tensorflow framework uses what \cite{neural} calls the symbol to symbol approach. The framework adds new nodes to the network that are used to compute the derivations. This way the backpropagation can be done by the same engine. Specifically we add nodes for gradients of each layer by itself and other nodes for computing chain rule. Then if we treat the batch as a matrix, we can compute gradients during only one run through the graph. \Autoref{tfbackpropdiagram} illustrates this process.
 
 \begin{figure}[h]
 \caption{An example of the symbol to symbol approach. Note that $f^{(3)}$ here can also be the loss function}
@@ -619,7 +619,7 @@ However, this algorithm computes the gradient for only one input. If our batch s
 
 \subsection{Adam optimizer}
 \label{subsec:adam}
-In the framework built for this thesis we use Adam (\textbf {Ada}ptive \textbf{m}oment estimation) optimizer (\cite{adam}). It is based on gradient descent, but it also conserves the momentum. In each learning step it uses a weighted average of previous gradients, thus it is not as dependent on the exact batch chosen for the step. It also helps overcome local minima, since it takes longer to reverse the direction of descent. It uses 4 parameters: $\alpha$ - learning rate, $\beta_1$ - gradient momentum decay, $\beta_2$ - second gradient moment momentum decay and $\epsilon$ - a small parameter to avoid division by zero. The description of algorithm can be found in Algorithm \autoref{alg:adam}. 
+In the framework built for this thesis we use Adam (\textbf {Ada}ptive \textbf{m}oment estimation) optimizer (\cite{adam}). It is based on gradient descent, but it also conserves the momentum. In each learning step it uses a weighted average of previous gradients, thus it is not as dependent on the exact batch chosen for the step. It also helps overcome local minima, since it takes longer to reverse the direction of descent. It uses 4 parameters: $\alpha$ - learning rate, $\beta_1$ - gradient momentum decay, $\beta_2$ - second gradient moment momentum decay and $\epsilon$ - a small parameter to avoid division by zero. The description of algorithm can be found in Algorithm \Autoref{alg:adam}. 
 \begin{algorithm}[h]
 \caption{Adam optimizer. This algorithm is exactly like it can be found in the original paper. $g_t^2$ denotes element-wise square. All vector operations are elemet-wise. $f_t$ represents the loss function $f$ realized over the training batch in the step $t$.}
 \label{alg:adam}

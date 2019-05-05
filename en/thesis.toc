@@ -26,5 +26,4 @@
 \contentsline {subsection}{\numberline {3.2.1}$S_4$ with a basic grounding}{28}{subsection.3.2.1}
 \contentsline {subsection}{\numberline {3.2.2}$S_4$ with matrix grounding}{28}{subsection.3.2.2}
 \contentsline {chapter}{\numberline {4}Comments and discussion}{36}{chapter.4}
-\contentsline {chapter}{Conclusion}{38}{chapter*.28}
-\contentsline {chapter}{Bibliography}{40}{chapter*.29}
+\contentsline {chapter}{Bibliography}{38}{chapter*.28}
