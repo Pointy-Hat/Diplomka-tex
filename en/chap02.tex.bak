@@ -10,7 +10,7 @@
 }
 
 \label{chapter:implementation}
-This thesis is inspired by the work of \cite{serafini}. In their paper they propose the creation of \textit{Real Logic}, a framework that uses tensor networks \footnote{A type of neural networks} to process sentences and assign them truth value in the interval $[0,1]$ (we call this "uncertainty" \textbf{fuzzy logic}). They propose to do this by introducing a \textbf{grounding}: a function that \textit{grounds} a structure in real vector space, including all elements, functions, constants and even relations. This grounding is approximated using neural networks. 
+This thesis is inspired by the work of \cite{serafini}. In their paper they propose the creation of \textit{Real Logic}, a framework that uses tensor networks \footnote{A type of neural networks} to process sentences and assign them truth value in the interval $[0,1]$ (we call this "unceartainty" \textbf{fuzzy logic}). They propose to do this by introducing a \textbf{grounding}: a function that \textit{grounds} a structure in real vector space, including all elements, functions, constants and even relations. This grounding is approximated using neural networks. 
 
 The place where this thesis differs from this work is the type of the structure we try to emulate. In the original paper they model a relational structure, while we forego the relations completely and only implement functions and constants.
 
@@ -78,11 +78,11 @@ for each axiom of $T$, as illustrated in \Autoref{nndiagram2}. Since we assume t
 \end{tikzpicture}
 \end{figure}
 
-In the case that the axiom has more such equalities (or negations of them) we do some adjustments. Loss function of negation of a subformula should be computable from its own loss, e.g. $$J_{\neg\varphi}=\frac{1}{J_{\varphi}}.$$ If $\varphi_1,\varphi_2$ are subformulas, loss of $\varphi_1\vee \varphi_2$ will be e.g. $\min\{J_{\varphi_1},J_{\varphi_2}\}$ and loss of $\varphi_1\wedge \varphi_2$ will be e.g. $J_{\varphi_1}+J_{\varphi_2}$. However, these operations are for now just a speculation and further research is warranted. For example $\vee$ could use a function with a gradient that depends on both parts of the equation, while $\wedge$ might perform better using a different method of aggregation (e.g. $2\sqrt{J_{\varphi_1}^2+J_{\varphi_2}^2}$).
+In the case that the axiom has more such equalities (or negations of them) we do some adjustments. Loss function of negation of a subformula should be computable from its own loss, e.g. $$J_{\neg\varphi}=\frac{1}{J_{\varphi}}.$$ If $\varphi_1,\varphi_2$ are subformulas, loss of $\varphi_1\vee \varphi_2$ will be e.g. $\min\{J_{\varphi_1},J_{\varphi_2}\}$ and loss of $\varphi_1\wedge \varphi_2$ will be e.g. $J_{\varphi_1}+J_{\varphi_2}$. However, these operations are for now just a speculation and further research is warranted. For example $\vee$ could use a function with a gradient that depends on both parts of the equation, while $\wedge$ might perform better using a different method of aggreggation (e.g. $2\sqrt{J_{\varphi_1}^2+J_{\varphi_2}^2}$).
 
 It may be a good idea to also penalize straying from the groundings of the elements, since this may produce functions that are not exactly $S\rightarrow S$. Possible ways to achieve this are discussed in \Autoref{comments}.
 
-After computing the loss for each axiom, we aggregate them like with $\wedge$ and use back-propagation from there. This is, however, very costly with regards to computation time. Therefore in our experiments we used a different, simplified approach.
+After computing the loss for each axiom, we aggregate them like with $\wedge$ and use backpropagation from there. This is, however, very costly with regards to computation time. Therefore in our experiments we used a different, simplified approach.
 
 \section{Neural model extension}
 Another big part of this thesis is model extension. In \Autoref{section:extensions} we have discussed which type of extensions are we interested in.
@@ -112,7 +112,7 @@ After we the optimizer found a minimum, we evaluate various terms with this new 
 	\node(loss)at(1,-1){$J_{c_{\text{ex}}}$};
 	\draw[line](out1)--(loss);
 	\draw[line](out2)--(loss);
-	\draw[line,dashed](loss)-|(3.5,4)node[pos=0.75,anchor=west]{Back propagation}--($(c.east)+(0,0.1)$);
+	\draw[line,dashed](loss)-|(3.5,4)node[pos=0.75,anchor=west]{Backpropagation}--($(c.east)+(0,0.1)$);
 \end{tikzpicture}
 \end{figure}
 
@@ -124,11 +124,11 @@ There are many different types of groups, that have vastly different complexity 
 
 To better see if the computer is able to represent these groups correctly, we have opted to use the multiplication table for the learning of $\cdot$. The multiplication table is a table of pre-computed values for each double of the elements. This runs counter to the ideas described above, but is essential for human interpretability of the results. To demonstrate the ability of the network to generalize, and to a degree "understand" the composition function, several entries (up to 10\%) had been selected as testing data - they are never used during the optimization process.\\
 
-Both $\cdot$ and $^{-1}$ are 4-layer feed-forward neural networks with all connections. Width of each layer is $3n$ where $n$ is the size of the grounding. Activation functions on each layer are leaky ReLU. Loss function for each network is mean squared difference. There is no penalty for straying too far from the element representations, since this is already covered by the multiplication table approach. Each network is optimized using the Adam optimizer with default settings. Inputs are in batches of 25 random doubles for $\cdot$ and 5 elements for $^{-1}$ and $e$. 
+Both $\cdot$ and $^{-1}$ are 4-layer feedforward neural networks with all connections. Width of each layer is $3n$ where $n$ is the size of the grounding. Activation functions on each layer are leaky ReLU. Loss function for each network is mean squared difference. There is no penalty for straying too far from the element representations, since this is already covered by the multiplication table approach. Each network is optimized using the Adam optimizer with default settings. Inputs are in batches of 25 random doubles for $\cdot$ and 5 elements for $^{-1}$ and $e$. 
 
 Each symbol is trained with a different network, with a separate optimizer. Because of the difficulty of determining whether a network is trained well, all were trained at the same time. The network used for learning the composition is described in \Autoref{learning_comp}, unit in \Autoref{learning_unit} and inverse in \Autoref{learning_inv}. 
 
-Note that $e$ had been used during the training of composition as a part of training data. However, this knowledge had not been passed to the optimizer seeking to find this $e$.
+Note that $e$ had been used during the training of composition as a part of trainig data. However, this knowledge had not been passed to the optimizer seeking to find this $e$.
 
 \begin{figure}
 	\caption{Learning of composition. An incomplete multiplication table is used to determine the loss. $x_1,x_2$ is a randomly selected double.}

@@ -120,9 +120,9 @@ If we treat implication $\varphi \rightarrow \psi$ as equivalent to $\neg \varph
 
 Skolemization is a process that turns formulas from prenex normal forms to Skolem normal form by introducing new function and constant symbols. We repeatedly apply this step:
 
-Let $\varphi$ be a formula that has the form $$\forall x_1\forall x_2,\dots \forall x_{i}\exists y\psi(x_1,\dots x_i,y)$$ where $x_1,\dots x_n$ are all universally quantified and $\psi$ is a formula in prenex normal form. Then Skolemized version of $\varphi$ is obtained by introducing a new $i$-ary function symbol $f_y$ and replacing all occurrences of $y$ in $\psi$ with $f_y(x_1,\dots,x_i)$. Thus we get $$\forall x_1\forall x_2,\dots \forall x_{i}\psi(x_1,\dots x_i,f_y(x_1,\dots,x_i))$$ We say that $f_y$ is the Skolem function of $y$.
+Let $\varphi$ be a formula that has the form $$\forall x_1\forall x_2,\dots \forall x_{i}\exists y\psi(x_1,\dots x_i,y)$$ where $x_1,\dots x_n$ are all universally quantified and $\psi$ is a formula in prenex normal form. Then Skolemized version of $\varphi$ is obtained by introducing a new $i$-ary function symbol $f_y$ and replacing all occurences of $y$ in $\psi$ with $f_y(x_1,\dots,x_i)$. Thus we get $$\forall x_1\forall x_2,\dots \forall x_{i}\psi(x_1,\dots x_i,f_y(x_1,\dots,x_i))$$ We say that $f_y$ is the Skolem function of $y$.
 
-If $\varphi$ has the form $\exists y \psi(y)$, i.e. there are no universal quantifiers at the start we introduce a Skolem constant $c_y$ and replace all occurrences of $y$ in $\psi$ by $c_y$, obtaining $\psi(c_y)$. This is consistent with the notion of constants being $0$-ary functions.
+If $\varphi$ has the form $\exists y \psi(y)$, i.e. there are no universal quantifiers at the start we introduce a Skolem constant $c_y$ and replace all occurences of $y$ in $\psi$ by $c_y$, obtaining $\psi(c_y)$. This is consistent with the notion of constants being $0$-ary functions.
 
 \begin{thm}
 	Every formula $\varphi$ is equisatisfiable to the formula $\phi$ that is obtained by the Skolemization process.
@@ -224,7 +224,7 @@ First, however, we need a group that we can do quotient of.
 Without loss of generality we can assume that any equation $\varphi$ has the form $t(x)=e$, where $t$ is a term. If $\varphi(x): "t_1(x)=t_2(x)"$ would have a different form, then $\varphi'(x): "t_1(x)\cdot (t_2(x))^{-1}=e"$ has exactly the same solutions.
 
 \begin{thm}
-	Let $G$ be a group and $\varphi(x)$ an equation of the form $t(x)=e$ where $t(x)$ has at least one occurrence of $x$. Then there exists an extension $G'$ of $G$ such that there exists $g\in G'$ that is a solution to $\varphi$.
+	Let $G$ be a group and $\varphi(x)$ an equation of the form $t(x)=e$ where $t(x)$ has at least one occurence of $x$. Then there exists an extension $G'$ of $G$ such that there exists $g\in G'$ that is a solution to $\varphi$.
 \end{thm}
 \begin{proof}
 If we apply simplifications from definition \Autoref{freegroupdefn}, $t$ has the form $g_1 x^{n_1}g_2 x^{n_2}\dots g_k x^{n_k}g_{k+1}$. This modification of $\varphi$ still has the same solutions.
@@ -233,7 +233,7 @@ This way $t$ can be seen as an element of $G[x]$. Let us then define $B=\{gtg^{-
 We define ${b_i}'=gb_ig^{-1}$ for $i\in\{1,\dots,n\}$. Now $$gbg^{-1}=(gb_1g^{-1})(g b_2g^{-1})\dots (gb_ng^{-1})={b_1}'{b_2}'\dots{b_n}'.$$
 Since $\forall i\ {b_i}'\in B$, also $gbg^{-1}\in \langle B\rangle$.
 
-Now we know that $G[x]/\langle B \rangle$ is a group. In it, all elements of $G$ form different cosets, since $g\langle B \rangle$ always has the element $g\cdot t(x)$ and no two $g\in G$ can produce the same $g\cdot t(x)$. Also, since $t(x)$ has at least one occurrence of $x$, we know that $g\notin \langle B \rangle\ \forall g\in G$. Therefore $G\leq G[x]/\langle B \rangle$.
+Now we know that $G[x]/\langle B \rangle$ is a group. In it, all elements of $G$ form different cosets, since $g\langle B \rangle$ always has the element $g\cdot t(x)$ and no two $g\in G$ can produce the same $g\cdot t(x)$. Also, since $t(x)$ has at least one occurence of $x$, we know that $g\notin \langle B \rangle\ \forall g\in G$. Therefore $G\leq G[x]/\langle B \rangle$.
 
 The last thing we need to show is that $x \langle B \rangle$ is a solution to $\varphi(x)$. Indeed, since $t(x)\in\langle B \rangle$, $$t(x\langle B \rangle)=t(x)\langle B \rangle=\langle B \rangle=e_{G[x]/\langle B \rangle}.$$
 
@@ -478,7 +478,7 @@ Before the introduction of ReLU the default activation functions were sigmoid $$
 \end{tikzpicture}
 \end{figure}
 
-There had been also a number of attempts to fix the "dead" node problem with ReLU. Most of them try to preserve the piece-wise linearity, since it is the ReLU's strongest advantage. Among examples are Leaky ReLU (\cite{lrelu}), Parametric ReLU (\cite{parametric_relu}) or Exponential LU (\cite{elu}). They all try to combat this problem by redefining ReLU on negative numbers. They can be seen in \Autoref{variousreludiagram}
+There had been also a number of attempts to fix the "dead" node problem with ReLU. Most of them try to preserve the piecewise linearity, since it is the ReLU's strongest advantage. Among examples are Leaky ReLU (\cite{lrelu}), Parametric ReLU (\cite{parametric_relu}) or Exponetial LU (\cite{elu}). They all try to combat this problem by redefining ReLU on negative numbers. They can be seen in \Autoref{variousreludiagram}
 
 
 They are defined as follows:
@@ -499,7 +499,7 @@ $where $\alpha$ is a learned parameter
 
 There is to this day ongoing search for better activation functions, for example in paper \cite{swish} they propose a different function called Swish, defined as $x\cdot \sigma(\beta\cdot x)$ where $\beta$ is a learned parameter. They were able to find this function by crafting a set of basic functions and rules to combine them, thus greatly enlarging the set of activation functions tried. This Swish function is presented as a compromise between ReLU and the sigmoid:
 \begin{quote}
-If $\beta=0$, Swish becomes the scaled linear function $f(x)=\frac{x}{2}$. As $\beta\rightarrow\infty$,  the sigmoid component approaches a $0-1$ function,  so Swish becomes like the ReLU function. This suggests that Swish can be loosely viewed as a smooth function which non-linearly interpolates between the linear function and the ReLU function.(p.5)
+If $\beta=0$, Swish becomes the scaled linear function $f(x)=\frac{x}{2}$. As $\beta\rightarrow\infty$,  the sigmoid component approaches a $0-1$ function,  so Swish becomes like the ReLU function. This suggests that Swish can be loosely viewed as a smooth function which nonlinearly interpolates between the linear function and the ReLU function.(p.5)
 \end{quote}
 
 This paper also contains performance comparisons for all above mentioned activation functions.
@@ -535,7 +535,7 @@ With neural networks we use the general form $$J(\theta) = \frac{1}{|\textbf{X}|
 
 A very common loss function is the mean squared difference first introduced above. There $j=(\widehat{f}(\textbf{x};\theta)-f(\textbf{x}))^2$. It is widely used because of its simplicity, but it also has some drawbacks, e.g. sensitivity to outliers. It was also used to optimize the networks built for this thesis.\\
 
-After we have a loss function, we choose an optimization method. A very basic one is \textbf{gradient descent}. This method is commonly introduced as a solution to the foggy hill problem. In this problem we have a traveler that wants to reach the summit of a hill, but because of the fog he can only see his immediate vicinity. He therefore always goes in the direction of the steepest climb and if he can not see any climb, he declares that he had reached the summit. In this problem we seek the maximum height above sea level as a function of longitude and latitude.
+After we have a loss function, we choose an optimization method. A very basic one is \textbf{gradient descent}. This method is commonly introduced as a solution to the foggy hill problem. In this problem we have a traveller that wants to reach the summit of a hill, but because of the fog he can only see his immediate vincinity. He therefore always goes in the direction of the steepest climb and if he can not see any climb, he declares that he had reached the summit. In this problem we seek the maximum height above sea level as a function of longitude and latitude.
 
 Gradient descent is an algorithm that can be used on functions that are differentiable with respect to $\theta$. It works in steps. It starts at a random $\theta_0 \in \Theta$. In each step $t$ it computes the gradient $\nabla_t$ of $J(\theta_t)$ and then sets $$\theta_{t+1}=\theta_t-\epsilon\cdot\nabla_t,$$ since $-\nabla_t$ is the direction of the steepest descent. $\epsilon$ is a parameter of the algorithm that describes how "long" the steps are. It is also called the \textbf{learning rate}. A careful consideration needs to go into the choice of this parameter. Too large $\epsilon$ can lead to the algorithm "overshooting" the minimum, while with a small $\epsilon$, the finding of the minimum can be very slow.\\
 
@@ -552,7 +552,7 @@ At the heart of this method lies the \textit{chain rule of calculus}. Let $f$ an
 As we can see, if Jacobians of vector to vector functions and gradients of vector to scalar or scalar to scalar functions in our network are known, we can compute gradients with respect to any subset of inputs starting from any point in our network. We can accomplish this by applying the chain rule recursively (and taking the rest of the inputs as constants).
 
 \begin{algorithm}[h]
-\caption{A basic back-propagation algorithm for the most basic feedforward neural networks. We assume that each layer of our network is an affine function $y^{(i)}=f^{(i)}(x^{(i-1)})=W^{(i)}x^{(i-1)}+b^{(i)}$ with activation function $a$ on each element: $x^{(i)}=a(y^{(i)})$. $x$-es here are states between layers and $y$-s are states before applying activation functions for non-linearity. Here $x^{(0)}=y^{(0)}=$ input and $f^{(1)}$ is the first layer.}
+\caption{A basic backpropagation algorithm for the most basic feedforward neural networks. We assume that each layer of our network is an affine function $y^{(i)}=f^{(i)}(x^{(i-1)})=W^{(i)}x^{(i-1)}+b^{(i)}$ with activation function $a$ on each element: $x^{(i)}=a(y^{(i)})$. $x$-es here are states between layers and $y$-s are states before applying activation functions for nonlinearity. Here $x^{(0)}=y^{(0)}=$ input and $f^{(1)}$ is the first layer.}
 \begin{algorithmic}
 \REQUIRE $\widehat{y},y$: Computed and expected result respectively. $\widehat{y}=x^{(n)}$
 \REQUIRE $J(\widehat{y},y)$: A loss function
@@ -573,7 +573,7 @@ As we can see, if Jacobians of vector to vector functions and gradients of vecto
 \end{algorithmic}
 \end{algorithm}
 
-However, this algorithm computes the gradient for only one input. If our batch size is higher, we compute all gradients and add them together. This can get computationally difficult, so most software uses procedures to speed it up. For example Tensorflow framework uses what \cite{neural} calls the symbol to symbol approach. The framework adds new nodes to the network that are used to compute the derivations. This way the back-propagation can be done by the same engine. Specifically we add nodes for gradients of each layer by itself and other nodes for computing chain rule. Then if we treat the batch as a matrix, we can compute gradients during only one run through the graph. \Autoref{tfbackpropdiagram} illustrates this process.
+However, this algorithm computes the gradient for only one input. If our batch size is higher, we compute all gradients and add them together. This can get computationally difficult, so most software uses procedures to speed it up. For example Tensorflow framework uses what \cite{neural} calls the symbol to symbol approach. The framework adds new nodes to the network that are used to compute the derivations. This way the backpropagation can be done by the same engine. Specifically we add nodes for gradients of each layer by itself and other nodes for computing chain rule. Then if we treat the batch as a matrix, we can compute gradients during only one run through the graph. \Autoref{tfbackpropdiagram} illustrates this process.
 
 \begin{figure}[h]
 \caption{An example of the symbol to symbol approach. Note that $f^{(3)}$ here can also be the loss function}
@@ -621,7 +621,7 @@ However, this algorithm computes the gradient for only one input. If our batch s
 \label{subsec:adam}
 In the framework built for this thesis we use Adam (\textbf {Ada}ptive \textbf{m}oment estimation) optimizer (\cite{adam}). It is based on gradient descent, but it also conserves the momentum. In each learning step it uses a weighted average of previous gradients, thus it is not as dependent on the exact batch chosen for the step. It also helps overcome local minima, since it takes longer to reverse the direction of descent. It uses 4 parameters: $\alpha$ - learning rate, $\beta_1$ - gradient momentum decay, $\beta_2$ - second gradient moment momentum decay and $\epsilon$ - a small parameter to avoid division by zero. The description of algorithm can be found in Algorithm \Autoref{alg:adam}. 
 \begin{algorithm}[h]
-\caption{Adam optimizer. This algorithm is exactly like it can be found in the original paper. $g_t^2$ denotes element-wise square. All vector operations are element-wise. $f_t$ represents the loss function $f$ realized over the training batch in the step $t$.}
+\caption{Adam optimizer. This algorithm is exactly like it can be found in the original paper. $g_t^2$ denotes element-wise square. All vector operations are elemet-wise. $f_t$ represents the loss function $f$ realized over the training batch in the step $t$.}
 \label{alg:adam}
 \begin{algorithmic}
 \REQUIRE $\alpha$: Stepsize
