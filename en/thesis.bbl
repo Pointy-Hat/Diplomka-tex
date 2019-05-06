@@ -1,4 +1,4 @@
-\begin{thebibliography}{25}
+\begin{thebibliography}{26}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -156,6 +156,15 @@ H.M. Sheffer.
   application to logical constants.
 \newblock \emph{Transactions of the American Mathematical Society},
   14:\penalty0 481–488, 1913.
+
+\bibitem[Urban et~al.(2008)Urban, Sutcliffe, Pudl{\'a}k, and
+  Vysko{\v{c}}il]{model_axiom_selection}
+Josef Urban, Geoff Sutcliffe, Petr Pudl{\'a}k, and Ji{\v{r}}{\'i}
+  Vysko{\v{c}}il.
+\newblock Malarea sg1 - machine learner for automated reasoning with semantic
+  guidance.
+\newblock In \emph{Automated Reasoning}, pages 441--456. Springer Berlin
+  Heidelberg, 2008.
 
 \bibitem[Wang et~al.(2014)Wang, Zhang, Feng, and Chen]{grounding_wang}
 Zhen Wang, Jianwen Zhang, Jianlin Feng, and Zheng Chen.
