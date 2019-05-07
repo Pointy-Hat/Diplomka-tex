@@ -91,10 +91,10 @@ Note that this definition does not include semantic differences, e.g. renaming o
 
 The models of $\varphi$ and $\psi$ can be different, they might not even be in the same language. Every pair of equivalent formulas is also equisatisfiable, since they share all models \footnote{This is also true with the classical definition of equivalence, even though it does not require the formulas to be satisfiable.}. This term is used almost exclusively in formula manipulations.
 
-Important things to notice in this section are that the universe $S$ has no restrictions. Here we will use $S$ as a subset of $\mathbb{R}^n$ in order to allow working with neural networks. 
+Important things to notice in this section are that the universe $S$ has no restrictions. The models trained by us use $S$ as a subset of $\mathbb{R}^n$ in order to allow working with neural networks. 
 
 \subsection{Skolemization}
-The existence of existence quantifiers has been a major hurdle for automatic theorem provers to overcome, since it adds a lot of complexity to the proving algorithm. For example if a formula starts with $\forall x \exists y \forall z$ then $y$ can be completely different for each $x$, but does not depend on $z$. To "remember" this dependency in further proofs, the theorem prover needs to do some processing. We call this process \textbf{Skolemization} by it's inventor, Thoralf Skolem.
+Existential quantifiers have been a major hurdle for automatic theorem provers, since they add a lot of complexity to the proving algorithms. For example if a formula starts with $\forall x \exists y \forall z$ then $y$ can be completely different for each $x$, but does not depend on $z$. To "remember" this dependency in further proofs, the theorem prover needs to do some processing. We call this process \textbf{Skolemization} by its inventor, Thoralf Skolem.
 
 \begin{defn}
 	We say that a formula $\varphi$ is in \textbf{prenex normal form} if it is written as a sequence of quantifiers followed by a free formula.
@@ -120,7 +120,7 @@ If we treat implication $\varphi \rightarrow \psi$ as equivalent to $\neg \varph
 
 Skolemization is a process that turns formulas from prenex normal forms to Skolem normal form by introducing new function and constant symbols. We repeatedly apply this step:
 
-Let $\varphi$ be a formula that has the form $$\forall x_1\forall x_2,\dots \forall x_{i}\exists y\psi(x_1,\dots x_i,y)$$ where $x_1,\dots x_n$ are all universally quantified and $\psi$ is a formula in prenex normal form. Then Skolemized version of $\varphi$ is obtained by introducing a new $i$-ary function symbol $f_y$ and replacing all occurrences of $y$ in $\psi$ with $f_y(x_1,\dots,x_i)$. Thus we get $$\forall x_1\forall x_2,\dots \forall x_{i}\psi(x_1,\dots x_i,f_y(x_1,\dots,x_i))$$ We say that $f_y$ is the Skolem function of $y$.
+Let $\varphi$ be a formula that has the form $$\forall x_1\forall x_2,\dots \forall x_{i}\exists y\psi(x_1,\dots x_i,y)$$ where $x_1,\dots x_n$ are all universally quantified and $\psi$ is a formula in prenex normal form. Then the Skolemized version of $\varphi$ is obtained by introducing a new $i$-ary function symbol $f_y$ and replacing all occurrences of $y$ in $\psi$ with $f_y(x_1,\dots,x_i)$. Thus we get $$\forall x_1\forall x_2,\dots \forall x_{i}\psi(x_1,\dots x_i,f_y(x_1,\dots,x_i))$$ We say that $f_y$ is the Skolem function of $y$.
 
 If $\varphi$ has the form $\exists y \psi(y)$, i.e. there are no universal quantifiers at the start we introduce a Skolem constant $c_y$ and replace all occurrences of $y$ in $\psi$ by $c_y$, obtaining $\psi(c_y)$. This is consistent with the notion of constants being $0$-ary functions.
 
@@ -140,7 +140,7 @@ This process had first been introduced to prove a general theorem in model theor
 \subsection{Substructures and extensions}
 \label{section:extensions}
 
-In order to do any constructions in model theory, we need to know how models relate to each other. As it is right now, our models exist completely separate from each other, with the only comparisons being possible through the lens of formulas. However, if two structures are models of the same theory, we can not differentiate between them using just that theory. That is why we need the notions of substructures and extensions.
+In order to do any constructions in model theory, we need to know how models relate to each other. As it is right now, our models exist completely separately from each other, with the only comparisons being possible through the lens of formulas. However, if two structures are models of the same theory, we can not differentiate between them using just that theory. That is why we need the notions of substructures and extensions.
 
 \begin{defn}
 	Let $\mathcal{S},\mathcal{T}$ be structures in the same language $\mathcal{L}$. Then a \textbf{mapping} of $\mathcal{S}$ to $\mathcal{T}$ is any function $f:S\rightarrow T$ that satisfies the following (for any $x_1,..,x_n\in S$):
@@ -149,7 +149,7 @@ In order to do any constructions in model theory, we need to know how models rel
 		\item If $c$ is a constant in $\mathcal{L}$ then $f(c_\mathcal{S})=c_\mathcal{T}$.
 		\item If $R$ is an $n$-ary relation in $\mathcal{L}$ then $R_\mathcal{S}(x_1,\dots,x_n)$ holds if and only if $R_\mathcal{T}(f(x_1),\dots,f(x_n))$ holds.
 	\end{enumerate}
-If also holds that $f$ is one-to-one, then $f$ is called an \textbf{embedding}.
+If it also holds that $f$ is one-to-one, then $f$ is called an \textbf{embedding}.
 \end{defn}
 
 \begin{defn}
@@ -161,10 +161,10 @@ If also holds that $f$ is one-to-one, then $f$ is called an \textbf{embedding}.
 There are not many things that hold in extensions for general. For example a carthesian product of two structures with naturally defined functions, constants and relations is an extension of both of them, but their elements do not necessarily "interact" with each other. To ensure this interaction we need new definitions.
 
 \begin{defn}
-	Let $\mathcal{S}$ be an $\mathcal{L}$-structure and $\mathcal{S}'$ its extension.  Let $t_1(x)$ and $t_2(x)$ be $\mathcal{L}'$-terms with only one variable where $\mathcal{L}'$ is the language $\mathcal{L}$ with added names for each element of $S$. We say that the predicate\footnote{Predicate is a formula with only one free variable} $\varphi(x): "t_1(x)=t_2(x)"$ is an \textbf{equation} in $\mathcal{S}$. If $\varphi(x)$ holds for some $x$, we say that that $x$ is the \textbf{solution} of $\varphi$. If the set of solutions of $\varphi$ is not $S$, we say that the equation is \textbf{non-zero}.
+	Let $\mathcal{S}$ be an $\mathcal{L}$-structure and $\mathcal{S}'$ its extension. Let $t_1(x)$ and $t_2(x)$ be $\mathcal{L}'$-terms with only one variable where $\mathcal{L}'$ is the language $\mathcal{L}$ with added names for each element of $S$. We say that the predicate\footnote{Predicate is a formula with only one free variable} $\varphi(x): "t_1(x)=t_2(x)"$ is an \textbf{equation} in $\mathcal{S}$. If $\varphi(x)$ holds for some $x\in S'$, we say that $x$ is the \textbf{solution} of $\varphi$. If the if $S$ is not a subset of the set of solutions of $\varphi$, we say that the equation is \textbf{non-zero}.
 \end{defn}
 \begin{defn}	
-	Let $s\in S'$ be an element. If is there exists a non-zero equation $\varphi(x)$ in $\mathcal{S}$ for which $s$ is a solution then $s$ is \textbf{algebraic}\footnote{Normally we do not require the $\varphi$ to be an equation, but for the purposes of our model we will make this assumption}. If there is no such equation, then $s$ is \textbf{transcendental}.
+	Let $\mathcal{S}$ be a structure, $\mathcal{S}'$ its extension and let $s\in S'$ be an element. If there exists a non-zero equation $\varphi(x)$ in $\mathcal{S}$ for which $s$ is a solution then $s$ is \textbf{algebraic}\footnote{Normally we do not require the $\varphi$ to be an equation, but for the purposes of our model we will make this assumption}. If there is no such equation, then $s$ is \textbf{transcendental}.
 \end{defn}
 
 We see that every element $s\in S$ is algebraic. We can take $x=s$ as the equation.
@@ -248,12 +248,12 @@ A reader acquainted with field extensions will immediately recognize this constr
 %-------------------------------------------------------
 
 \section{Neural networks}
-Neural networks have been one of the most important and well developed methods in machine learning in recent years. The main advantage of their usage is their universal property - the fact that given an $\epsilon>0$ there exists for every smooth function a neural network that approximates it with the error of at most $\epsilon$. Assuming that we have a structure whose universe is a subset of $\mathbb{R}^n$, we can approximate any of its functions with arbitrary precision. How exactly do we do that will be discussed in \Autoref{chapter:implementation}. More about this subject can be found in \cite{neural}. This publication is also the principal source for this section.
+Neural networks have been one of the most important and well developed methods in machine learning in recent years. The main advantage of their usage is their universal property - the fact that given an $\epsilon>0$ there exists for every smooth function a neural network that approximates it with the error of at most $\epsilon$. Assuming that we have a structure whose universe is a subset of $\mathbb{R}^n$, we can approximate any of its functions with arbitrary precision \footnote{Assuming a suitable extension of the functions to facilitate the smoothness.}. How exactly do we do that will be discussed in \Autoref{chapter:implementation}. More about this subject can be found in \cite{neural}. This publication is also the principal source for this section.
 
 \subsection{What is a neural network}
-In this section we will describe a \textbf{feedforward neural network}. We call it feedforward because it lacks feedback connections. It is therefore simpler, although it does not have any "memory". If a network has feedback connections, it is called \textbf{recurrent}. They are also widely used in machine learning, they are not used here, thus are beyond the scope of this thesis.
+In this section we will describe a \textbf{feedforward neural network}. We call it feedforward because it lacks feedback connections. It is therefore simpler, although it does not have any "memory". If a network has feedback connections, it is called \textbf{recurrent}. Such networks are also widely used in machine learning, however they are not used here, and are beyond the scope of this thesis.
 
-A network is usually represented by chaining of functions, called \textbf{layers}. Thus if we have a network $f(x)=f_n(f_{n-1}(\dots f_1(x))\dots)$ we call $f_1$ the first layer, $f_2$ second and so on. The number of these layers is called \textbf{depth} of a model. The last layer is called \textbf{output layer}, while the rest are called \textbf{hidden layers} since we usually can not interpret what does the data they are using mean.
+A network is usually represented by chaining of functions, called \textbf{layers}. Thus if we have a network $f(x)=f_n(f_{n-1}(\dots f_1(\textbf{x}))\dots)$ we call $f_1$ the first layer, $f_2$ second and so on. The number of these layers is called the \textbf{depth} of a model. The last layer is called \textbf{output layer}, while the rest are called \textbf{hidden layers} since we usually can not interpret the meaning of the data used and produced by them.
 
 In general the output $f_i$ does not need to have the same dimension as the input $x$ or the output $y$. But for the sake of simplicity, all hidden layers usually tend to have the same dimension between them. This is called the \textbf{width} of the network. Both depth and width can have a profound effect on the network's performance. 
 
@@ -283,7 +283,7 @@ The simplest neural networks are linear models, e.g. linear regression. In these
 
 We overcome this by altering the layer input in a non-linear fashion, ideally preserving the most important parts of it. This is an important area of ongoing research.
 
-One of the most widely used methods to break the linearity is the use of so-called activation functions. Activation function is a non-linear $\mathbb{R}\rightarrow \mathbb{R}$ function that we perform on each node to know if it "activates". There are several functions that fulfill this purpose, each with their advantages and disadvantages. The simplest is $ReLU$: the \textbf{Re}ctified \textbf{L}inear \textbf{U}nit (\cite{relu1}, \cite{relu2}, \cite{relu3}). It is defined as $ReLU(x)=max\{x,0\}$. It is the most used activation function because it is the simplest function that also preserves most of what makes linear functions easy to work with (simple derivation). It has however some drawbacks that we will discuss later.
+One of the most widely used methods to break the linearity is the use of so-called \textit{activation functions}. Activation function is a non-linear $\mathbb{R}\rightarrow \mathbb{R}$ function that we perform on each node to know if it "activates". There are several functions that fulfill this purpose, each with their advantages and disadvantages. The simplest is $ReLU$: the \textbf{Re}ctified \textbf{L}inear \textbf{U}nit (\cite{relu1}, \cite{relu2}, \cite{relu3}). It is defined as $ReLU(x)=max\{x,0\}$. It is the most used activation function because it is the simplest function that also preserves most of what makes linear functions easy to work with (simple derivation). It has however some drawbacks that we will discuss later.
 
 \begin{figure}[h]
 \caption{ReLU}
@@ -301,9 +301,9 @@ One of the most widely used methods to break the linearity is the use of so-call
 
 One of the simplest examples of the usefulness of this non-linearity is the binary operation XOR: the e\textbf{X}clusive \textbf{OR}. It is a function $\{0,1\}^2\rightarrow \{0,1\}$ that is $1$ if and only if exactly one of the inputs is $1$. This function is impossible to approximate with linear regression, but there exists a simple network with $ReLU$ activation functions that exactly approximates it. This example network is the same as can be found in \cite{neural}.
 
-Let us start with linear regression. As the loss function we will use the most common one, mean square error. It has the form
+Let us start with linear regression. As the loss function\footnote{Loss function and its notation with parameters $\theta$ is introduced in \Autoref{section:learning+opt}.} we will use the most common one, the mean square error. It has the form
 $$J(\theta)=\frac{1}{n}\sum(\widehat{f}(\textbf{x};\theta)-f(\textbf{x}))^2$$
-where $f$ is the function we try to estimate and $\widehat{f}$ is the learned function. Since we are now using linear regression, $\widehat{f}$ has the form $\widehat{f}(\textbf{x};\textbf{w},b)=\textbf{x}^\top \textbf{w}+b$ where $\textbf{w}$ is called the weight vector and $b$ is bias (in this case scalar). Using the least squares method we get $\textbf{w}=(0,0)^\top$ and $b=\frac{1}{2}$. This is obviously not a good fit as it just outputs $\frac{1}{2}$ regardless of the input.
+where $f$ is the function we try to estimate and $\widehat{f}$ is the learned function. Since we are now using linear regression, $\widehat{f}$ has the form $\widehat{f}(\textbf{x};\textbf{w},b)=\textbf{x}^\top \textbf{w}+b$ where $\textbf{w}$ is called the \textit{weight vector} and $b$ is the \textit{bias} (in this case scalar). Using the least squares method we get $\textbf{w}=(0,0)^\top$ and $b=\frac{1}{2}$. This is obviously not a good fit as it just outputs $\frac{1}{2}$ regardless of the input.
 
 If we however permit the usage of activation functions (ReLU), we can handcraft a network that will fit the function perfectly. Now our network will have the form 
 $$\widehat{f}(\textbf{x};\textbf{W},\textbf{c},\textbf{w},b)=\textbf{w}^\top \max\{0,\textbf{W}^\top\textbf{x}+\textbf{c}\}+b$$ 
@@ -497,12 +497,12 @@ They are defined as follows:
 $where $\alpha$ is a learned parameter
 \end{itemize}
 
-There is to this day ongoing search for better activation functions, for example in paper \cite{swish} they propose a different function called Swish, defined as $x\cdot \sigma(\beta\cdot x)$ where $\beta$ is a learned parameter. They were able to find this function by crafting a set of basic functions and rules to combine them, thus greatly enlarging the set of activation functions tried. This Swish function is presented as a compromise between ReLU and the sigmoid:
+There is to this day ongoing search for better activation functions, for example in  \cite{swish} they propose a different function called Swish, defined as $x\cdot \sigma(\beta\cdot x)$ where $\beta$ is a learned parameter. They were able to find this function by crafting a set of basic functions and rules to combine them, thus greatly enlarging the set of activation functions tried. The Swish function is presented as a compromise between ReLU and the sigmoid:
 \begin{quote}
 If $\beta=0$, Swish becomes the scaled linear function $f(x)=\frac{x}{2}$. As $\beta\rightarrow\infty$,  the sigmoid component approaches a $0-1$ function,  so Swish becomes like the ReLU function. This suggests that Swish can be loosely viewed as a smooth function which non-linearly interpolates between the linear function and the ReLU function.(p.5)
 \end{quote}
 
-This paper also contains performance comparisons for all above mentioned activation functions.
+\cite{swish} also contains performance comparisons for all above mentioned activation functions.
 
 \subsection{Universal approximation}
 
@@ -518,15 +518,16 @@ The most useful property of the neural networks is their ability to approximate 
 	This means that for any $f\in C(I_n)$ and $\epsilon>0$ there is a sum $G(x)$ of the form as above such that $\forall x\in I_n\ |G(x)-f(x)|<\epsilon$.
 \end{thm}
 
-Proof of this theorem, along with the proof that sigmoid-like functions are discriminatory can be found in the original paper.
+The proof of this theorem, along with the proof that sigmoid-like functions are discriminatory can be found in the original paper.
 
-There is however no bound on the width of the network, which may pose a problem for the computers. Fortunately, however, \cite{narrownet} prove that using a ReLU activation function we only need the width $n+4$ to achieve universal approximation on compact subsets of $\mathbb{R}^n$. On the flipside, this width-bound also erases the depth-boundedness seen before.
+There is however no bound on the width of the network, which may pose a problem for the computers. Fortunately, however, \cite{narrownet} prove that using a ReLU activation function we only need the width $n+4$ to achieve universal approximation on compact subsets of $\mathbb{R}^n$. On the flipside, this width-bound also erases the depth-boundedness seen in the theorem above.
 
-The relation between depth and width had not yet been fully established. Partial results show that there are networks whose decrease in depth would require an exponential increase in width in order to keep the same accuracy (\cite{widthexp}). The other way, decreasing width and increasing length had not yet been fully explored, but \cite{narrownet} also prove that this increase in some cases has to be more than polynomial. \\
+The relation between depth and width had not yet been fully established. Partial results show that there are networks whose decrease in depth would require an exponential increase in width in order to keep the same accuracy (\cite{widthexp}). This leads to preference of deep neural networks, rather than wide. The other way - decreasing width and increasing length - had not yet been fully explored, but \cite{narrownet} also prove that this increase in some cases has to be more than polynomial.\\
 
 This universal approximation is the reason that the usage of neural networks is possible in model building. For example if $S\subset\mathbb{R^n}$ is the universe of a model and $f:S^m\rightarrow S$ is a function, we can approximate it by first introducing an arbitrary smooth function $f':\mathbb{R}^{nm}\rightarrow \mathbb{R}^n$ such that $\left.f'\right|_S=f$, and then finding a neural network that approximates $f'$.
 
 \subsection{Learning and optimization}
+\label{section:learning+opt}
 Mathematical optimization is a branch of applied mathematics that is about finding local extremes in functions. We use it to find parameters for our neural network.
 
 To use it in practice we first define a function that enumerates how far we are from the desired output, $$J:\Theta\rightarrow\mathbb{R}$$ where $\Theta$ is the universe of all possible sets of parameters for our estimator. We will call $J$ the \textbf{loss} function. The set of parameters that is the minimum of $J$ is the set that leads to the best estimator. Using optimization on $J$ we seek to find this minimum. 
