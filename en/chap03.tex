@@ -21,7 +21,7 @@ Table \ref{table:z10_half_generator} shows how two different runs generated $\ma
 
 
 \begin{figure}[b]
-\caption{Error rate for composition in $\mathbb{Z}_{10}$. Testing data percentage is 10\%}
+\caption{Error rate for the learning of composition, inverse and unit in $\mathbb{Z}_{10}$. Testing data percentage is 10\%}
 \label{graph:z10_90percent}
 \includegraphics[width=\linewidth]{../img/z10_90percent.png}
 \end{figure}
@@ -38,7 +38,7 @@ Table \ref{table:z10_half_generator} shows how two different runs generated $\ma
 
 \begin{figure}[h]
 \centering
-\caption{Extension groups generated in two runs (read left to right, top to bottom). Blue elements are supposed to be in the original embedding, i.e. they should be 1...9 ascending with the last 3 elements being 0, "half", 1 respectively. In the first run we see that we have had very low success, even though the first half+half looks promising. The second run had much better success and with the exception of 9 it hit all original elements reasonably well, even those last 3.}
+\caption{Extension groups generated in two runs (read left to right, top to bottom). The blue elements are supposed to be in the original embedding, i.e. they should be 1...9 ascending with the last 3 elements being 0, "half", 1 respectively. In the first run we see that we have had very low success, even though the first half+half looks promising. The second run had much better success and with the exception of 9 it hit all original elements reasonably well, even those last 3.}
 \label{table:z10_half_generator}
 \begin{tabular}{ccccc}
 \textbf{5.500004} & \textcolor{blue}{0.99998194} & 10.919293 & \textcolor{blue}{6.419118} & 1.9191066\\
@@ -64,18 +64,18 @@ The second group we experimented with was $\mathbb{Z}_{20}$. Because of its larg
 
 Once again, the equation by which we extend the group was $a+a=1$. The results of one experiment can be seen in \Autoref{graph:z20_90percent}. Once again, $10\%$ was excluded from the training. The trend lines are similar to $\mathbb{Z}_{10}$ (\Autoref{graph:z10_90percent}), with composition and inverse training quickly, while inverse lags behind. The inverse line is much noisier, because now the testing data has 2 elements, out of which 5 are chosen for testing (with repetition).
 
-Values for half in different runs can be seen in \Autoref{table:z20_half}. Once again, the algorithm usually found one of the two intuitive answers, 0.5 and 10.5. A graph depicting the iterated composition of half is depicted in \Autoref{graph:z20_half_generator}. As we see, the learned structure appears at first as very similar to the expected $\mathbb{Z}_{40}$, however we start seeing very large deviation after 40 compositions. The cause of this is unknown, but we suspect it could be caused by the network not learning the associativity axiom. Indeed, $19+1\doteq$19+(half+half) outputs correctly $0$, however (19+half)+half does not.
+Values for the half in different runs can be seen in \Autoref{table:z20_half}. Once again, the algorithm usually found one of the two intuitive answers, 0.5 and 10.5. A graph showing the iterated composition of the half is depicted in \Autoref{graph:z20_half_generator}. As we see, the learned structure appears at first as very similar to the expected $\mathbb{Z}_{40}$, however we start seeing very large deviation after 40 compositions. The cause of this is unknown, but we suspect it could be caused by the network not learning the associativity axiom. Indeed, $19+1\doteq$19+(half+half) outputs correctly $0$, however (19+half)+half does not output 0.
 
 \begin{figure}[h]
 \centering
-\caption{A $\mathbb{Z}_{20}$ learning run. We see that trends we observed in $\mathbb{Z}_{10}$ continue, and it appears that extra time is not needed. However, in different runs we encountered difficulties with learning the inverse function.}
+\caption{A $\mathbb{Z}_{20}$ learning run. We see that the trends we observed in $\mathbb{Z}_{10}$ continue, and it appears that extra time is not needed. However, in different runs we encountered difficulties with learning the inverse function.}
 \label{graph:z20_90percent}
 \includegraphics[width=\linewidth]{../img/z20_90percent.png}
 \end{figure}
 
 \begin{figure}[h]
 \centering
-\caption{Values for half in different $\mathbb{Z}_{20}$ runs. Once again, the reason for why the red one is so different is unknown. The tendency towards 0.5 instead of 10.5 can be attributed to the fact that the initial parameters have been restricted to avoid overflow errors.}
+\caption{Values for the half in different $\mathbb{Z}_{20}$ runs. Once again, the reason for why the red one is so different is unknown. The tendency towards 0.5 instead of 10.5 can be attributed to the fact that the initial parameters have been restricted to avoid overflow errors.}
 \label{table:z20_half}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
@@ -88,7 +88,7 @@ Values for half in different runs can be seen in \Autoref{table:z20_half}. Once 
 
 \begin{figure}[h]
 \centering
-\caption{An example of a group generated from the "half" element. We see that there were no problems with addition of half, except the modulus is not applied correctly.}
+\caption{An example of a group generated from the "half" element. We see that there were no problems with addition of the half, except the modulus is not applied correctly.}
 \label{graph:z20_half_generator}
 \includegraphics[width=0.8\linewidth]{../img/z20_half_plot.png}
 \end{figure}
@@ -119,40 +119,40 @@ Indeed, the learned half+half=1, but the composition fails for larger iterations
 \end{figure}
 
 \section{Symmetric groups}
-Symmetric groups, or permutation groups are the most complex finite groups. Indeed, a corollary from Cayley's theorem  is that every finite group is isomorphic to a symmetric group of large enough size (\cite{cayley}). This is why have they been chosen for further experiments.
+Symmetric groups, or permutation groups are the most complex finite groups. Indeed, a corollary from Cayley's theorem  is that every finite group is isomorphic to a symmetric group of large enough size (\cite{cayley}). This is why they have been chosen for further experiments.
 
 Every symmetric group is generated by the set of transpositions of two elements. Each element can therefore be written as a sequence of transpositions. Although this sequence is not unique, all such sequences have the same length. For each permutation $\sigma$ we define $\text{sgn}(\sigma)=(-1)^l$ where $l$ is this number of transpositions. It also holds that $\text{sgn}(\sigma_1\circ\sigma_2)=\text{sgn}(\sigma_1)\text{sgn}(\sigma_2)$. Therefore $\text{sgn}(\sigma\circ\sigma)=1$. (proofs in \cite{Lingebra})
 
-For this reason the equation that we sought to find the extension for is $h\circ h=(0,1)$ where $(0,1)$ denotes the transposition of elements $0$ and $1$. $\text{sgn}((0,1))=-1$, therefore we know that $h$ must not be in the original group. 
+For this reason the equation that we sought to find the extension for is $h\circ h=(0,1)$ where $(0,1)$ denotes the transposition of elements $0$ and $1$. $\text{sgn}((0,1))=-1$, therefore we know that $h$ can not be in the original group. 
 
-The structure of this extension is suspected to be some form of semidirect product of $S_n\times\mathbb{Z}_2$, although the basic semidirect product appears to be insufficient.
+The structure of this extension is suspected to be some form of the semidirect product of $S_n\times\mathbb{Z}_2$, although the basic semidirect product appears to be insufficient.
 
 \subsection{$S_4$ with a basic grounding}
 
 $S_4$ is the group of permutations of 4 elements. A "na\"{i}ve" grounding of elements was chosen first. It assigns each permutation $(a,b,c,d)$\footnote{This being the full representation of the permutation.} the element $[a,b,c,d]\in\mathbb{R}^4$. The advantage of this grounding is its simplicity and shortness. The main disadvantage, however, is that the mean squared error loss function is biased. We can see this on an example where $[0,1,2,3]$ is one transposition away from both $[1,0,2,3]$ and $[3,1,2,0]$, however in the latter case the mean squared error is considerably higher. 
 
-During the training we expectedly observe significantly higher training times, as exemplified in \Autoref{graph:s4_basic}. This is also compounded by having slightly more elements (24). We are also unable to achieve the same precision. Learning of the unit was also very precise, see table \ref{table:s4_unit_basic}.
+For the training we once again use only 90\% of the data. During the training we expectedly observe significantly higher training times, as exemplified in \Autoref{graph:s4_basic}. This is also compounded by having slightly more elements (24). We are also unable to achieve the same precision. Learning of the unit was again very precise, see table \ref{table:s4_unit_basic}.
 
 When it comes to learning of $h$, we see even more problems than in the case of cyclic groups. Some half elements are seen in table \ref{table:s4_half_basic}. They are noticeably different from each other, something we did not observe before. The reason why these were the vectors found is unknown. 
 
-However, as we see in table \ref{table:s4_half_basic_gen}, generating even a small subgroup results in a complete failure. Since $h\circ h=(0,1)$, we expect that $h^4=(h\circ h)\circ(h\circ h)=(0,1)\circ(0,1)=e$. Unfortunately, we were never able to get this equation to hold with $h\circ(h\circ(h\circ h))))$. Once again, reason for this is unknown. But because $(h\circ h)\circ (h\circ h)$ yielded reasonable results, we suspect that again the associativity is the problem.
+However, as we see in table \ref{table:s4_half_basic_gen}, generating even a small subgroup results in a failure. Since $h\circ h=(0,1)$, we expect that $h^4=(h\circ h)\circ(h\circ h)=(0,1)\circ(0,1)=e$. Unfortunately, we were never able to get this equation to hold with $h\circ(h\circ(h\circ h))))$. Once again, reason for this is unknown. But because $(h\circ h)\circ (h\circ h)$ yielded reasonable results, we suspect that again the associativity is the problem.
 
 \begin{figure}
-\caption{One run of $S_4$ with basic grounding. We see that the training is expectedly much slower than in the cyclic groups.}
+\caption{One run of learning the $S_4$ with the basic grounding. We see that the training is expectedly much slower than in the cyclic groups.}
 \label{graph:s4_basic}
 \includegraphics[width=0.9\linewidth]{../img/s4_comp+inv.png}
 \end{figure}
 
 \begin{figure}
 \center
-\caption{Unit learned in $S_4$ with basic grounding. Expected output was $[0,1,2,3]$. As we see, they are very precise.}
+\caption{Units learned in $S_4$ with basic grounding. The expected output was $[0,1,2,3]$. As we see, they are very precise.}
 \label{table:s4_unit_basic}
-\begin{tabular}{cccc}
-0.03967234 & 1.0745986 & 1.957876 & 2.9761093\\
+\begin{tabular}{l|cccc}
+1.) &0.03967234 & 1.0745986 & 1.957876 & 2.9761093\\
 \hline
-0.00685234 & 1.0557759 & 2.1151063 & 3.2438033\\
+2.) &0.00685234 & 1.0557759 & 2.1151063 & 3.2438033\\
 \hline
-0.01609807 & 0.9784863 & 2.011951 & 3.0008512\\
+3.) &0.01609807 & 0.9784863 & 2.011951 & 3.0008512\\
 \end{tabular}
 \end{figure}
 
@@ -160,13 +160,12 @@ However, as we see in table \ref{table:s4_half_basic_gen}, generating even a sma
 \center
 \caption{$h$-s found in several runs. As expected, they do not look like anything.}
 \label{table:s4_half_basic}
-\begin{tabular}{cccc}
--0.9288303 & 1.8216157 & 0.17884427 & 2.0224957\\
+\begin{tabular}{l|cccc}
+1.)&-0.9288303 & 1.8216157 & 0.17884427 & 2.0224957\\
 \hline
-1.2200519 & 0.5469334 & 3.7773933 & -0.22675751\\
+2.)&1.2200519 & 0.5469334 & 3.7773933 & -0.22675751\\
  \hline
-2.9790108 & 2.5041845 & 1.9638568 & -1.186425\\
-\hline
+3.)&2.9790108 & 2.5041845 & 1.9638568 & -1.186425\\
 \end{tabular}
 \end{figure}
 
@@ -189,7 +188,7 @@ $h^6$ & 1.1029358 & 0.97653824 & 3.1764572 & 1.9179444\\
 To fix the problem with the bias of the loss function we add the "one-of-n" representation. This representation is used for elements that are equally different from each other. This representation attaches to each of the $n$ elements a vector from the canonical basis of $\mathbb{R}^n$. If we take the basic representation of $S_4$ and change every element to its one-of-n representation, we get a vector in $\mathbb{R}^{16}$ that has exactly four ones and the rest are zeroes. For example 
 $$(1,2,0,3)\rightarrow \left((0,1,0,0),(0,0,1,0),(1,0,0,0),(0,0,0,1)\right)$$
 
-This is consistent with the matrix representation. Indeed, $(1,2,0,3)$ can be represented as
+This erases the loss function bias, because now the mean squared difference between any two permutations depends only on the number of elements switched. One-to-n representation can also be seen as the matrix representation. Indeed, $(1,2,0,3)$ can be represented as
 $$
 \left(
 \begin{matrix}
@@ -220,11 +219,11 @@ $$
 
 A proof of this is an easy exercise in linear algebra. \\
 
-This new grounding, however, brought several new problems. For example $3/4$-ths of the expected output are zeroes. This created a problem early on in the experimentation with the network only outputting a zero vector on any input. That is the reason why leaky ReLU had been used as an activation function as opposed to standard ReLU. This change solved this problem.
+This new grounding, however, brought several new problems. For example $3/4$-ths of the expected output are zeroes. This created a problem early on in the experimentation with the network only outputting a zero vector on any input. That is the reason why leaky ReLU had been used as an activation function as opposed to standard ReLU. This change solved this problem, since they avoid the "neuron death" - a situation where input to ReLU is so negative that it always outputs 0 and thus has no gradient.
 
 Another problem was the size of the vectors relative to the number of elements, e.g. $S_3$ has only 6 elements but this representation has size 9. However, since the size of the group $S_n$ grows exponentially while the matrix representation only quadraticaly, for large enough $n$ the benefits of a less biased loss function outweigh the costs. Unfortunately, because of the amount of computation power needed to get to this point we were not able to verify this hypothesis.\\
 
-As we can see in \Autoref{graph:s4_matrix}, this representation is still  efficient for composition, but the inverse is clearly wrong. Furthermore, as we see in table \ref{table:s4_matrix_unit}, the unit was usually significantly different from what was expected. This is the place where a penalty for straying away from an element could help significantly, seeing as this problem most likely emerged as a consequence of the increase in dimension.
+As we can see in \Autoref{graph:s4_matrix}, this representation is still  efficient for composition, but the inverse is clearly wrong. Furthermore, as we see in table \ref{table:s4_matrix_unit}, the unit was usually significantly different from what was expected. This is the place where a penalty for straying away from an element could help significantly, as this problem most likely emerged as a consequence of the increase in dimension.
 
 These two factors lead to the consequence that the inverse is not able to output elements of the grounding. If it did, composition would also output $a^{-1}a$ in grounding, but the learned $e$ is not in it.\\
 
@@ -232,7 +231,7 @@ The extension element $h$ is shown in table \ref{table:s4_matrix_half} along wit
 
 \begin{figure}
 \center
-\caption{$S_4$ with matrix grounding. The composition is very successful, but inverse is not.}
+\caption{$S_4$ with matrix grounding. The composition is very successful, but the inverse is not.}
 \label{graph:s4_matrix}
 \includegraphics[width=\linewidth]{../img/s4_matrix.png}
 \end{figure}
@@ -258,7 +257,7 @@ The extension element $h$ is shown in table \ref{table:s4_matrix_half} along wit
 
 \begin{figure}
 \center
-\caption{An extension attempt for $S_4$ with matrix representation. Blue numbers are expected to be $1$ and black ones $0$. As we see, $h^2$ is pretty much exactly what we wanted, but $h^4$ breaks down.}
+\caption{An extension attempt for $S_4$ with matrix representation. The blue numbers are expected to be $1$ and black ones $0$. As we see, $h^2$ is pretty much exactly what we wanted, but $h^4$ breaks down.}
 \label{table:s4_matrix_half}
 \begin{tabular}{lcccc}
 
