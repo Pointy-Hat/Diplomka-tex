@@ -15,6 +15,7 @@ This thesis is inspired by the work of \cite{serafini}. In their paper they prop
 The place where this thesis differs from this work is the type of the structure we try to emulate. In the original paper they model a relational structure, while we forego the relations completely and only implement functions and constants.
 
 \begin{defn}
+\label{def:grounding}
 	Let $\mathcal{L}$ be a language. Then a \textbf{grounding} is a function $\mathcal{G}$ that satisfies:
 	\begin{enumerate}
 		\item $\mathcal{G}(c)\in \mathbb{R}^n$ for every constant $c$.
@@ -23,7 +24,7 @@ The place where this thesis differs from this work is the type of the structure 
 	\end{enumerate}
 \end{defn}
 
-Grounding is then naturally extended to any term and formula as such:
+Grounding is then naturally extended to any term and atomic formula as such:
 $$\mathcal{G}(f(t_1,\dots,t_n))=\mathcal{G}(f)(\mathcal{G}(t_1),\dots\mathcal{G}(t_n))$$
 $$\mathcal{G}(r(t_1,\dots,t_n))=\mathcal{G}(r)(\mathcal{G}(t_1),\dots\mathcal{G}(t_n))$$
 
@@ -32,7 +33,7 @@ There are also rules for logic on formulas:
 $$\mathcal{G}(\neg r(t_1,\dots,t_n))=1-\mathcal{G}(r(t_1,\dots,t_n))$$
 $$\mathcal{G}(\phi_1,\vee\dots \vee\phi_n)=\mu(\mathcal{G}(\phi_1),\dots,\mathcal{G}(\phi_n))$$
 
-Where $\mu$ is a co-t-norm: an operator that joins the "probabilities" of the sentences being true into one. A t-form (or a triangle form) is a function in fuzzy logic that replaces conjunction, e.g. $\top_{\min}(a,b)=min\{a,b\}$ or $\top_{\text{Luk}}(a,b)=\max\{0,a+b-1\}$. A co-t-form is a dual that does the same with disjunction ($\mu(a,b)=1-\top(1-a,1-b)$ because $a\vee b = \neg(\neg a\wedge \neg b)$). More about fuzzy logic can be read in \cite{fuzzy}.
+Where $\mu$ is a co-t-norm: an operator that joins the "probabilities" of the sentences being true into one. A t-form (or a triangle form) is a function in fuzzy logic that replaces conjunction, e.g. $\top_{\min}(a,b)=min\{a,b\}$ or $\top_{\text{Luk}}(a,b)=\max\{0,a+b-1\}$. A co-t-form is a dual that does the same with disjunction ($\mu(a,b)=1-\top(1-a,1-b)$ because $a\vee b = \neg(\neg a\wedge \neg b)$). For more about fuzzy logic see \cite{fuzzy}.
 
 In this thesis, however, we will be dealing with specific structures. Therefore we also define $\mathcal{G}(x)$ for each element of the structure. The rules for extending to terms still have to hold. 
 
@@ -40,11 +41,11 @@ In this thesis, however, we will be dealing with specific structures. Therefore 
 
 First we will discuss the idea behind the general neural models. However, because of the limited scope of the experiments not every concept introduced in this section was implemented. To see what was done in practice, refer to \Autoref{section:group_impl} and \Autoref{chapter:results}.
 
-Let $T$ be an $\mathcal{L}$-theory that describes a class of structures. We assume that $T$ is finite. We also assume that all $\varphi\in T$ are in Skolem normal form. If not, we use the skolemized version of $T$. We also assume that $\mathcal{L}$ has no relation symbols. How could these be implemented is discussed in \Autoref{comments}.
+Let $T$ be an $\mathcal{L}$-theory that describes a class of structures. We assume that $T$ is finite. We also assume that all $\varphi\in T$ are in Skolem normal form. If not, we use the skolemized version of $T$. We also assume that $\mathcal{L}$ has no relation symbols. How these could be implemented is discussed in \Autoref{comments}.
 
 We pick a grounding for the elements. We take an appropriate subset of $\mathbb{R}^n$ to represent the elements. Here we assume that the grounding is handpicked, i.e. it is given externally. Other possibilities are also discussed in \Autoref{comments}.
 
-Next we build a neural network for each of the symbols following the rules of groundings. They are initialized randomly. Then we take these neural networks as building blocks and we build a network 
+Next we build a neural network for each of the symbols following the rules of groundings (see Definition \Autoref{def:grounding}). They are initialized randomly. Then we take these neural networks as building blocks and we build a network 
 for each axiom of $T$, as illustrated in \Autoref{nndiagram2}. Since we assume that there are no relation symbols, each axiom has to have at least one equality sign. If the axiom is an equality between two terms, we use this as the basis for our loss function.
 
 \begin{figure}
@@ -78,20 +79,22 @@ for each axiom of $T$, as illustrated in \Autoref{nndiagram2}. Since we assume t
 \end{tikzpicture}
 \end{figure}
 
-In the case that the axiom has more such equalities (or negations of them) we do some adjustments. Loss function of negation of a subformula should be computable from its own loss, e.g. $$J_{\neg\varphi}=\frac{1}{J_{\varphi}}.$$ If $\varphi_1,\varphi_2$ are subformulas, loss of $\varphi_1\vee \varphi_2$ will be e.g. $\min\{J_{\varphi_1},J_{\varphi_2}\}$ and loss of $\varphi_1\wedge \varphi_2$ will be e.g. $J_{\varphi_1}+J_{\varphi_2}$. However, these operations are for now just a speculation and further research is warranted. For example $\vee$ could use a function with a gradient that depends on both parts of the equation, while $\wedge$ might perform better using a different method of aggregation (e.g. $2\sqrt{J_{\varphi_1}^2+J_{\varphi_2}^2}$).
+In the case that the axiom has more such equalities (or negations of them) we do some adjustments. Because we do not assign a truth value (0-1) to the atomic formulas, the methods of aggreggating subformulas in Definition \autoref{def:grounding} could prove problematic. Therefore we will need different methods to combine the mean squared differences.
+
+The loss function of a negation of a subformula $\varphi$ should be computable from its own loss, e.g. $$J_{\neg\varphi}=\frac{1}{J_{\varphi}}.$$ If $\varphi_1,\varphi_2$ are subformulas, loss of $\varphi_1\vee \varphi_2$ will be e.g. $\min\{J_{\varphi_1},J_{\varphi_2}\}$ and loss of $\varphi_1\wedge \varphi_2$ will be e.g. $J_{\varphi_1}+J_{\varphi_2}$. However, these operations are for now just a speculation and further research is warranted. For example $\vee$ could use a function with a gradient that depends on both parts of the equation, while $\wedge$ might perform better using a different method of aggregation (e.g. $2\sqrt{J_{\varphi_1}^2+J_{\varphi_2}^2}$).
 
 It may be a good idea to also penalize straying from the groundings of the elements, since this may produce functions that are not exactly $S\rightarrow S$. Possible ways to achieve this are discussed in \Autoref{comments}.
 
-After computing the loss for each axiom, we aggregate them like with $\wedge$ and use back-propagation from there. This is, however, very costly with regards to computation time. Therefore in our experiments we used a different, simplified approach.
+After computing the loss for each axiom, we aggregate them like with $\wedge$ and use back-propagation from there. This is, however, very costly with regards to computation time. Therefore in our experiments we used a different, simplified approach (see \Autoref{section:group_impl}).
 
 \section{Neural model extension}
-Another big part of this thesis is model extension. In \Autoref{section:extensions} we have discussed which type of extensions are we interested in.
+Another part of this thesis is learning model extensions. In \Autoref{section:extensions} we have discussed which type of extensions are we interested in.
 
-Assume we have already built a model $\mathcal{G}$ for a structure $\mathcal{S}$ and we want to extend it to include a solution of an equation $t_1(x)=t_2(x)$\footnote{We assume that it has no solution in $S$.}. Note that $t_1$ and $t_2$ are allowed to have parameters from $\mathcal{S}$. Since we assume that the representation is already settled, the usage of parameters is is not a problem. We will treat the equation as an axiom $\exists x\ t_1(x)=t_2(x)$. In its skolemized version it is $t_1(c_{\text{ex}})= t_2(c_{xt{ex}})$. We already have a framework to find such a constant (\Autoref{learning_extension}). However, we need to remove any possible penalties for straying away from the representations of $S$. 
+Assume we have already built a model $\mathcal{G}$ for a structure $\mathcal{S}$ and we want to extend it to include a solution of an equation $t_1(x)=t_2(x)$\footnote{We assume that it has no solution in $S$.}. Note that $t_1$ and $t_2$ are allowed to have parameters from $\mathcal{S}$. Since we assume that the representation is already settled, the usage of parameters is not a problem. We will treat the equation as an axiom $\exists x\ t_1(x)=t_2(x)$. In its skolemized version it is $t_1(c_{\text{ex}})= t_2(c_{text{ex}})$. We already have a framework to find the grounding of such a constant (\Autoref{learning_extension}). However, we need to remove any possible penalties for straying away from the representations of $S$. 
 
 During the learning of this constant, it is vital that the optimization process does not change any parameters of other functions and constants. Otherwise we would not get an  extension of the already built structure, only its modification. 
 
-After we the optimizer found a minimum, we evaluate various terms with this new constant to test if it behaves as expected.
+After the optimizer found a minimum, we evaluate various terms with this new constant to test if it behaves as expected.
 
 \begin{figure}
 \caption{Network used for learning an extension defined by the equation $t_1(x)=t_2(x)$. Note that only $c_{\text{ex}}$ is optimized, everything else is treated as a function.}
@@ -118,11 +121,11 @@ After we the optimizer found a minimum, we evaluate various terms with this new 
 
 \section{Implementation for groups}
 \label{section:group_impl}
-Axioms of groups can be used differently, since the definitions of symbols stem from one another. $e$ is defined from $\cdot$, and $^{-1}$ is defined from $e$ and $\cdot$. This is because we can regard $e$ and $^{-1}$ as Skolem symbols (\Autoref{section:groups}). This is not generally possible.
+Axioms of groups can be used differently, since the definitions of symbols stem from one another. $e$ is defined from $\cdot$, and $^{-1}$ is defined from $e$ and $\cdot$. This is because we can regard $e$ and $^{-1}$ as Skolem symbols (\Autoref{section:groups}). However, this ordering of symbols is not generally possible.
 
 There are many different types of groups, that have vastly different complexity levels. We have built models for the cyclic groups (namely $\mathbb{Z}_{10}$ and $\mathbb{Z}_{20}$) and symmetric groups ($S_3$ and $S_4$). These groups have been selected for being the simplest and the most complex finite groups respectively.
 
-To better see if the computer is able to represent these groups correctly, we have opted to use the multiplication table for the learning of $\cdot$. The multiplication table is a table of pre-computed values for each double of the elements. This runs counter to the ideas described above, but is essential for human interpretability of the results. To demonstrate the ability of the network to generalize, and to a degree "understand" the composition function, several entries (up to 10\%) had been selected as testing data - they are never used during the optimization process.\\
+To better see if the computer is able to represent these groups correctly, we have opted to use the multiplication table for the learning of $\cdot$. The multiplication table is a table of pre-computed values for each double of the elements. This runs counter to the ideas described above, but is essential for human interpretability of the results. To demonstrate the ability of the network to generalize, and to a degree "understand" the composition function, several entries (up to 10\%) had been selected as testing data - they are never used during the optimization process.
 
 Both $\cdot$ and $^{-1}$ are 4-layer feed-forward neural networks with all connections. Width of each layer is $3n$ where $n$ is the size of the grounding. Activation functions on each layer are leaky ReLU. Loss function for each network is mean squared difference. There is no penalty for straying too far from the element representations, since this is already covered by the multiplication table approach. Each network is optimized using the Adam optimizer with default settings. Inputs are in batches of 25 random doubles for $\cdot$ and 5 elements for $^{-1}$ and $e$. 
 

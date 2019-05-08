@@ -6,16 +6,17 @@
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \newlabel{chapter:implementation}{{2}{21}{Neural modelling}{chapter.2}{}}
+\newlabel{def:grounding}{{25}{21}{}{defn.25}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces An example network obtained from a literal $f(h(x_1),x_2,c)=g(c,h(x_1))$ where $x_1$ and $x_2$ are inputs, $f,g,h$ are functions and $c$ is a constant. Loss is computed from the difference of $\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle t_1$}\mathaccent "0362{t_1}$ and $\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle t_2$}\mathaccent "0362{t_2}$.\relax }}{22}{figure.caption.9}}
 \newlabel{nndiagram2}{{2.1}{22}{An example network obtained from a literal $f(h(x_1),x_2,c)=g(c,h(x_1))$ where $x_1$ and $x_2$ are inputs, $f,g,h$ are functions and $c$ is a constant. Loss is computed from the difference of $\widehat {t_1}$ and $\widehat {t_2}$.\relax }{figure.caption.9}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.1}Building a neural model}{22}{section.2.1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Network used for learning an extension defined by the equation $t_1(x)=t_2(x)$. Note that only $c_{\text  {ex}}$ is optimized, everything else is treated as a function.\relax }}{23}{figure.caption.10}}
 \newlabel{learning_extension}{{2.2}{23}{Network used for learning an extension defined by the equation $t_1(x)=t_2(x)$. Note that only $c_{\text {ex}}$ is optimized, everything else is treated as a function.\relax }{figure.caption.10}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.2}Neural model extension}{23}{section.2.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.3}Implementation for groups}{23}{section.2.3}}
-\newlabel{section:group_impl}{{2.3}{23}{Implementation for groups}{section.2.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Learning of composition. An incomplete multiplication table is used to determine the loss. $x_1,x_2$ is a randomly selected double.\relax }}{24}{figure.caption.11}}
 \newlabel{learning_comp}{{2.3}{24}{Learning of composition. An incomplete multiplication table is used to determine the loss. $x_1,x_2$ is a randomly selected double.\relax }{figure.caption.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}Implementation for groups}{24}{section.2.3}}
+\newlabel{section:group_impl}{{2.3}{24}{Implementation for groups}{section.2.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Learning of unit. Parameters in composition network are not altered in this optimization process. Note that the unit element is also present in the multiplication table used for the learning of the composition. However, this information is not shared, and the optimizer has to find it by itself. Learning is based on the axiom $\forall a\ a\cdot e=a$. The dual axiom $e\cdot a$ had been disregarded for the sake of efficiency.\relax }}{25}{figure.caption.12}}
 \newlabel{learning_unit}{{2.4}{25}{Learning of unit. Parameters in composition network are not altered in this optimization process. Note that the unit element is also present in the multiplication table used for the learning of the composition. However, this information is not shared, and the optimizer has to find it by itself. Learning is based on the axiom $\forall a\ a\cdot e=a$. The dual axiom $e\cdot a$ had been disregarded for the sake of efficiency.\relax }{figure.caption.12}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces Learning of the inverse. Here we use the learned unit and composition. We use the axiom $a^{-1}a=e$. The dual $aa^{-1}=e$ is disregarded.\relax }}{25}{figure.caption.13}}
