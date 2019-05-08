@@ -125,16 +125,16 @@ Axioms of groups can be used differently, since the definitions of symbols stem 
 
 There are many different types of groups, that have vastly different complexity levels. We have built models for the cyclic groups (namely $\mathbb{Z}_{10}$ and $\mathbb{Z}_{20}$) and symmetric groups ($S_3$ and $S_4$). These groups have been selected for being the simplest and the most complex finite groups respectively.
 
-To better see if the computer is able to represent these groups correctly, we have opted to use the multiplication table for the learning of $\cdot$. The multiplication table is a table of pre-computed values for each double of the elements. This runs counter to the ideas described above, but is essential for human interpretability of the results. To demonstrate the ability of the network to generalize, and to a degree "understand" the composition function, several entries (up to 10\%) had been selected as testing data - they are never used during the optimization process.
+To better see if the computer is able to represent these groups correctly, we have opted to use the multiplication table for the first experiments with the learning of $\cdot$. The multiplication table is a table of pre-computed values for each pair of the elements. This is a simplification of learning the model only based on some propositions valid in it, but it is an essential one for human interpretability of the results. To demonstrate the ability of the network to generalize, and to a degree "understand" the composition function, several entries (up to 10\%) had been selected as testing data - they are never used during the optimization process.
 
-Both $\cdot$ and $^{-1}$ are 4-layer feed-forward neural networks with all connections. Width of each layer is $3n$ where $n$ is the size of the grounding. Activation functions on each layer are leaky ReLU. Loss function for each network is mean squared difference. There is no penalty for straying too far from the element representations, since this is already covered by the multiplication table approach. Each network is optimized using the Adam optimizer with default settings. Inputs are in batches of 25 random doubles for $\cdot$ and 5 elements for $^{-1}$ and $e$. 
+Both $\cdot$ and $^{-1}$ are 4-layer feed-forward neural networks with all connections. The width of each layer is $3n$ where $n$ is the size of the grounding. The activation functions on each layer are leaky ReLU. The loss function for each network is the mean squared difference. There is no penalty for straying too far from the element representations, since this is already covered by the multiplication table approach. Each network is optimized using the Adam optimizer with default settings. Inputs are given in batches of 25 random pairs for $\cdot$ and 5 elements for $^{-1}$ and $e$. 
 
-Each symbol is trained with a different network, with a separate optimizer. Because of the difficulty of determining whether a network is trained well, all were trained at the same time. The network used for learning the composition is described in \Autoref{learning_comp}, unit in \Autoref{learning_unit} and inverse in \Autoref{learning_inv}. 
+Each of the group functions is trained with a different network, with a separate optimizer. Because of the difficulty of determining whether a network is trained well, all of them were trained at the same time. The network used for learning the composition is described in \Autoref{learning_comp}, unit in \Autoref{learning_unit} and inverse in \Autoref{learning_inv}. 
 
-Note that $e$ had been used during the training of composition as a part of training data. However, this knowledge had not been passed to the optimizer seeking to find this $e$.
+Note that $e$ had been used during the training of composition as a part of the training data. However, this knowledge had not been passed to the optimizer seeking to find this $e$.
 
 \begin{figure}
-	\caption{Learning of composition. An incomplete multiplication table is used to determine the loss. $x_1,x_2$ is a randomly selected double.}
+	\caption{Learning of composition. An incomplete multiplication table is used to determine the loss. $x_1,x_2$ is a randomly selected pair.}
 	\label{learning_comp}
 	\center
 \begin{tikzpicture}
@@ -144,23 +144,23 @@ Note that $e$ had been used during the training of composition as a part of trai
 	\draw[line](x1)-|($(comp.north)-(0.5,0)$);
 	\draw[line](x2)-|($(comp.north)+(0.5,0)$);
 	
-	\node[rectangle,draw,minimum width=1.5cm,minimum height=1.5cm,fill=white](table)at(3,2){Multiplication table};
+	\node[rectangle,draw,minimum width=1.5cm,minimum height=1.5cm,fill=white](table)at(4,2){Multiplication table};
 	\draw[line](x1)--(-1,4.5)-|($(table.north)-(0.5,0)$);
 	\draw[line](x2)-|($(table.north)+(0.5,0)$);
 	
 	\node(compout)at(0,0){$\widehat{x_1\cdot x_2}$};
-	\node(trueout)at(3,0){$x_1\cdot x_2$};
+	\node(trueout)at(4,0){$x_1\cdot x_2$};
 	\draw[line](comp)--(compout);
 	\draw[line](table)--(trueout);
 	
-	\node(loss)at(1.5,-1){$J$};
+	\node(loss)at(2,-1){$J$};
 	\draw[line](compout)--(loss);
 	\draw[line](trueout)--(loss);
 \end{tikzpicture}
 \end{figure}
 
 \begin{figure}
-\caption{Learning of unit. Parameters in composition network are not altered in this optimization process. Note that the unit element is also present in the multiplication table used for the learning of the composition. However, this information is not shared, and the optimizer has to find it by itself. Learning is based on the axiom $\forall a\ a\cdot e=a$. The dual axiom $e\cdot a$ had been disregarded for the sake of efficiency.}
+\caption{Learning of the unit. Parameters in the composition network are not altered in this optimization process. Note that the unit element is also present in the multiplication table used for the learning of the composition. However, this information is not shared, and the optimizer has to find it by itself. Learning is based on the axiom $\forall a\ a\cdot e=a$. The dual axiom $e\cdot a$ had been disregarded for the sake of efficiency.}
 \center
 \label{learning_unit}
 \begin{tikzpicture}
