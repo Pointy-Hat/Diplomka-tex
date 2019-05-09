@@ -21,7 +21,7 @@ Table \ref{table:z10_half_generator} shows how two different runs generated $\ma
 
 
 \begin{figure}[b]
-\caption{Error rate for the learning of composition, inverse and unit in $\mathbb{Z}_{10}$. Testing data percentage is 10\%}
+\caption{Error rate for the learning of composition, inverse and unit in $\mathbb{Z}_{10}$ on the testing data. Testing data percentage is 10\%}
 \label{graph:z10_90percent}
 \includegraphics[width=\linewidth]{../img/z10_90percent.png}
 \end{figure}
@@ -68,7 +68,7 @@ Values for the half in different runs can be seen in \Autoref{table:z20_half}. O
 
 \begin{figure}[h]
 \centering
-\caption{A $\mathbb{Z}_{20}$ learning run. We see that the trends we observed in $\mathbb{Z}_{10}$ continue, and it appears that extra time is not needed. However, in different runs we encountered difficulties with learning the inverse function.}
+\caption{A $\mathbb{Z}_{20}$ learning run. These results are from 10\% testing data. We see that the trends we observed in $\mathbb{Z}_{10}$ continue, and it appears that extra time is not needed. However, in different runs we encountered difficulties with learning the inverse function.}
 \label{graph:z20_90percent}
 \includegraphics[width=\linewidth]{../img/z20_90percent.png}
 \end{figure}
@@ -138,7 +138,7 @@ When it comes to learning of $h$, we see even more problems than in the case of 
 However, as we see in table \ref{table:s4_half_basic_gen}, generating even a small subgroup results in a failure. Since $h\circ h=(0,1)$, we expect that $h^4=(h\circ h)\circ(h\circ h)=(0,1)\circ(0,1)=e$. Unfortunately, we were never able to get this equation to hold with $h\circ(h\circ(h\circ h))))$. Once again, reason for this is unknown. But because $(h\circ h)\circ (h\circ h)$ yielded reasonable results, we suspect that again the associativity is the problem.
 
 \begin{figure}
-\caption{One run of learning the $S_4$ with the basic grounding. We see that the training is expectedly much slower than in the cyclic groups.}
+\caption{One run of learning the $S_4$ with the basic grounding. This graph shows error rates on 10\% testing data. We see that the training is expectedly much slower than in the cyclic groups.}
 \label{graph:s4_basic}
 \includegraphics[width=0.9\linewidth]{../img/s4_comp+inv.png}
 \end{figure}
@@ -231,7 +231,7 @@ The extension element $h$ is shown in table \ref{table:s4_matrix_half} along wit
 
 \begin{figure}
 \center
-\caption{$S_4$ with matrix grounding. The composition is very successful, but the inverse is not.}
+\caption{$S_4$ with matrix grounding. The testing data percentage is 5\% The composition is very successful, but the inverse is not.}
 \label{graph:s4_matrix}
 \includegraphics[width=\linewidth]{../img/s4_matrix.png}
 \end{figure}
