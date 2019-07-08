@@ -10,13 +10,13 @@
 }
 
 \label{chapter:implementation}
-This thesis is inspired by the work of \cite{serafini}. In their paper they propose the creation of \textit{Real Logic}, a framework that uses tensor networks \footnote{A type of neural networks} to process sentences and assign them truth value in the interval $[0,1]$ (we call this "uncertainty" \textbf{fuzzy logic}). They propose to do this by introducing a \textbf{grounding}: a function that \textit{grounds} a structure in real vector space, including all elements, functions, constants and even relations. This grounding is approximated using neural networks. 
+This thesis is inspired by the work of \cite{serafini}. In their paper they propose the creation of \textit{Real Logic}, a framework that uses tensor networks\footnote{A type of neural networks} to process first order sentences and assign them truth value in the interval $[0,1]$ (we call this "uncertainty" \textbf{fuzzy logic}). They propose to do this by introducing a \textbf{grounding}: a function that \textit{grounds} a structure in real vector space, including all elements, functions, constants and even relations. This grounding is approximated using neural networks. 
 
 The place where this thesis differs from this work is the type of the structure we try to emulate. In the original paper they model a relational structure, while we forego the relations completely and only implement functions and constants.
 
 \begin{defn}
 \label{def:grounding}
-	Let $\mathcal{L}$ be a language. Then a \textbf{grounding} is a function $\mathcal{G}$ that satisfies:
+	Let $\mathcal{L}$ be a language. Then a \textbf{grounding} in the space $\mathbb{R}^n$ is a function $\mathcal{G}$ that satisfies:
 	\begin{enumerate}
 		\item $\mathcal{G}(c)\in \mathbb{R}^n$ for every constant $c$.
 		\item $\mathcal{G}(f)$ where $f$ is a function symbol is a map $\mathbb{R}^{nm}\rightarrow \mathbb{R}^n$ where $m$ is the arity of $f$.
@@ -25,41 +25,47 @@ The place where this thesis differs from this work is the type of the structure 
 \end{defn}
 
 Grounding is then naturally extended to any term and atomic formula as such:
-$$\mathcal{G}(f(t_1,\dots,t_n))=\mathcal{G}(f)(\mathcal{G}(t_1),\dots\mathcal{G}(t_n))$$
-$$\mathcal{G}(r(t_1,\dots,t_n))=\mathcal{G}(r)(\mathcal{G}(t_1),\dots\mathcal{G}(t_n))$$
+$$\mathcal{G}(f(t_1,\dots,t_n))=\mathcal{G}(f)(\mathcal{G}(t_1),\dots,\mathcal{G}(t_n))$$
+$$\mathcal{G}(r(t_1,\dots,t_n))=\mathcal{G}(r)(\mathcal{G}(t_1),\dots,\mathcal{G}(t_n))$$
+
+Where "$\mathcal{G}(t_1),\dots,\mathcal{G}(t_n)$" means concatenation\footnote{Concatenation of vectors $u=(u_1,\dots,u_n)$ and $v=(v_1,\dots,v_m)$ is the vector $(u_1,\dots,u_n,v_1,\dots,v_n)$} of the vectors outputted by the functions $\mathcal{G}(t_i)$
 
 There are also rules for logic on formulas:
 
 $$\mathcal{G}(\neg r(t_1,\dots,t_n))=1-\mathcal{G}(r(t_1,\dots,t_n))$$
 $$\mathcal{G}(\phi_1,\vee\dots \vee\phi_n)=\mu(\mathcal{G}(\phi_1),\dots,\mathcal{G}(\phi_n))$$
 
-Where $\mu$ is a co-t-norm: an operator that joins the "probabilities" of the sentences being true into one. A t-form (or a triangle form) is a function in fuzzy logic that replaces conjunction, e.g. $\top_{\min}(a,b)=min\{a,b\}$ or $\top_{\text{Luk}}(a,b)=\max\{0,a+b-1\}$. A co-t-form is a dual that does the same with disjunction ($\mu(a,b)=1-\top(1-a,1-b)$ because $a\vee b = \neg(\neg a\wedge \neg b)$). For more about fuzzy logic see \cite{fuzzy}.
+Where $\mu$ is a co-t-norm: an operator that joins the "probabilities" of the sentences being true into one. A t-norm (or a triangle form) is a function in fuzzy logic that replaces conjunction, e.g. $\top_{\min}(a,b)=min\{a,b\}$ or $\top_{\text{Luk}}(a,b)=\max\{0,a+b-1\}$. A co-t-norm is a dual that does the same with disjunction: $\mu(a,b)=1-\top(1-a,1-b)$ (because $a\vee b = \neg(\neg a\wedge \neg b)$). For more about fuzzy logic see \cite{fuzzy}.
 
 In this thesis, however, we will be dealing with specific structures. Therefore we also define $\mathcal{G}(x)$ for each element of the structure. The rules for extending to terms still have to hold. 
 
 \section{Building a neural model}
+\label{section:building_models}
 
 First we will discuss the idea behind the general neural models. However, because of the limited scope of the experiments not every concept introduced in this section was implemented. To see what was done in practice, refer to \Autoref{section:group_impl} and \Autoref{chapter:results}.
 
-Let $T$ be an $\mathcal{L}$-theory that describes a class of structures. We assume that $T$ is finite. We also assume that all $\varphi\in T$ are in Skolem normal form. If not, we use the skolemized version of $T$. We also assume that $\mathcal{L}$ has no relation symbols. How these could be implemented is discussed in \Autoref{comments}.
+Let $T$ be an $\mathcal{L}$-theory that describes a class of structures. We assume that $T$ is finite. We also assume that all $\varphi\in T$ are in Skolem normal form (see \Autoref{section:skolem}). If not, we use the skolemized version of $T$. We also assume that $\mathcal{L}$ has no relation symbols. How these could be implemented is discussed in \Autoref{comments}.
 
-We pick a grounding for the elements. We take an appropriate subset of $\mathbb{R}^n$ to represent the elements. Here we assume that the grounding is handpicked, i.e. it is given externally. Other possibilities are also discussed in \Autoref{comments}.
+We pick a grounding for the elements. We take an appropriate subset  $S\subseteq\mathbb{R}^n$ to represent the elements. Here we assume that the grounding is handpicked, i.e. it is given externally. Other possibilities are also discussed in \Autoref{comments}.
 
-Next we build a neural network for each of the symbols following the rules of groundings (see Definition \Autoref{def:grounding}). They are initialized randomly. Then we take these neural networks as building blocks and we build a network 
-for each axiom of $T$, as illustrated in \Autoref{nndiagram2}. Since we assume that there are no relation symbols, each axiom has to have at least one equality sign. If the axiom is an equality between two terms, we use this as the basis for our loss function.
+Next we build a neural network for each of the symbols with input and output dimensions following the rules of groundings (see Definition \Autoref{def:grounding}). They are initialized randomly. Then we take these neural networks as building blocks and we build a network for each axiom of $T$. Since we assume that there are no relation symbols, each axiom has to have at least one equality sign. If the axiom is an equality between two terms (i.e. it has no $\wedge,\vee$ nor $\neg$), we use this as the basis for our loss function\footnote{See \Autoref{section:learning+opt}}.\\
+
+Formally speaking, we assume that the axiom has the form $t_1(\textbf{x})=t_2(\textbf{x})$ where $\textbf{x}$ is a set of $m$ variables and $t_1,t_2$ are terms. Then $\mathcal{G}(t_1)$ and $\mathcal{G}(t_2)$ are functions $\mathbb{R}^{nm}\rightarrow\mathbb{R}^n$. They are constructed using the rules for groundings of terms (see above). This means that we have a network $\mathcal{G}(f)$ for every function $f$ (we will denote it $\widehat{f}$ ), and if $t(\textbf{x})=f(s_1(\textbf{x}),\dots,s_k(\textbf{x}))$ for some terms $s_1,\dots,s_k$ then $\mathcal{G}(t)=\widehat{f}(\mathcal{G}(s_1),\dots,\mathcal{G}(s_k))$. This rule is applied recursively, in effect replacing each symbol with its neural network equivalent.
+
+A visual representation of this supernetwork can be seen in \Autoref{nndiagram2}.\\
 
 \begin{figure}
-\caption{An example network obtained from a literal $f(h(x_1),x_2,c)=g(c,h(x_1))$ where $x_1$ and $x_2$ are inputs, $f,g,h$ are functions and $c$ is a constant. Loss is computed from the difference of $\widehat{t_1}$ and $\widehat{t_2}$.}
+\caption{An example network obtained from a literal $f(h(x_1),x_2,c)=g(c,h(x_1))$ where $x_1$ and $x_2$ are inputs, $f,g,h$ are functions and $c$ is a constant. $\widehat{f}=\mathcal{G}(f),\widehat{g}=\mathcal{G}(g),\widehat{h}=\mathcal{G}(h)$ are all neural networks and $\widehat{c}=\mathcal{G}(c)$ is a vector in $\mathbb{R}^n$. $\widehat{f}$ and $\widehat{g}$ concatenate all (3 and 2 respectively) of their input vectors. Loss is computed from the difference of $\widehat{t_1}$ and $\widehat{t_2}$.}
 \centering
 \label{nndiagram2}
 \begin{tikzpicture}
 	\node at(0,4)(x1){$x_1$};
 	\node at(2,4)(x2){$x_2$};
-	\node[frame]at(4,4)(c){$c$};
-	\node[frame]at(0,0)(f){$f$};
-	\node[frame]at(0,2)(h1){$h$};
-	\node[frame]at(3.1,2)(h2){$h$};
-	\node[frame]at(4,0)(g){$g$};
+	\node[frame]at(4,4)(c){$\widehat{c}$};
+	\node[frame]at(0,0)(f){$\widehat{f}$};
+	\node[frame]at(0,2)(h1){$\widehat{h}$};
+	\node[frame]at(3.1,2)(h2){$\widehat{h}$};
+	\node[frame]at(4,0)(g){$\widehat{g}$};
 	
 	\draw[line](x1)--(h1);
 	\draw[line]($(h1.south)-(0.2,0)$)--($(f.north)-(0.2,0)$);
@@ -81,28 +87,28 @@ for each axiom of $T$, as illustrated in \Autoref{nndiagram2}. Since we assume t
 
 In the case that the axiom has more such equalities (or negations of them) we do some adjustments. Because we do not assign a truth value (0-1) to the atomic formulas, the methods of aggreggating subformulas in Definition \autoref{def:grounding} could prove problematic. Therefore we will need different methods to combine the mean squared differences.
 
-The loss function of a negation of a subformula $\varphi$ should be computable from its own loss, e.g. $$J_{\neg\varphi}=\frac{1}{J_{\varphi}}.$$ If $\varphi_1,\varphi_2$ are subformulas, loss of $\varphi_1\vee \varphi_2$ will be e.g. $\min\{J_{\varphi_1},J_{\varphi_2}\}$ and loss of $\varphi_1\wedge \varphi_2$ will be e.g. $J_{\varphi_1}+J_{\varphi_2}$. However, these operations are for now just a speculation and further research is warranted. For example $\vee$ could use a function with a gradient that depends on both parts of the equation, while $\wedge$ might perform better using a different method of aggregation (e.g. $2\sqrt{J_{\varphi_1}^2+J_{\varphi_2}^2}$).
+The loss function of a negation of a subformula $\varphi$ should be computable from its own loss, e.g. $$J_{\neg\varphi}=\frac{1}{J_{\varphi}}.$$ If $\varphi_1,\varphi_2$ are subformulas, loss of $\varphi_1\vee \varphi_2$ will be e.g. $\min\{J_{\varphi_1},J_{\varphi_2}\}$ and loss of $\varphi_1\wedge \varphi_2$ will be e.g. $J_{\varphi_1}+J_{\varphi_2}$. However, these operations are for now just a speculation and further research is warranted. For example a function with a gradient that depends on both subformulas (in $\vee$) would help the optimization, while $\wedge$ might perform better using a different method of aggregation (e.g. $2\sqrt{J_{\varphi_1}^2+J_{\varphi_2}^2}$).
 
-It may be a good idea to also penalize straying from the groundings of the elements, since this may produce functions that are not exactly $S\rightarrow S$. Possible ways to achieve this are discussed in \Autoref{comments}.
+The networks constructed here are not forced to produce $S^m\rightarrow S$ functions, nor are the constants forced to be near any element of $S$. To remedy this, we will need to alter our loss function. Possible ways to do this are discussed in \Autoref{comments}.
 
-After computing the loss for each axiom, we aggregate them like with $\wedge$ and use back-propagation from there. This is, however, very costly with regards to computation time. Therefore in our experiments we used a different, simplified approach (see \Autoref{section:group_impl}).
+After computing the loss for each axiom, we aggregate them like with $\wedge$ and use an optimization algorithm (see \Autoref{section:learning+opt}) using back-propagation (see \Autoref{section:backprop}) from this aggreggated loss.
 
 \section{Neural model extension}
 Another part of this thesis is learning model extensions. In \Autoref{section:extensions} we have discussed which type of extensions are we interested in.
 
-Assume we have already built a model $\mathcal{G}$ for a structure $\mathcal{S}$ and we want to extend it to include a solution of an equation $t_1(x)=t_2(x)$\footnote{We assume that it has no solution in $S$.}. Note that $t_1$ and $t_2$ are allowed to have parameters from $\mathcal{S}$. Since we assume that the representation is already settled, the usage of parameters is not a problem. We will treat the equation as an axiom $\exists x\ t_1(x)=t_2(x)$. In its skolemized version it is $t_1(c_{\text{ex}})= t_2(c_{text{ex}})$. We already have a framework to find the grounding of such a constant (\Autoref{learning_extension}). However, we need to remove any possible penalties for straying away from the representations of $S$. 
+Assume we have already built a model $\mathcal{G}$ for a structure $\mathcal{S}$ using the method described above. Now we want to extend it to include a solution of an equation $t_1(x)=t_2(x)$ (we assume that it has no solution in $S$). Note that $t_1$ and $t_2$ are allowed to have parameters from $\mathcal{S}$. Since we assume that the universe $S$ is already fixed, the usage of parameters is not a problem. We will treat the equation as an axiom $\exists x\ t_1(x)=t_2(x)$. In its skolemized version it is $t_1(c_{\text{ex}})= t_2(c_{\text{ex}})$. We already have a framework to find the grounding of such a constant (\Autoref{learning_extension}).
 
-During the learning of this constant, it is vital that the optimization process does not change any parameters of other functions and constants. Otherwise we would not get an  extension of the already built structure, only its modification. 
+During the learning of this constant, it is vital that the optimization process does not change any parameters of other functions and constants. Otherwise we would not get an  extension of the already built structure, only its modification.
 
 After the optimizer found a minimum, we evaluate various terms with this new constant to test if it behaves as expected.
 
 \begin{figure}
-\caption{Network used for learning an extension defined by the equation $t_1(x)=t_2(x)$. Note that only $c_{\text{ex}}$ is optimized, everything else is treated as a function.}
+\caption{Network used for learning an extension defined by the equation $t_1(x)=t_2(x)$. $\widehat{t_1}$ and $\widehat{t_2}$ represent networks built based on the terms, just like in previous section. Note that only $c_{\text{ex}}$ is optimized, everything else is treated as a function.}
 \centering
 \label{learning_extension}
 \begin{tikzpicture}
-	\node[frame,minimum height = 2cm, minimum width = 1.5cm](t1)at(0,2){$t_1$};
-	\node[frame,minimum height = 2cm, minimum width = 1.5cm](t2)at(2,2){$t_2$};
+	\node[frame,minimum height = 2cm, minimum width = 1.5cm](t1)at(0,2){$\widehat{t_1}$};
+	\node[frame,minimum height = 2cm, minimum width = 1.5cm](t2)at(2,2){$\widehat{t_2}$};
 	\node[frame,fill=yellow](c)at(1,4){$c_{\text{ex}}$};
 	\node(out1)at(0,0){$\widehat{t_1(c_{\text{ex}})}$};
 	\node(out2)at(2,0){$\widehat{t_2(c_{\text{ex}})}$};
@@ -121,17 +127,15 @@ After the optimizer found a minimum, we evaluate various terms with this new con
 
 \section{Implementation for groups}
 \label{section:group_impl}
-Axioms of groups can be used differently, since the definitions of symbols stem from one another. $e$ is defined from $\cdot$, and $^{-1}$ is defined from $e$ and $\cdot$. This is because we can regard $e$ and $^{-1}$ as Skolem symbols (\Autoref{section:groups}). However, this ordering of symbols is not generally possible.
-
 There are many different types of groups, that have vastly different complexity levels. We have built models for the cyclic groups (namely $\mathbb{Z}_{10}$ and $\mathbb{Z}_{20}$) and symmetric groups ($S_3$ and $S_4$). These groups have been selected for being the simplest and the most complex finite groups respectively.
 
-To better see if the computer is able to represent these groups correctly, we have opted to use the multiplication table for the first experiments with the learning of $\cdot$. The multiplication table is a table of pre-computed values for each pair of the elements. This is a simplification of learning the model only based on some propositions valid in it, but it is an essential one for human interpretability of the results. To demonstrate the ability of the network to generalize, and to a degree "understand" the composition function, several entries (up to 10\%) had been selected as testing data - they are never used during the optimization process.
+To better see if the computer is able to represent these groups correctly, we have opted to use the multiplication table for the first experiments with the learning of $\cdot$. The multiplication table is a table of pre-computed values for each pair of the elements. The usage is illustrated in \Autoref{learning_comp}. The loss function is computed from the difference between the computed value and the value in the table.
 
-Both $\cdot$ and $^{-1}$ are 4-layer feed-forward neural networks with all connections. The width of each layer is $3n$ where $n$ is the size of the grounding. The activation functions on each layer are leaky ReLU. The loss function for each network is the mean squared difference. There is no penalty for straying too far from the element representations, since this is already covered by the multiplication table approach. Each network is optimized using the Adam optimizer with default settings. Inputs are given in batches of 25 random pairs for $\cdot$ and 5 elements for $^{-1}$ and $e$. 
+This is a simplification, contrary to learning the model only based on some propositions valid in it, but it is an essential one for human interpretability of the results. To demonstrate the ability of the network to generalize, and to a degree "understand" the composition function, several entries (up to 10\%) had been selected as testing data - they are never used during the optimization process.\\
 
-Each of the group functions is trained with a different network, with a separate optimizer. Because of the difficulty of determining whether a network is trained well, all of them were trained at the same time. The network used for learning the composition is described in \Autoref{learning_comp}, unit in \Autoref{learning_unit} and inverse in \Autoref{learning_inv}. 
+Both $\cdot$ and $^{-1}$ are 4-layer feed-forward neural networks (see \Autoref{section:nn}). The width of each layer is $3n$ where $n$ is the size of the grounding. The activation functions on each layer are leaky ReLU (see \Autoref{section:activation_functions}). The loss function for each network is the mean squared difference (see \Autoref{section:learning+opt}). The networks are optimized using the Adam optimizer with default settings (see \autoref{section:adam}). Inputs are given in batches of 25 random pairs of elements. \\
 
-Note that $e$ had been used during the training of composition as a part of the training data. However, this knowledge had not been passed to the optimizer seeking to find this $e$.
+The networks are then used as building blocks for supernetworks, as described in \Autoref{section:building_models}. The supernetwork used for learning the \textbf{composition} is described in \Autoref{learning_comp}, \textbf{unit} in \Autoref{learning_unit} and \textbf{inverse} in \Autoref{learning_inv}. All of these networks calculate their own losses $J_{\text{mult}},J_{\text{unit}},J_{\text{inv}}$ respectively. The final loss function that the optimizer seeks to minimize is the sum $J_{\text{mult}}+J_{\text{unit}}+J_{\text{inv}}$.
 
 \begin{figure}
 	\caption{Learning of composition. An incomplete multiplication table is used to determine the loss. $x_1,x_2$ is a randomly selected pair.}
@@ -153,14 +157,14 @@ Note that $e$ had been used during the training of composition as a part of the 
 	\draw[line](comp)--(compout);
 	\draw[line](table)--(trueout);
 	
-	\node(loss)at(2,-1){$J$};
+	\node(loss)at(2,-1){$J_{\text{mult}}$};
 	\draw[line](compout)--(loss);
 	\draw[line](trueout)--(loss);
 \end{tikzpicture}
 \end{figure}
 
 \begin{figure}
-\caption{Learning of the unit. Parameters in the composition network are not altered in this optimization process. Note that the unit element is also present in the multiplication table used for the learning of the composition. However, this information is not shared, and the optimizer has to find it by itself. Learning is based on the axiom $\forall a\ a\cdot e=a$. The dual axiom $e\cdot a$ had been disregarded for the sake of efficiency.}
+\caption{Learning of the unit. Learning is based on the axiom $\forall a\ a\cdot e=a$. The dual axiom $e\cdot a$ had been disregarded for the sake of efficiency. The composition node represents the learned composition network.}
 \center
 \label{learning_unit}
 \begin{tikzpicture}
@@ -173,7 +177,7 @@ Note that $e$ had been used during the training of composition as a part of the 
 	\draw[line](unit)-|($(comp.north)+(0.3,0)$);
 	\draw[line](comp)--(output);
 	
-	\node(loss)at(-2,0){$J$};
+	\node(loss)at(-2,0){$J_{\text{unit}}$};
 	\draw[line](input)-|(loss);
 	\draw[line](output)--(loss);
 \end{tikzpicture}
@@ -181,7 +185,7 @@ Note that $e$ had been used during the training of composition as a part of the 
 
 \begin{figure}
 \center
-\caption{Learning of the inverse. Here we use the learned unit and composition. We use the axiom $a^{-1}a=e$. The dual $aa^{-1}=e$ is disregarded.}
+\caption{Learning of the inverse. Here we also use the learned unit and the network for composition. We use the axiom $a^{-1}a=e$. The dual $aa^{-1}=e$ is disregarded.}
 \label{learning_inv}
 \begin{tikzpicture}
 	\node[frame,minimum width=2.5cm,minimum height=2cm,fill=white](comp) at (0,2){Composition};
@@ -195,7 +199,7 @@ Note that $e$ had been used during the training of composition as a part of the 
 	\draw[line](comp)--(out);
 	
 	\node[frame,minimum width = 2em](unit)at(2,0){$e$};
-	\node(loss)at(1,-1){$J$};
+	\node(loss)at(1,-1){$J_{\text{inv}}$};
 	\draw[line](unit)--(loss);
 	\draw[line](out)--(loss);
 \end{tikzpicture}

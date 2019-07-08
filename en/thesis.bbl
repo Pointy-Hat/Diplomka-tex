@@ -1,4 +1,4 @@
-\begin{thebibliography}{26}
+\begin{thebibliography}{27}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -80,16 +80,22 @@ Milan Hladík.
 \newblock 2019.
 \newblock URL \url{https://kam.mff.cuni.cz/~hladik/LA/text_la.pdf}.
 
+\bibitem[Hájek(1998)]{fuzzy}
+Petr Hájek.
+\newblock Metamathematics of fuzzy logic.
+\newblock 6, 1998.
+\newblock \doi{10.2307/421060}.
+
 \bibitem[Jarrett et~al.(2009)Jarrett, Kavukcuoglu, Ranzato, and LeCun]{relu2}
 Kevin Jarrett, Koray Kavukcuoglu, Marc’Aurelio Ranzato, and Yann LeCun.
 \newblock What is the best multi-stage architecture for object recognition?
 \newblock \emph{2009 IEEE 12th International Conference on Computer Vision,},
   2009.
 
-\bibitem[Kingma and Ba()]{adam}
+\bibitem[Kingma and Ba(2017)]{adam}
 Diederik~P. Kingma and Jimmy Ba.
 \newblock Adam: A method for stochastic optimization.
-\newblock \emph{Journal of the American Statistical Association}.
+\newblock \emph{Journal of the American Statistical Association}, 2017.
 \newblock URL \url{https://arxiv.org/pdf/1412.6980.pdf}.
 
 \bibitem[Krizhevsky et~al.(2012)Krizhevsky, Sutskever, and
@@ -125,14 +131,6 @@ Vinod Nair and Geoffrey~E Hinton.
 \newblock Rectified linear units improve restricted boltzmann machines.
 \newblock \emph{International Conference on Machine Learning}, 2010.
 
-\bibitem[Pelletier(2000)]{fuzzy}
-Francis~Jeffry Pelletier.
-\newblock Petr hájek. metamathematics of fuzzy logic. trends in logic, vol. 4.
-  kluwer academic publishers, dordrecht, boston, and london, 1998, viii 297 pp.
-\newblock \emph{Bulletin of Symbolic Logic}, 6\penalty0 (3):\penalty0
-  342–346, 2000.
-\newblock \doi{10.2307/421060}.
-
 \bibitem[Ramachandran et~al.(2018)Ramachandran, Zoph, and Le]{swish}
 Prajit Ramachandran, Barret Zoph, and Quoc~V. Le.
 \newblock Searching for activation functions, 2018.
@@ -156,6 +154,12 @@ H.M. Sheffer.
   application to logical constants.
 \newblock \emph{Transactions of the American Mathematical Society},
   14:\penalty0 481–488, 1913.
+
+\bibitem[Taylor(1973)]{measure}
+S.J. Taylor.
+\newblock \emph{Introduction to measure and integration}.
+\newblock Cambridge University Press, 1973.
+\newblock ISBN 978-0-521-09804-5.
 
 \bibitem[Urban et~al.(2008)Urban, Sutcliffe, Pudl{\'a}k, and
   Vysko{\v{c}}il]{model_axiom_selection}

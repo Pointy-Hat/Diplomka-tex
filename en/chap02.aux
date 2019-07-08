@@ -2,33 +2,34 @@
 \providecommand\hyper@newdestlabel[2]{}
 \citation{serafini}
 \citation{fuzzy}
-\@writefile{toc}{\contentsline {chapter}{\numberline {2}Neural modelling}{21}{chapter.2}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}Neural modelling}{25}{chapter.2}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{chapter:implementation}{{2}{21}{Neural modelling}{chapter.2}{}}
-\newlabel{def:grounding}{{25}{21}{}{defn.25}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces An example network obtained from a literal $f(h(x_1),x_2,c)=g(c,h(x_1))$ where $x_1$ and $x_2$ are inputs, $f,g,h$ are functions and $c$ is a constant. Loss is computed from the difference of $\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle t_1$}\mathaccent "0362{t_1}$ and $\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle t_2$}\mathaccent "0362{t_2}$.\relax }}{22}{figure.caption.9}}
-\newlabel{nndiagram2}{{2.1}{22}{An example network obtained from a literal $f(h(x_1),x_2,c)=g(c,h(x_1))$ where $x_1$ and $x_2$ are inputs, $f,g,h$ are functions and $c$ is a constant. Loss is computed from the difference of $\widehat {t_1}$ and $\widehat {t_2}$.\relax }{figure.caption.9}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.1}Building a neural model}{22}{section.2.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Network used for learning an extension defined by the equation $t_1(x)=t_2(x)$. Note that only $c_{\text  {ex}}$ is optimized, everything else is treated as a function.\relax }}{23}{figure.caption.10}}
-\newlabel{learning_extension}{{2.2}{23}{Network used for learning an extension defined by the equation $t_1(x)=t_2(x)$. Note that only $c_{\text {ex}}$ is optimized, everything else is treated as a function.\relax }{figure.caption.10}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.2}Neural model extension}{23}{section.2.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.3}Implementation for groups}{24}{section.2.3}}
-\newlabel{section:group_impl}{{2.3}{24}{Implementation for groups}{section.2.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Learning of composition. An incomplete multiplication table is used to determine the loss. $x_1,x_2$ is a randomly selected pair.\relax }}{25}{figure.caption.11}}
-\newlabel{learning_comp}{{2.3}{25}{Learning of composition. An incomplete multiplication table is used to determine the loss. $x_1,x_2$ is a randomly selected pair.\relax }{figure.caption.11}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Learning of the unit. Parameters in the composition network are not altered in this optimization process. Note that the unit element is also present in the multiplication table used for the learning of the composition. However, this information is not shared, and the optimizer has to find it by itself. Learning is based on the axiom $\forall a\ a\cdot e=a$. The dual axiom $e\cdot a$ had been disregarded for the sake of efficiency.\relax }}{25}{figure.caption.12}}
-\newlabel{learning_unit}{{2.4}{25}{Learning of the unit. Parameters in the composition network are not altered in this optimization process. Note that the unit element is also present in the multiplication table used for the learning of the composition. However, this information is not shared, and the optimizer has to find it by itself. Learning is based on the axiom $\forall a\ a\cdot e=a$. The dual axiom $e\cdot a$ had been disregarded for the sake of efficiency.\relax }{figure.caption.12}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces Learning of the inverse. Here we use the learned unit and composition. We use the axiom $a^{-1}a=e$. The dual $aa^{-1}=e$ is disregarded.\relax }}{26}{figure.caption.13}}
-\newlabel{learning_inv}{{2.5}{26}{Learning of the inverse. Here we use the learned unit and composition. We use the axiom $a^{-1}a=e$. The dual $aa^{-1}=e$ is disregarded.\relax }{figure.caption.13}{}}
+\newlabel{chapter:implementation}{{2}{25}{Neural modelling}{chapter.2}{}}
+\newlabel{def:grounding}{{27}{25}{}{defn.27}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}Building a neural model}{26}{section.2.1}}
+\newlabel{section:building_models}{{2.1}{26}{Building a neural model}{section.2.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces An example network obtained from a literal $f(h(x_1),x_2,c)=g(c,h(x_1))$ where $x_1$ and $x_2$ are inputs, $f,g,h$ are functions and $c$ is a constant. $\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle f$}\mathaccent "0362{f}=\mathcal  {G}(f),\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle g$}\mathaccent "0362{g}=\mathcal  {G}(g),\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle h$}\mathaccent "0362{h}=\mathcal  {G}(h)$ are all neural networks and $\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle c$}\mathaccent "0362{c}=\mathcal  {G}(c)$ is a vector in $\mathbb  {R}^n$. $\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle f$}\mathaccent "0362{f}$ and $\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle g$}\mathaccent "0362{g}$ concatenate all (3 and 2 respectively) of their input vectors. Loss is computed from the difference of $\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle t_1$}\mathaccent "0362{t_1}$ and $\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle t_2$}\mathaccent "0362{t_2}$.\relax }}{27}{figure.caption.9}}
+\newlabel{nndiagram2}{{2.1}{27}{An example network obtained from a literal $f(h(x_1),x_2,c)=g(c,h(x_1))$ where $x_1$ and $x_2$ are inputs, $f,g,h$ are functions and $c$ is a constant. $\widehat {f}=\mathcal {G}(f),\widehat {g}=\mathcal {G}(g),\widehat {h}=\mathcal {G}(h)$ are all neural networks and $\widehat {c}=\mathcal {G}(c)$ is a vector in $\mathbb {R}^n$. $\widehat {f}$ and $\widehat {g}$ concatenate all (3 and 2 respectively) of their input vectors. Loss is computed from the difference of $\widehat {t_1}$ and $\widehat {t_2}$.\relax }{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}Neural model extension}{27}{section.2.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}Implementation for groups}{27}{section.2.3}}
+\newlabel{section:group_impl}{{2.3}{27}{Implementation for groups}{section.2.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Network used for learning an extension defined by the equation $t_1(x)=t_2(x)$. $\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle t_1$}\mathaccent "0362{t_1}$ and $\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle t_2$}\mathaccent "0362{t_2}$ represent networks built based on the terms, just like in previous section. Note that only $c_{\text  {ex}}$ is optimized, everything else is treated as a function.\relax }}{28}{figure.caption.10}}
+\newlabel{learning_extension}{{2.2}{28}{Network used for learning an extension defined by the equation $t_1(x)=t_2(x)$. $\widehat {t_1}$ and $\widehat {t_2}$ represent networks built based on the terms, just like in previous section. Note that only $c_{\text {ex}}$ is optimized, everything else is treated as a function.\relax }{figure.caption.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Learning of composition. An incomplete multiplication table is used to determine the loss. $x_1,x_2$ is a randomly selected pair.\relax }}{29}{figure.caption.11}}
+\newlabel{learning_comp}{{2.3}{29}{Learning of composition. An incomplete multiplication table is used to determine the loss. $x_1,x_2$ is a randomly selected pair.\relax }{figure.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Learning of the unit. Learning is based on the axiom $\forall a\ a\cdot e=a$. The dual axiom $e\cdot a$ had been disregarded for the sake of efficiency. The composition node represents the learned composition network.\relax }}{29}{figure.caption.12}}
+\newlabel{learning_unit}{{2.4}{29}{Learning of the unit. Learning is based on the axiom $\forall a\ a\cdot e=a$. The dual axiom $e\cdot a$ had been disregarded for the sake of efficiency. The composition node represents the learned composition network.\relax }{figure.caption.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces Learning of the inverse. Here we also use the learned unit and the network for composition. We use the axiom $a^{-1}a=e$. The dual $aa^{-1}=e$ is disregarded.\relax }}{30}{figure.caption.13}}
+\newlabel{learning_inv}{{2.5}{30}{Learning of the inverse. Here we also use the learned unit and the network for composition. We use the axiom $a^{-1}a=e$. The dual $aa^{-1}=e$ is disregarded.\relax }{figure.caption.13}{}}
 \@setckpt{chap02}{
-\setcounter{page}{27}
+\setcounter{page}{31}
 \setcounter{equation}{0}
 \setcounter{enumi}{3}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
 \setcounter{enumiv}{0}
-\setcounter{footnote}{2}
+\setcounter{footnote}{3}
 \setcounter{mpfootnote}{0}
 \setcounter{part}{0}
 \setcounter{chapter}{2}
@@ -45,8 +46,8 @@
 \setcounter{subtable}{0}
 \setcounter{FancyVerbLine}{0}
 \setcounter{NAT@ctr}{0}
-\setcounter{Item}{26}
-\setcounter{Hfootnote}{11}
+\setcounter{Item}{30}
+\setcounter{Hfootnote}{15}
 \setcounter{bookmark@seq@number}{19}
 \setcounter{float@type}{8}
 \setcounter{algorithm}{2}
@@ -54,7 +55,7 @@
 \setcounter{ALC@line}{13}
 \setcounter{ALC@rem}{13}
 \setcounter{ALC@depth}{0}
-\setcounter{thm}{4}
-\setcounter{defn}{25}
+\setcounter{thm}{6}
+\setcounter{defn}{27}
 \setcounter{section@level}{1}
 }

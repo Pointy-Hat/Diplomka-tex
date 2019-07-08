@@ -1,5 +1,5 @@
-This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: thesis.aux
 A level-1 auxiliary file: title.aux
 A level-1 auxiliary file: preface.aux
@@ -11,56 +11,55 @@ A level-1 auxiliary file: epilog.aux
 A level-1 auxiliary file: bibliography.aux
 The style file: plainnat.bst
 Database file #1: bibliography.bib
-I was expecting a `,' or a `}'---line 239 of file bibliography.bib
+I was expecting a `,' or a `}'---line 249 of file bibliography.bib
  :  
  :  @article{crossentropy,
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
 Warning--empty journal in elu
 Warning--empty publisher in Lingebra
-Warning--empty year in adam
-Warning--empty year in adam
+Warning--empty journal in fuzzy
 Warning--empty booktitle in grounding_wang
 Warning--empty publisher in model
-You've used 26 entries,
+You've used 27 entries,
             2773 wiz_defined-function locations,
-            753 strings with 10032 characters,
-and the built_in function-call counts, 13874 in all, are:
-= -- 1178
-> -- 1023
-< -- 18
-+ -- 345
-- -- 319
-* -- 1108
-:= -- 2166
-add.period$ -- 93
-call.type$ -- 26
-change.case$ -- 177
-chr.to.int$ -- 26
-cite$ -- 58
-duplicate$ -- 609
-empty$ -- 959
-format.name$ -- 357
-if$ -- 2904
+            758 strings with 9962 characters,
+and the built_in function-call counts, 14080 in all, are:
+= -- 1194
+> -- 1033
+< -- 19
++ -- 349
+- -- 322
+* -- 1107
+:= -- 2207
+add.period$ -- 97
+call.type$ -- 27
+change.case$ -- 180
+chr.to.int$ -- 27
+cite$ -- 59
+duplicate$ -- 628
+empty$ -- 979
+format.name$ -- 361
+if$ -- 2947
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 29
-newline$ -- 150
-num.names$ -- 106
-pop$ -- 382
+missing$ -- 31
+newline$ -- 156
+num.names$ -- 110
+pop$ -- 391
 preamble$ -- 1
-purify$ -- 156
+purify$ -- 159
 quote$ -- 0
-skip$ -- 541
+skip$ -- 557
 stack$ -- 0
-substring$ -- 309
+substring$ -- 284
 swap$ -- 112
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 261
-warning$ -- 6
-while$ -- 93
+type$ -- 267
+warning$ -- 5
+while$ -- 95
 width$ -- 0
-write$ -- 355
+write$ -- 369
 (There was 1 error message)
