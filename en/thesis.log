@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.10)  7 JUL 2019 01:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.10)  17 JUL 2019 13:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1534,17 +1534,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 55--56
 
 Package hyperref Warning: No autoref name for `defn' on input line 88.
 
-[26] [27]
-Underfull \hbox (badness 10000) in paragraph at lines 134--135
+[26]
+Underfull \vbox (badness 6842) has occurred while \output is active []
 
+ [27]
+Overfull \hbox (9.65567pt too wide) in paragraph at lines 158--158
+[]\OT1/lmr/bx/n/17.28 Our neu-ral ar-chi-tec-ture im-ple-ment-ing groups |
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--137
+Underfull \hbox (badness 10000) in paragraph at lines 164--165
 
  []
 
-) [28] [29] [30]
+[28]
+Underfull \hbox (badness 10000) in paragraph at lines 166--167
+
+ []
+
+) [29] [30]
 \openout2 = `chap03.aux'.
 
  (./chap03.tex
@@ -1585,7 +1593,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 149--150
 
  []
 
-<../img/z10_90percent.png, id=646, 832.10875pt x 573.14125pt>
+<../img/z10_90percent.png, id=651, 832.10875pt x 573.14125pt>
 File: ../img/z10_90percent.png Graphic file (type png)
 <use ../img/z10_90percent.png>
 Package pdftex.def Info: ../img/z10_90percent.png  used on input line 158.
@@ -1609,7 +1617,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 194.
 
-<../img/z20_90percent.png, id=657, 724.7075pt x 555.07375pt>
+<../img/z20_90percent.png, id=662, 724.7075pt x 555.07375pt>
 File: ../img/z20_90percent.png Graphic file (type png)
 <use ../img/z20_90percent.png>
 Package pdftex.def Info: ../img/z20_90percent.png  used on input line 213.
@@ -1620,7 +1628,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../img/z20_half_plot.png, id=658, 724.7075pt x 555.07375pt>
+<../img/z20_half_plot.png, id=663, 724.7075pt x 555.07375pt>
 File: ../img/z20_half_plot.png Graphic file (type png)
 <use ../img/z20_half_plot.png>
 Package pdftex.def Info: ../img/z20_half_plot.png  used on input line 233.
@@ -1637,7 +1645,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 236.
 
 [33]
-<../img/z_inf.png, id=669, 832.10875pt x 573.14125pt>
+<../img/z_inf.png, id=674, 832.10875pt x 573.14125pt>
 File: ../img/z_inf.png Graphic file (type png)
 <use ../img/z_inf.png>
 Package pdftex.def Info: ../img/z_inf.png  used on input line 267.
@@ -1656,7 +1664,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 279.
 
 [34]
-<../img/s4_comp+inv.png, id=687, 724.7075pt x 555.07375pt>
+<../img/s4_comp+inv.png, id=692, 724.7075pt x 555.07375pt>
 File: ../img/s4_comp+inv.png Graphic file (type png)
 <use ../img/s4_comp+inv.png>
 Package pdftex.def Info: ../img/s4_comp+inv.png  used on input line 305.
@@ -1679,7 +1687,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 402--403
 
  []
 
-<../img/s4_matrix.png, id=709, 832.10875pt x 573.14125pt>
+<../img/s4_matrix.png, id=714, 832.10875pt x 573.14125pt>
 File: ../img/s4_matrix.png Graphic file (type png)
 <use ../img/s4_matrix.png>
 Package pdftex.def Info: ../img/s4_matrix.png  used on input line 410.
@@ -1747,7 +1755,7 @@ File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 
 
 ]
-Overfull \hbox (18.41013pt too wide) in paragraph at lines 109--117
+Overfull \hbox (18.41013pt too wide) in paragraph at lines 116--124
 \OT1/lmtt/m/n/12 7203-[]the-[]expressive-[]power-[]of-[]neural-[]networks-[]a-[
 ]view-[]from-[]the-[]width .|
  []
@@ -1764,7 +1772,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 168.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 168.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 168.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: BCBD8A9355F9BA6F483BE34633FDCDB9;4580.
+(rerunfilecheck)             Checksum: 58601C5969776ECC7E1F5D16849490D1;4790.
 
 
 LaTeX Warning: There were undefined references.
@@ -1772,17 +1780,17 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 168.
  ) 
 Here is how much of TeX's memory you used:
- 37152 strings out of 492982
- 830522 string characters out of 6134896
- 1449194 words of memory out of 5000000
- 39812 multiletter control sequences out of 15000+600000
+ 37217 strings out of 492982
+ 831512 string characters out of 6134896
+ 1449581 words of memory out of 5000000
+ 39871 multiletter control sequences out of 15000+600000
  103760 words of font info for 86 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  66i,20n,102p,1395b,2220s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-rmtt.enc}{/usr/share/texmf/fonts/enc/
-dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/sha
-re/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/
-lm-mathsy.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/te
+dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/sha
+re/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/
+lm-mathex.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/te
 xmf/fonts/type1/public/lm/lmbx8.pfb></usr/share/texmf/fonts/type1/public/lm/lmb
 xi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/f
 onts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.
@@ -1790,17 +1798,19 @@ pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/t
 ype1/public/lm/lmmi7.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></us
 r/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/pub
 lic/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/
-texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lm
-r7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts
-/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb>
-</usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1
-/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (60 pages, 1329743 bytes).
+texmf/fonts/type1/public/lm/lmr5.pfb></usr/share/texmf/fonts/type1/public/lm/lm
+r6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts
+/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></
+usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/
+public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb></usr/sha
+re/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/l
+m/lmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols
+/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/
+msbm10.pfb>
+Output written on thesis.pdf (60 pages, 1357757 bytes).
 PDF statistics:
- 953 PDF objects out of 1000 (max. 8388607)
- 832 compressed objects within 9 object streams
- 254 named destinations out of 1000 (max. 500000)
+ 975 PDF objects out of 1000 (max. 8388607)
+ 852 compressed objects within 9 object streams
+ 260 named destinations out of 1000 (max. 500000)
  392 words of extra memory for PDF output out of 10000 (max. 10000000)
 

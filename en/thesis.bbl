@@ -1,4 +1,4 @@
-\begin{thebibliography}{27}
+\begin{thebibliography}{28}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -23,6 +23,13 @@ Mart\'{\i}n Abadi, Ashish Agarwal, Paul Barham, Eugene Brevdo, Zhifeng Chen,
   2015.
 \newblock URL \url{https://www.tensorflow.org/}.
 \newblock Software available from tensorflow.org.
+
+\bibitem[Claessen and Sorensson(2003)]{paradox}
+K.~Claessen and N.~Sorensson.
+\newblock {New Techniques that Improve {MACE}-style Finite Model Finding}.
+\newblock In P.~Baumgartner and C.~Fermueller, editors, \emph{{Proceedings of
+  the CADE-19 Workshop: Model Computation - Principles, Algorithms,
+  Applications}}, 2003.
 
 \bibitem[Clevert et~al.(2015)Clevert, Unterthiner, and Hochreiter]{elu}
 Djork-Arn~é Clevert, Thomas Unterthiner, and Sepp Hochreiter.

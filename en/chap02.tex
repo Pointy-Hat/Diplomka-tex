@@ -87,11 +87,41 @@ A visual representation of this supernetwork can be seen in \Autoref{nndiagram2}
 
 In the case that the axiom has more such equalities (or negations of them) we do some adjustments. Because we do not assign a truth value (0-1) to the atomic formulas, the methods of aggreggating subformulas in Definition \autoref{def:grounding} could prove problematic. Therefore we will need different methods to combine the mean squared differences.
 
-The loss function of a negation of a subformula $\varphi$ should be computable from its own loss, e.g. $$J_{\neg\varphi}=\frac{1}{J_{\varphi}}.$$ If $\varphi_1,\varphi_2$ are subformulas, loss of $\varphi_1\vee \varphi_2$ will be e.g. $\min\{J_{\varphi_1},J_{\varphi_2}\}$ and loss of $\varphi_1\wedge \varphi_2$ will be e.g. $J_{\varphi_1}+J_{\varphi_2}$. However, these operations are for now just a speculation and further research is warranted. For example a function with a gradient that depends on both subformulas (in $\vee$) would help the optimization, while $\wedge$ might perform better using a different method of aggregation (e.g. $2\sqrt{J_{\varphi_1}^2+J_{\varphi_2}^2}$).
+The loss function of a negation of a subformula $\varphi$ should be computable from its own loss, e.g. $$J_{\neg\varphi}=\frac{1}{J_{\varphi}}.$$ If $\varphi_1,\varphi_2$ are subformulas, loss of $\varphi_1\vee \varphi_2$ will be e.g. $\min\{J_{\varphi_1},J_{\varphi_2}\}$ and loss of $\varphi_1\wedge \varphi_2$ will be e.g. $J_{\varphi_1}+J_{\varphi_2}$.
 
 The networks constructed here are not forced to produce $S^m\rightarrow S$ functions, nor are the constants forced to be near any element of $S$. To remedy this, we will need to alter our loss function. Possible ways to do this are discussed in \Autoref{comments}.
 
-After computing the loss for each axiom, we aggregate them like with $\wedge$ and use an optimization algorithm (see \Autoref{section:learning+opt}) using back-propagation (see \Autoref{section:backprop}) from this aggreggated loss.
+After computing the loss for each axiom, we aggregate them like with $\wedge$ and use an optimization algorithm (see \Autoref{section:learning+opt}) using back-propagation (see \Autoref{section:backprop}) from this aggreggated loss (this aggreggating is illustrated in \Autoref{diagram_aggregating}). The framework built for this thesis uses $$J_{\varphi_1\wedge\varphi_2\wedge\dots\wedge\varphi_n}=\sqrt{J_{\varphi_1}^2+J_{\varphi_2}^2+\dots+J_{\varphi_n}^2}$$ rather than the aforementioned $J_{\varphi_1}+\dots+J_{\varphi_n}$ This is done to ensure that the networks that are less successful (have larger losses) are prioritized by the optimizer (as they have larger influence on the gradient).
+
+Source code for this framework along with some examples of usage are included in Appendix 1.
+
+\begin{figure}
+\caption{Network aggreggating. If $\varphi_1,\dots,\varphi_n$ are axioms, we first build the supernetworks for these axioms as above and aggreggate them to an "overall loss" that we use the optimizing algorithm on. For the ease of use, the input variables are shared between these supernetworks.}
+\label{diagram_aggregating}
+\centering
+	\begin{tikzpicture}
+		\node[frame,minimum height=3em,minimum width = 2em](ax1)at(0,3){$\varphi_1$};
+		\node(loss1)at(0,1.5){$J_1$};
+		\draw[line](ax1)--(loss1);
+		\node[frame,minimum height=3em,minimum width = 2em](ax2)at(1,3){$\varphi_2$};
+		\node(loss2)at(1,1.5){$J_2$};
+		\draw[line](ax2)--(loss2);
+		\node at(2,3){$\dots$};
+		\node[frame,minimum height=3em,minimum width = 2em](axn)at(3,3){$\varphi_n$};
+		\node(lossn)at(3,1.5){$J_n$};
+		\draw[line](axn)--(lossn);
+		
+		\node(endloss)at(1.75,0){$J$};
+		\draw[line](loss1)--(endloss);
+		\draw[line](loss2)--(endloss);
+		\draw[line](lossn)--(endloss);
+		
+		\node[draw, rectangle,minimum width = 7em](inputs)at(1.5,4.5){input variables $X_0,\dots, X_k$};
+		\draw[line](inputs)--(ax1.north);
+		\draw[line](inputs)--(ax2.north);
+		\draw[line](inputs)--(axn.north);
+	\end{tikzpicture}
+\end{figure}
 
 \section{Neural model extension}
 Another part of this thesis is learning model extensions. In \Autoref{section:extensions} we have discussed which type of extensions are we interested in.
@@ -125,24 +155,24 @@ After the optimizer found a minimum, we evaluate various terms with this new con
 \end{tikzpicture}
 \end{figure}
 
-\section{Implementation for groups}
+\section{Our neural architecture implementing groups}
 \label{section:group_impl}
-There are many different types of groups, that have vastly different complexity levels. We have built models for the cyclic groups (namely $\mathbb{Z}_{10}$ and $\mathbb{Z}_{20}$) and symmetric groups ($S_3$ and $S_4$). These groups have been selected for being the simplest and the most complex finite groups respectively.
+There are many different types of groups, that have vastly different complexity levels. We have built models for the cyclic groups (namely $\mathbb{Z}_{10}$ and $\mathbb{Z}_{20}$) and symmetric groups ($S_3$, $S_4$ and $S_5$). These groups have been selected for being the simplest and the most complex finite groups respectively.
 
 To better see if the computer is able to represent these groups correctly, we have opted to use the multiplication table for the first experiments with the learning of $\cdot$. The multiplication table is a table of pre-computed values for each pair of the elements. The usage is illustrated in \Autoref{learning_comp}. The loss function is computed from the difference between the computed value and the value in the table.
 
 This is a simplification, contrary to learning the model only based on some propositions valid in it, but it is an essential one for human interpretability of the results. To demonstrate the ability of the network to generalize, and to a degree "understand" the composition function, several entries (up to 10\%) had been selected as testing data - they are never used during the optimization process.\\
 
-Both $\cdot$ and $^{-1}$ are 4-layer feed-forward neural networks (see \Autoref{section:nn}). The width of each layer is $3n$ where $n$ is the size of the grounding. The activation functions on each layer are leaky ReLU (see \Autoref{section:activation_functions}). The loss function for each network is the mean squared difference (see \Autoref{section:learning+opt}). The networks are optimized using the Adam optimizer with default settings (see \autoref{section:adam}). Inputs are given in batches of 25 random pairs of elements. \\
+\textbf{Network architecture:} Both $\cdot$ and $^{-1}$ are 4-layer feed-forward neural networks (see \Autoref{section:nn}). The width of each layer is $3n$ where $n$ is the size of the grounding\footnote{This makes them $\mathbb{R}^{an}\rightarrow\mathbb{R}^{3n}\rightarrow\mathbb{R}^{3n}\rightarrow\mathbb{R}^{3n}\rightarrow\mathbb{R}^{3n}\rightarrow\mathbb{R}^{n}$ where $a$ is 2 for composition and 1 for inverse.}. The activation functions on each layer are leaky ReLU (see \Autoref{section:activation_functions}). The loss function for each network is the mean squared difference (see \Autoref{section:learning+opt}). The networks are optimized using the Adam optimizer with default settings (see \autoref{section:adam}). Inputs are given in batches of 25 random pairs of elements. \\
 
-The networks are then used as building blocks for supernetworks, as described in \Autoref{section:building_models}. The supernetwork used for learning the \textbf{composition} is described in \Autoref{learning_comp}, \textbf{unit} in \Autoref{learning_unit} and \textbf{inverse} in \Autoref{learning_inv}. All of these networks calculate their own losses $J_{\text{mult}},J_{\text{unit}},J_{\text{inv}}$ respectively. The final loss function that the optimizer seeks to minimize is the sum $J_{\text{mult}}+J_{\text{unit}}+J_{\text{inv}}$.
+The networks are then used as building blocks for supernetworks, as described in \Autoref{section:building_models}. The supernetwork used for learning the \textbf{composition} is described in \Autoref{learning_comp}, \textbf{unit} in \Autoref{learning_unit} and \textbf{inverse} in \Autoref{learning_inv}. All of these networks calculate their own losses $J_{\text{mult}},J_{\text{unit}},J_{\text{inv}}$ respectively. The final loss function that the optimizer seeks to minimize is $\sqrt{J_{\text{mult}}^2+J_{\text{unit}}^2+J_{\text{inv}}^2}$.
 
 \begin{figure}
 	\caption{Learning of composition. An incomplete multiplication table is used to determine the loss. $x_1,x_2$ is a randomly selected pair.}
 	\label{learning_comp}
 	\center
 \begin{tikzpicture}
-	\node[frame,minimum width=2.5cm,minimum height=2cm,fill=yellow](comp) at (0,2){Composition};
+	\node[frame,minimum width=2.5cm,minimum height=2cm,fill=white](comp) at (0,2){Composition};
 	\node(x1)at(-1,4){$x_1$};
 	\node(x2)at(1,4){$x_2$};
 	\draw[line](x1)-|($(comp.north)-(0.5,0)$);
@@ -170,7 +200,7 @@ The networks are then used as building blocks for supernetworks, as described in
 \begin{tikzpicture}
 	\node[frame,minimum width=2.5cm,minimum height=2cm,fill=white](comp) at (0,2){Composition};
 	\node(input)at(-1,4){$a$};
-	\node[frame,fill=yellow,minimum width=2em](unit)at(1,4){$e$};
+	\node[frame,fill=white,minimum width=2em](unit)at(1,4){$e$};
 	\node(output)at(0,0){$\widehat{a\cdot e}$};
 	
 	\draw[line](input)-|($(comp.north)-(0.3,0)$);
@@ -190,7 +220,7 @@ The networks are then used as building blocks for supernetworks, as described in
 \begin{tikzpicture}
 	\node[frame,minimum width=2.5cm,minimum height=2cm,fill=white](comp) at (0,2){Composition};
 	\node(a)at(-0.3,6){$a$};
-	\node[frame,minimum width=1.5cm,minimum height=1.5cm,fill=yellow](inv)at(-1,4.5){Inverse};
+	\node[frame,minimum width=1.5cm,minimum height=1.5cm,fill=white](inv)at(-1,4.5){Inverse};
 	\draw[line](a)-|(inv);
 	\draw[line](a)-|($(comp.north)+(0.4,0)$);
 	\draw[line](inv.south)--($(inv.south)-(0,0.3)$)-|($(comp.north)-(0.4,0)$);

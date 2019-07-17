@@ -21,45 +21,45 @@ Warning--empty publisher in Lingebra
 Warning--empty journal in fuzzy
 Warning--empty booktitle in grounding_wang
 Warning--empty publisher in model
-You've used 27 entries,
+You've used 28 entries,
             2773 wiz_defined-function locations,
-            758 strings with 9962 characters,
-and the built_in function-call counts, 14080 in all, are:
-= -- 1194
-> -- 1033
-< -- 19
-+ -- 349
-- -- 322
-* -- 1107
-:= -- 2207
-add.period$ -- 97
-call.type$ -- 27
-change.case$ -- 180
-chr.to.int$ -- 27
-cite$ -- 59
-duplicate$ -- 628
-empty$ -- 979
-format.name$ -- 361
-if$ -- 2947
+            764 strings with 10195 characters,
+and the built_in function-call counts, 14515 in all, are:
+= -- 1227
+> -- 1062
+< -- 20
++ -- 358
+- -- 330
+* -- 1136
+:= -- 2275
+add.period$ -- 100
+call.type$ -- 28
+change.case$ -- 185
+chr.to.int$ -- 28
+cite$ -- 61
+duplicate$ -- 651
+empty$ -- 1020
+format.name$ -- 372
+if$ -- 3040
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 31
-newline$ -- 156
-num.names$ -- 110
-pop$ -- 391
+missing$ -- 32
+newline$ -- 161
+num.names$ -- 116
+pop$ -- 405
 preamble$ -- 1
-purify$ -- 159
+purify$ -- 163
 quote$ -- 0
-skip$ -- 557
+skip$ -- 574
 stack$ -- 0
-substring$ -- 284
-swap$ -- 112
+substring$ -- 286
+swap$ -- 114
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 267
+type$ -- 278
 warning$ -- 5
-while$ -- 95
+while$ -- 99
 width$ -- 0
-write$ -- 369
+write$ -- 381
 (There was 1 error message)

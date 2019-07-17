@@ -122,16 +122,16 @@ $$
 
 We will call output of this layer $(z_1,z_2)^\top$. 
 
-If we have $a+b>n$, therefore $y_1=a+b, y_2=a+b-n+1$, we have $y_1-2ny_2<0$ (because $y_2\geq 1$ and $a+b<2n$), therefore $z_1=0$. In this case also $z_2=a+b-n=(a+b)\text{mod}\ n$.
+If we have $a+b\geq n$, therefore $y_1=a+b, y_2=a+b-n+1$, we have $y_1-2ny_2<0$ (because $y_2\geq 1$ and $a+b<2n$), therefore $z_1=0$. In this case also $z_2=a+b-n=(a+b)\text{mod}\ n$.
 
-If we have $a+b\leq n$, therefore $y_1=a+b,y_2=0$, we have $z_1=a+b=(a+b)\text{mod} n$, $z_2=0$ (because $y_2-1<0$).
+If we have $a+b< n$, therefore $y_1=a+b,y_2=0$, we have $z_1=a+b=(a+b)\text{mod}\ n$, $z_2=0$ (because $y_2-1<0$).
 
 We see that one of $z_1,z_2$ always has the desired result, while the other is zero. Therefore the output layer $\textbf{w}^\top \left(\begin{matrix}
 z_1\\
 z_2
-\end{matrix}\right)=z_1+z_2$ always gives the desired value.
+\end{matrix}\right)=z_1+z_2$ always gives the correct value.
 
-Since we did not assume that $a,b$ are natural numbers, this network is also stable under commutative algebraic extensions of $\mathbb{Z}_n$, i.e. it does not need any modification to work correctly with fractions.
+Since we did not assume that $a,b$ are natural numbers, this network is also stable under commutative algebraic extensions of $\mathbb{Z}_n$, i.e. it does not need any modification to work correctly with fractions (or even irrationals).
 \subsection{$\mathbb{Z}_{10}$}
 
 \begin{itemize}
