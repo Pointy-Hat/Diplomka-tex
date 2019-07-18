@@ -93,7 +93,7 @@ The networks constructed here are not forced to produce $S^m\rightarrow S$ funct
 
 After computing the loss for each axiom, we aggregate them like with $\wedge$ and use an optimization algorithm (see \Autoref{section:learning+opt}) using back-propagation (see \Autoref{section:backprop}) from this aggreggated loss (this aggreggating is illustrated in \Autoref{diagram_aggregating}). The framework built for this thesis uses $$J_{\varphi_1\wedge\varphi_2\wedge\dots\wedge\varphi_n}=\sqrt{J_{\varphi_1}^2+J_{\varphi_2}^2+\dots+J_{\varphi_n}^2}$$ rather than the aforementioned $J_{\varphi_1}+\dots+J_{\varphi_n}$ This is done to ensure that the networks that are less successful (have larger losses) are prioritized by the optimizer (as they have larger influence on the gradient).
 
-Source code for this framework along with some examples of usage are included in Appendix 1.
+Source code for the framework that implements this approach along with some examples of usage are included in Appendix 1. This framework will continue development and the current version can be downloaded from https://github.com/Pointy-Hat/Neural-modelling/.
 
 \begin{figure}
 \caption{Network aggreggating. If $\varphi_1,\dots,\varphi_n$ are axioms, we first build the supernetworks for these axioms as above and aggreggate them to an "overall loss" that we use the optimizing algorithm on. For the ease of use, the input variables are shared between these supernetworks.}
@@ -163,9 +163,25 @@ To better see if the computer is able to represent these groups correctly, we ha
 
 This is a simplification, contrary to learning the model only based on some propositions valid in it, but it is an essential one for human interpretability of the results. To demonstrate the ability of the network to generalize, and to a degree "understand" the composition function, several entries (up to 10\%) had been selected as testing data - they are never used during the optimization process.\\
 
-\textbf{Network architecture:} Both $\cdot$ and $^{-1}$ are 4-layer feed-forward neural networks (see \Autoref{section:nn}). The width of each layer is $3n$ where $n$ is the size of the grounding\footnote{This makes them $\mathbb{R}^{an}\rightarrow\mathbb{R}^{3n}\rightarrow\mathbb{R}^{3n}\rightarrow\mathbb{R}^{3n}\rightarrow\mathbb{R}^{3n}\rightarrow\mathbb{R}^{n}$ where $a$ is 2 for composition and 1 for inverse.}. The activation functions on each layer are leaky ReLU (see \Autoref{section:activation_functions}). The loss function for each network is the mean squared difference (see \Autoref{section:learning+opt}). The networks are optimized using the Adam optimizer with default settings (see \autoref{section:adam}). Inputs are given in batches of 25 random pairs of elements. \\
+\textbf{Function network architecture:} Both $\cdot$ and $^{-1}$ are 4-layer feed-forward neural networks (see \Autoref{section:nn}). The width of each layer is $3n$ where $n$ is the size of the grounding\footnote{This makes them $\mathbb{R}^{an}\rightarrow\mathbb{R}^{3n}\rightarrow\mathbb{R}^{3n}\rightarrow\mathbb{R}^{3n}\rightarrow\mathbb{R}^{3n}\rightarrow\mathbb{R}^{n}$ where $a$ is 2 for composition and 1 for inverse.}. The activation functions on each layer are leaky ReLU (see \Autoref{section:activation_functions}). The loss function for each network is the mean squared difference (see \Autoref{section:learning+opt}).\\
 
-The networks are then used as building blocks for supernetworks, as described in \Autoref{section:building_models}. The supernetwork used for learning the \textbf{composition} is described in \Autoref{learning_comp}, \textbf{unit} in \Autoref{learning_unit} and \textbf{inverse} in \Autoref{learning_inv}. All of these networks calculate their own losses $J_{\text{mult}},J_{\text{unit}},J_{\text{inv}}$ respectively. The final loss function that the optimizer seeks to minimize is $\sqrt{J_{\text{mult}}^2+J_{\text{unit}}^2+J_{\text{inv}}^2}$.
+The networks are then used as building blocks for supernetworks, as described in \Autoref{section:building_models}. The supernetwork used for learning the \textbf{composition} is described in \Autoref{learning_comp}, \textbf{unit} in \Autoref{learning_unit} and \textbf{inverse} in \Autoref{learning_inv}. All of these networks calculate their own losses $J_{\text{mult}},J_{\text{unit}},J_{\text{inv}}$ respectively.\\
+
+\subsection{Optimization of our networks}
+\label{section:optimization_IRL}
+We have used two approaches for the optimization. One, the \textbf{discrete}, uses different optimizer for different axioms, always only optimizing one function at a time.
+\begin{itemize}
+	\item[\textbf{Composition}] is optimized using only the multiplication table (\autoref{learning_comp}).
+	\item[\textbf{Unit}] is optimized using the network shown in  \autoref{learning_unit}, where the optimizer can only change the elements of the learned $e$. It treats the learned composition network as a static $\mathbb{R}^{2n}\rightarrow\mathbb{R}^n$ function (with known Jacobian).
+	\item[\textbf{Inverse}] is optimized with the network shown in \autoref{learning_inv}. It once again uses the learned composition as a static function and the learned unit as a static vector. Therefore it only optimizes the parameters in the network for inverse.
+\end{itemize}
+Each function has its own optimizer that operate independently.
+
+The \textbf{joint} approach, done by the framework included in the appendix aggregates the losses and only uses one optimizer. The final loss function that the optimizer seeks to minimize is $\sqrt{J_{\text{mult}}^2+J_{\text{unit}}^2+J_{\text{inv}}^2}$. This approach has some drawbacks, but is more universal.
+
+Both approaches use the Adam optimizer with default settings (see \autoref{section:adam}). Inputs are given in batches of 25 random pairs of elements.
+
+Both approaches solve the extension as described in the previous section - with a separate optimizer that only changes the extending element.
 
 \begin{figure}
 	\caption{Learning of composition. An incomplete multiplication table is used to determine the loss. $x_1,x_2$ is a randomly selected pair.}

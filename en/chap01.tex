@@ -84,7 +84,7 @@ This $\mathcal{S}$ is by no means unique. In fact, most theories have vastly dif
 Formulas $\varphi$ and $\psi$ are \textbf{equivalent} if they are both true under the same variable assignments of their free variables in any of their models\footnote{This definition is not the standard one, since we only define equivalence with respect to models. Normally equivalence of formulas is a semantic property, regardless of models or even satisfiability. However, to define equivalence properly, we would need to define multiple other terms from mathematical logic, which we will not do for better readability of this section. Classic definition can be found in \cite{logic}.}.
 \end{defn}
 
-Note that this definition does not include semantic differences, e.g. renaming of variables. For this we use a different definition:
+Note that this definition does not include syntactic differences, e.g. renaming of variables. For this we use a different definition:
 
 \begin{defn}
 	We say that $\mathcal{L}$-formulas $\varphi$ and $\psi$ are \textbf{equisatistfiable} if either both are satisfiable or both are not.
@@ -92,7 +92,7 @@ Note that this definition does not include semantic differences, e.g. renaming o
 
 The models of $\varphi$ and $\psi$ can be different, they might not even be in the same language. Every pair of equivalent formulas is also equisatisfiable, since they share all models \footnote{This is also true with the classical definition of equivalence, even though it does not require the formulas to be satisfiable.}. This term is used almost exclusively in formula manipulations.
 
-Important things to notice in this section are that the universe $S$ has no restrictions. The models trained by us use $S$ as a subset of $\mathbb{R}^n$ in order to allow working with neural networks. 
+Important thing to notice in this section is that the universe $S$ has no restrictions. The models trained by us use $S$ as a subset of $\mathbb{R}^n$ in order to allow working with neural networks. 
 
 \subsection{Skolemization}
 \label{section:skolem}
@@ -110,8 +110,10 @@ Existential quantifiers have been a major hurdle for automatic theorem provers, 
 	\begin{itemize}
 		\item $(Q x\ \varphi)\wedge\psi$ is equivalent to $Q x\ (\varphi\wedge\psi)$ where $Q$ is either $\exists$ or $\forall$. 
 		\item $(Q x\ \varphi)\vee\psi$ is equivalent to $Q x\ (\varphi\vee\psi)$ where $Q$ is either $\exists$ or $\forall$. 
-		\item $\neg(\exists x\varphi)$ is equivalent to $\forall x \neg \varphi$
+		\item $\neg(\exists x\varphi)$ is equivalent to $\forall x \neg \varphi$\footnotemark
 		\item $\neg(\forall x\varphi)$ is equivalent to $\exists x \neg \varphi$
+		\footnotemark[\value{footnote}]
+		\footnotetext{Assuming $\varphi$ does not contain $x$ as a variable. Otherwise we have to rename the variable $x$ in $\varphi$. This does not break eqisatisfiability.}
 	\end{itemize}
 If we treat implication $\varphi \rightarrow \psi$ as equivalent to $\neg \varphi \vee \psi$ we are done.
 \end{proof}
@@ -122,7 +124,7 @@ If we treat implication $\varphi \rightarrow \psi$ as equivalent to $\neg \varph
 
 Skolemization is a process that turns formulas from prenex normal forms to Skolem normal form by introducing new function and constant symbols. We repeatedly apply this step:
 
-Let $\varphi$ be a formula that has the form $$\forall x_1\forall x_2,\dots \forall x_{i}\exists y\psi(x_1,\dots x_i,y)$$ where $x_1,\dots x_n$ are all universally quantified and $\psi$ is a formula in prenex normal form. Then the Skolemized version of $\varphi$ is obtained by introducing a new $i$-ary function symbol $f_y$ and replacing all occurrences of $y$ in $\psi$ with $f_y(x_1,\dots,x_i)$. Thus we get $$\forall x_1\forall x_2,\dots \forall x_{i}\psi(x_1,\dots x_i,f_y(x_1,\dots,x_i))$$ We say that $f_y$ is the Skolem function of $y$.
+Let $\varphi$ be a formula that has the form $$\forall x_1\forall x_2,\dots \forall x_{i}\exists y\psi(x_1,\dots x_i,y)$$ where $x_1,\dots x_i$ are all universally quantified and $\psi$ is a formula in prenex normal form. Then the Skolemized version of $\varphi$ is obtained by introducing a new $i$-ary function symbol $f_y$ and replacing all occurrences of $y$ in $\psi$ with $f_y(x_1,\dots,x_i)$. Thus we get $$\forall x_1\forall x_2,\dots \forall x_{i}\psi(x_1,\dots x_i,f_y(x_1,\dots,x_i))$$ We say that $f_y$ is the Skolem function of $y$.
 
 If $\varphi$ has the form $\exists y \psi(y)$, i.e. there are no universal quantifiers at the start we introduce a Skolem constant $c_y$ and replace all occurrences of $y$ in $\psi$ by $c_y$, obtaining $\psi(c_y)$. This is consistent with the notion of constants being $0$-ary functions.
 
@@ -349,11 +351,9 @@ We overcome this by introducing non-linearities via the activation functions. Ac
 \caption{ReLU}
 \center
 \begin{tikzpicture}
-	\draw[->](-3,0)--(3,0)node[midway,anchor=north]{$0$}node[below left]{$x$};
-	\draw[->](-3,0)--(-3,5)node[below left]{$y$};
-	\draw[dotted](0,0)--(0,1);
-	\node[anchor=east] at (-3,1){$0$};
-	\draw[line width=2] (-3,1)--(0,1)--(3,4);
+	\draw[->](-3,0)--(3,0)node[below left]{$x$};
+	\draw[->](0,-2)--(0,4)node[below left]{$y$};
+	\draw[line width=2] (-3,0)--(0,0)--(3,3);
 \end{tikzpicture}
 \end{figure}
 
@@ -452,6 +452,8 @@ $$
 which is exactly the desired output.
 
 In this case we got the hand-crafted solution from a book. Normally the weights and biases are found using an optimization method such as gradient descent (more about optimization can be found in \Autoref{section:learning+opt}). Here we found the perfect solution, a global minimum to the loss function. However that is not generally possible.
+
+The XOR function is also equivalent to addition modulo 2. In \Autoref{section:addition example} we show our handcrafted networks that simulate exactly addition modulo n for arbitrary positive n.
 
 \subsection{Other activation functions}
 \label{section:activation_functions}
